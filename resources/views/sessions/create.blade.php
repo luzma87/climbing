@@ -29,7 +29,7 @@
         <div class="form-group">
             <div class="input-group password">
                 <span class="input-group-addon"><i class="fa fa-unlock-alt"></i> </span>
-                <input type="password" name="password" class="form-control required" placeholder="Password" required="">
+                <input type="password" name="password" class="form-control required" placeholder="Contraseña" required="">
             </div>
         </div>
         <a href="#" id="btnSubmit" class="btn btn-lg btn-primary btn-block btn-submit"

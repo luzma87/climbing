@@ -22,21 +22,24 @@
 
     Route::resource('auth', 'SessionsController');
 
-    Route::resource('users', 'UsersController');
-    Route::resource('idiomas', 'IdiomasController');
-    Route::resource('frases', 'FrasesController');
-    Route::resource('fotos', 'FotosController');
+    // Route group
+    $router->group(['middleware' => 'auth'], function ($router) {
+        // lots of routes that require auth middleware
+        $router->get('admin', 'AdminController@index');
+        $router->resource('users', 'UsersController');
+        $router->resource('users', 'UsersController');
+        $router->resource('idiomas', 'IdiomasController');
+        $router->resource('frases', 'FrasesController');
+        $router->resource('fotos', 'FotosController');
+    });
 
-    // With A Route Closure...
+    // Auth With A Route Closure...
+    //    Route::get('admin', ['middleware' => 'auth', function () {
+    //        return 'Admin page';
+    //    }]);
 
-    Route::get('admin', ['middleware' => 'auth', function () {
-        return 'Admin page';
-    }]);
-
-    // With A Controller...
-
+    // Auth With A Controller...
     //    Route::get('profile', ['middleware' => 'auth', 'uses' => 'ProfileController@show']);
 
-    //    Route::get('admin', function () {
-    //        return 'Admin page';
-    //    })->before('auth');
+    // Single route
+    //    $router->get("/awesome/sauce", "AwesomeController@sauce", ['middleware' => 'auth']);
