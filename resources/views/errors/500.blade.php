@@ -1,12 +1,12 @@
 @extends('layouts.defaultAdmin')
-@section('title', 'Error 404!')
+@section('title', 'Error 500!')
 @section('content')
     <div class="alert alert-danger">
-        <h1 class="text-center text-danger">Error 404</h1>
+        <h1 class="text-center text-danger">Error 500</h1>
 
         <p style="font-size: large">
             <i class="fa fa-warning"></i>
-            No se encontró la página solicitada
+            Ha ocurrido un error interno
         </p>
     </div>
 @stop

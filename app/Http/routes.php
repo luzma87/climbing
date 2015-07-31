@@ -22,11 +22,19 @@
 
     Route::resource('auth', 'SessionsController');
 
+    Route::get('inicio', 'AdminController@inicio');
+    Route::get('ecuador', 'AdminController@ecuador');
+    Route::get('programas', 'AdminController@programas');
+    Route::get('recomendaciones', 'AdminController@recomendaciones');
+    Route::get('noticias', 'AdminController@noticias');
+    Route::get('comentarios', 'AdminController@comentarios');
+    Route::get('galeria', 'AdminController@galeria');
+    Route::get('cotizacion', 'AdminController@cotizacion');
+
     // Route group
     $router->group(['middleware' => 'auth'], function ($router) {
         // lots of routes that require auth middleware
-        $router->get('admin', 'AdminController@index');
-        $router->resource('users', 'UsersController');
+        $router->resource('admin', 'AdminController');
         $router->resource('users', 'UsersController');
         $router->resource('idiomas', 'IdiomasController');
         $router->resource('frases', 'FrasesController');

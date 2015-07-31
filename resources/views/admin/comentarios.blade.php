@@ -1,7 +1,7 @@
 @extends('layouts.defaultAdmin')
 
-@section('title', 'Administración')
+@section('title', 'Comentarios')
 
 @section('content')
-    <h1>ADMIN</h1>
+    <h1>COMENTARIOS</h1>
 @stop

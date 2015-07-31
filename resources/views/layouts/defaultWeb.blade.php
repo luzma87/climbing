@@ -6,12 +6,13 @@
         {!! HTML::style('assets/bootstrap-3.3.5/css/bootstrap.min.css') !!}
         {!! HTML::style('assets/bootstrap-3.3.5/css/bootstrap-theme.min.css') !!}
 
-        {!! HTML::style('assets/font-awesome-4.3.0/css/font-awesome.min.css') !!}
+        {!! HTML::style('assets/font-awesome-4.4.0/css/font-awesome.min.css') !!}
 
         {!! HTML::style('assets/js/jquery-ui-1.11.4/jquery-ui.min.css') !!}
         {!! HTML::style('assets/js/jquery-ui-1.11.4/jquery-ui.structure.min.css') !!}
         {!! HTML::style('assets/js/jquery-ui-1.11.4/jquery-ui.theme.min.css') !!}
         {!! HTML::style('assets/css/estilos.css') !!}
+        {!! HTML::style('assets/css/custom.css') !!}
 
         <link rel="apple-touch-icon" sizes="57x57" href="{!! URL::asset('assets/images/favicons/apple-touch-icon-57x57.png')  !!}">
         <link rel="apple-touch-icon" sizes="114x114" href="{!! URL::asset('assets/images/favicons/apple-touch-icon-114x114.png')  !!}">
@@ -37,7 +38,9 @@
         @yield('header')
     </head>
     <body>
+
         <div class="container">
+
             @yield('content')
 
             @yield('footer')

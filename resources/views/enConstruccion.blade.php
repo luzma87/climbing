@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.defaultWeb')
 
 @section('title', 'En construcción')
 

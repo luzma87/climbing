@@ -1,0 +1,60 @@
+/*.btn-verde {*/
+/*background : #19AA8D;*/
+/*color      : #ffffff !important;*/
+/*}*/
+
+/*.btn-verde:hover {*/
+/*background : #18A689;*/
+/*color      : #ffffff !important;*/
+/*}*/
+.btn-verde {
+    background-color  : #19AA8D;
+    border-color      : #19AA8D;
+    color             : #FFFFFF;
+    text-shadow       : 0 -1px 0 rgba(0, 0, 0, 0.25);
+    background-color  : #16987E;
+    background-image  : -moz-linear-gradient(top, #19AA8D, #127E68);
+    background-image  : -webkit-gradient(linear, 0 0, 0 100%, from(#19AA8D), to(#127E68));
+    background-image  : -webkit-linear-gradient(top, #19AA8D, #127E68);
+    background-image  : -o-linear-gradient(top, #19AA8D, #127E68);
+    background-image  : linear-gradient(to bottom, #19AA8D, #127E68);
+    background-repeat : repeat-x;
+    filter            : progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff19aa8d', endColorstr='#ff127d68', GradientType=0);
+    border-color      : #127E68 #127E68 #093B31;
+    border-color      : rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+}
+
+.btn-verde:hover,
+.btn-verde:focus {
+    color               : #FFFFFF;
+    text-decoration     : none;
+    background-position : 0 -15px;
+    -webkit-transition  : background-position .1s linear;
+    -moz-transition     : background-position .1s linear;
+    -o-transition       : background-position .1s linear;
+    transition          : background-position .1s linear;
+}
+
+.btn-verde:hover,
+.btn-verde:focus {
+    background-color : #127E68;
+}
+
+.btn-verde:active,
+.btn-verde.active,
+.btn-verde.active:hover {
+    background-color : #16947B;
+    border-color     : #127E68;
+}
+
+.btn-verde.disabled:hover,
+.btn-verde.disabled:focus,
+.btn-verde.disabled:active,
+.btn-verde.disabled.active,
+.btn-verde[disabled] .btn-verde:hover,
+.btn-verde[disabled] .btn-verde:focus,
+.btn-verde[disabled] .btn-verde:active,
+.btn-verde[disabled] .btn-verde.active {
+    background-color : #19AA8D;
+    border-color     : #19AA8D;
+}
