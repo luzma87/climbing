@@ -45,6 +45,71 @@
 
             @yield('footer')
 
+
+            <div class="row svt-footer">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+                    <div class="row hidden-lg hidden-md hidden-sm" style="margin-bottom: 10px">
+                        <div class="col-xs-6 text-center">
+                            <a href="" class="blanco">Inglés</a>
+                        </div>
+                        <div class="col-xs-6 text-center">
+                            <a href="" class="blanco active">Español</a>
+                        </div>
+                    </div>
+                    <div class="row hidden-xs">
+                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-lg-offset-1 col-md-offset-1  col-sm-offset-1 text-left">
+                            <ul class="lista-idiomas">
+                                <li>Idiomas</li>
+                                <li><a href="">Inglés</a></li>
+                                <li class="active"><a href="">Español</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-xs-1 col-sm-2 col-md-2 col-lg-2 col-lg-offset-3 col-md-offset-3  col-sm-offset-3 text-left">
+                            <ul class="lista-idiomas">
+                                <li  class="active"><a href="">Inicio</a></li>
+                                <li><a href="">Nosotros</a></li>
+                                <li><a href="">Contacto</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2  text-left">
+                            <ul class="lista-idiomas">
+                                <li><a href="">Media montaña</a></li>
+                                <li><a href="">Alta montaña</a></li>
+                                <li><a href="">Cursos</a></li>
+                                <li><a href="">Relax y descanso</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-xs-1 col-sm-2 col-md-2 col-lg-2  text-left">
+                            <ul class="lista-idiomas">
+                                <li><a href="">Perú</a></li>
+                                <li><a href="">Bolivia</a></li>
+                                <li><a href="">Argentina</a></li>
+                                <li><a href="">Galería</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row svt-final">
+               <div class=" hidden-xs col-xs-4 col-sm-4 col-md-4 col-lg-4 col-lg-offset-1  col-md-offset-1  col-sm-offset-1">
+                   © 2014 All Rights Reserved
+               </div>
+                <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1 text-center">
+                    <a href="" >Skype</a>
+                </div>
+                <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1 text-center">
+                    <a href="" > Twitter</a>
+                </div>
+                <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1 text-center">
+                    <a href="" > Facebook</a>
+                </div>
+                <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 text-center">
+                    <a href="" >Mapa del sitio</a>
+                </div>
+                <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1 text-center">
+                    <a href="" > Contacto</a>
+                </div>
+            </div>
             {!! HTML::script('assets/js/jquery-ui-1.11.4/external/jquery/jquery.js') !!}
             {!! HTML::script('assets/js/jquery-ui-1.11.4/jquery-ui.min.js') !!}
             {!! HTML::script('assets/bootstrap-3.3.5/js/bootstrap.min.js') !!}
