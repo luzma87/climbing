@@ -13,6 +13,9 @@
         {!! HTML::style('assets/js/jquery-ui-1.11.4/jquery-ui.theme.min.css') !!}
         {!! HTML::style('assets/css/estilos.css') !!}
         {!! HTML::style('assets/css/custom.css') !!}
+        {!! HTML::script('assets/js/jquery-ui-1.11.4/external/jquery/jquery.js') !!}
+        {!! HTML::script('assets/js/jquery-ui-1.11.4/jquery-ui.min.js') !!}
+        {!! HTML::script('assets/bootstrap-3.3.5/js/bootstrap.min.js') !!}
 
         <link rel="apple-touch-icon" sizes="57x57" href="{!! URL::asset('assets/images/favicons/apple-touch-icon-57x57.png')  !!}">
         <link rel="apple-touch-icon" sizes="114x114" href="{!! URL::asset('assets/images/favicons/apple-touch-icon-114x114.png')  !!}">
@@ -33,7 +36,6 @@
         <meta name="msapplication-TileImage" content="/mstile-144x144.png">
         <meta name="application-name" content="Yes Climbing Guides">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
         <title>@yield('title')</title>
         @yield('header')
     </head>
@@ -110,9 +112,6 @@
                     <a href="" > Contacto</a>
                 </div>
             </div>
-            {!! HTML::script('assets/js/jquery-ui-1.11.4/external/jquery/jquery.js') !!}
-            {!! HTML::script('assets/js/jquery-ui-1.11.4/jquery-ui.min.js') !!}
-            {!! HTML::script('assets/bootstrap-3.3.5/js/bootstrap.min.js') !!}
 
             @yield('scripts')
         </div>
