@@ -11,11 +11,7 @@
     |
     */
 
-    Route::get('/', function () {
-        return View::make('enConstruccion');
-    });
-
-
+    Route::get('/', 'HomeController@index');
     Route::get('auth/login', 'SessionsController@create');
     Route::get('login', 'SessionsController@create');
     Route::get('logout', 'SessionsController@destroy');
