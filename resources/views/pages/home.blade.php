@@ -105,11 +105,10 @@
 </div>
 <script type="text/javascript">
     $(".flechas-slider").click(function(){
-         console.log("flecha")
-        var active = $(".slider-active")
-        var index = active.attr("index")
-        $(".small-slider").addClass("hidden-xs")
-        active.removeClass("slider-active")
+        var active = $(".slider-active");
+        var index = active.attr("index");
+        $(".small-slider").addClass("hidden-xs");
+        active.removeClass("slider-active");
         if($(this).hasClass("next")){
             index=index*1+1
             if(index>4)
