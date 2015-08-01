@@ -14,6 +14,11 @@
         {!! HTML::style('assets/css/estilos.css') !!}
         {!! HTML::style('assets/css/custom.css') !!}
         {!! HTML::style('assets/css/botones.css') !!}
+        {!! HTML::style('assets/css/tablas.css') !!}
+
+        {!! HTML::script('assets/js/jquery-ui-1.11.4/external/jquery/jquery.js') !!}
+        {!! HTML::script('assets/js/jquery-ui-1.11.4/jquery-ui.min.js') !!}
+        {!! HTML::script('assets/bootstrap-3.3.5/js/bootstrap.min.js') !!}
 
         <link rel="apple-touch-icon" sizes="57x57" href="{!! URL::asset('assets/images/favicons/apple-touch-icon-57x57.png')  !!}">
         <link rel="apple-touch-icon" sizes="114x114" href="{!! URL::asset('assets/images/favicons/apple-touch-icon-114x114.png')  !!}">
@@ -58,31 +63,49 @@
                     </div>
                 </li>
                 <li class="menu-item {{ session('pag') == 'admin' ? 'active' : 'non-active' }}">
-                    <a href="{{ action('AdminController@index') }}" title="Administración"><i class="fa-menu fa fa-th-large"></i><span class="toggle-menu">Administración</span></a>
+                    <a href="{{ action('AdminController@index') }}" title="Administración">
+                        <i class="fa-menu fa fa-th-large"></i><span class="toggle-menu">Administración</span>
+                    </a>
                 </li>
                 <li class="menu-item {{ session('pag') == 'inicio' ? 'active' : 'non-active' }}">
-                    <a href="{{ URL::to('inicio') }}" title="Inicio"><i class="fa-menu fa fa-home"></i><span class="toggle-menu">Inicio</span></a>
+                    <a href="{{ URL::to('inicio') }}" title="Inicio"><i class="fa-menu fa fa-home">
+                        </i><span class="toggle-menu">Inicio</span>
+                    </a>
                 </li>
                 <li class="menu-item {{ session('pag') == 'ecuador' ? 'active' : 'non-active' }}">
-                    <a href="{{ URL::to('ecuador') }}" title="Ecuador país mega diverso"><i class="fa-menu fa fa-pagelines"></i><span class="toggle-menu">Ecuador país mega diverso</span></a>
+                    <a href="{{ URL::to('ecuador') }}" title="Ecuador país mega diverso">
+                        <i class="fa-menu fa fa-pagelines"></i><span class="toggle-menu">Ecuador país mega diverso</span>
+                    </a>
                 </li>
                 <li class="menu-item {{ session('pag') == 'programas' ? 'active' : 'non-active' }}">
-                    <a href="{{ URL::to('programas') }}" title="Nuestros programas"><i class="fa-menu fa fa-map"></i><span class="toggle-menu">Nuestros programas</span></a>
+                    <a href="{{ URL::to('programas') }}" title="Nuestros programas">
+                        <i class="fa-menu fa fa-map"></i><span class="toggle-menu">Nuestros programas</span>
+                    </a>
                 </li>
                 <li class="menu-item {{ session('pag') == 'recomendaciones' ? 'active' : 'non-active' }}">
-                    <a href="{{ URL::to('recomendaciones') }}" title="Recomendaciones"><i class="fa-menu fa fa-weixin"></i><span class="toggle-menu">Recomendaciones</span></a>
+                    <a href="{{ URL::to('recomendaciones') }}" title="Recomendaciones">
+                        <i class="fa-menu fa fa-weixin"></i><span class="toggle-menu">Recomendaciones</span>
+                    </a>
                 </li>
                 <li class="menu-item {{ session('pag') == 'noticias' ? 'active' : 'non-active' }}">
-                    <a href="{{ URL::to('noticias') }}" title="Noticias"><i class="fa-menu fa fa-newspaper-o"></i><span class="toggle-menu">Noticias</span></a>
+                    <a href="{{ URL::to('noticias') }}" title="Noticias">
+                        <i class="fa-menu fa fa-newspaper-o"></i><span class="toggle-menu">Noticias</span>
+                    </a>
                 </li>
                 <li class="menu-item {{ session('pag') == 'comentarios' ? 'active' : 'non-active' }}">
-                    <a href="{{ URL::to('comentarios') }}" title="Comentarios"><i class="fa-menu fa fa-comments-o"></i><span class="toggle-menu">Comentarios</span></a>
+                    <a href="{{ URL::to('comentarios') }}" title="Comentarios">
+                        <i class="fa-menu fa fa-comments-o"></i><span class="toggle-menu">Comentarios</span>
+                    </a>
                 </li>
                 <li class="menu-item {{ session('pag') == 'galeria' ? 'active' : 'non-active' }}">
-                    <a href="{{ URL::to('galeria') }}" title="Galería"><i class="fa-menu fa fa-picture-o"></i><span class="toggle-menu">Galería</span></a>
+                    <a href="{{ URL::to('galeria') }}" title="Galería">
+                        <i class="fa-menu fa fa-picture-o"></i><span class="toggle-menu">Galería</span>
+                    </a>
                 </li>
                 <li class="menu-item {{ session('pag') == 'cotizacion' ? 'active' : 'non-active' }}">
-                    <a href="{{ URL::to('cotizacion') }}" title="Cotización"><i class="fa-menu fa fa-money"></i><span class="toggle-menu">Cotización</span></a>
+                    <a href="{{ URL::to('cotizacion') }}" title="Cotización">
+                        <i class="fa-menu fa fa-money"></i><span class="toggle-menu">Cotización</span>
+                    </a>
                 </li>
                 {{--<li class="menu-item non-active dropdown">--}}
                 {{--<a href="#" class="dropdown-toggle non-active " title="Chat"><i class="fa-menu fa fa-wechat"></i><span class="toggle-menu">Chat</span><span class="caret toggle-menu"></span></a>--}}
@@ -121,13 +144,15 @@
                 </div>
             </nav>
 
+            @if (session('message')!='')
+                <div class="flash alert-info">
+                    <p>{{ session('message') }}</p>
+                </div>
+            @endif
+
             @yield('content')
 
             @yield('footer')
-
-            {!! HTML::script('assets/js/jquery-ui-1.11.4/external/jquery/jquery.js') !!}
-            {!! HTML::script('assets/js/jquery-ui-1.11.4/jquery-ui.min.js') !!}
-            {!! HTML::script('assets/bootstrap-3.3.5/js/bootstrap.min.js') !!}
 
             <script type="text/javascript">
                 var estadoMenu = 1;
@@ -136,27 +161,27 @@
                     if (estadoMenu == 1) {
                         $(".submenu").hide();
                         $(".menu").animate({
-                            width: 55
+                            width : 55
                         });
                         $(".contenido").animate({
-                            marginLeft: "55"
+                            marginLeft : "55"
                         });
                         estadoMenu = 0;
                     } else {
                         $(".menu").animate({
-                            width: 190
+                            width : 190
                         });
                         $(".contenido").animate({
-                            marginLeft: "190"
+                            marginLeft : "190"
                         });
                         estadoMenu = 1;
                     }
                     return false;
                 });
                 $(".dropdown-toggle").click(function () {
-                    if (estadoMenu == 1)
+                    if (estadoMenu == 1) {
                         $(this).parent().find(".submenu").toggle();
-                    else {
+                    } else {
                         $("#control-menu").click();
                         $(this).parent().find(".submenu").toggle()
                     }

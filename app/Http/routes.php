@@ -11,14 +11,21 @@
     |
     */
 
+    Route::get('/', function () {
+        return View::make('enConstruccion');
+    });
 
-    Route::get('/', 'HomeController@index');
+
     Route::get('auth/login', 'SessionsController@create');
     Route::get('login', 'SessionsController@create');
     Route::get('logout', 'SessionsController@destroy');
 
     Route::resource('auth', 'SessionsController');
+    Route::resource('users', 'UsersController');
+    Route::resource('idiomas', 'IdiomaController');
+    Route::resource('fotos', 'FotoController');
 
+    Route::get('admin', 'AdminController@index');
     Route::get('inicio', 'AdminController@inicio');
     Route::get('ecuador', 'AdminController@ecuador');
     Route::get('programas', 'AdminController@programas');
@@ -28,15 +35,16 @@
     Route::get('galeria', 'AdminController@galeria');
     Route::get('cotizacion', 'AdminController@cotizacion');
 
+    Route::get('frases/{idioma}', array('uses' => 'FrasesController@index'));
+
     // Route group
-    $router->group(['middleware' => 'auth'], function ($router) {
-        // lots of routes that require auth middleware
-        $router->resource('admin', 'AdminController');
-        $router->resource('users', 'UsersController');
-        $router->resource('idiomas', 'IdiomasController');
-        $router->resource('frases', 'FrasesController');
-        $router->resource('fotos', 'FotosController');
-    });
+    //    $router->group(['middleware' => 'auth'], function ($router) {
+    //        // lots of routes that require auth middleware
+    //        $router->resource('admin', 'AdminController');
+    //        $router->resource('users', 'UsersController');
+    //        $router->resource('idiomas', 'IdiomasController');
+    //        $router->resource('fotos', 'FotosController');
+    //    });
 
     // Auth With A Route Closure...
     //    Route::get('admin', ['middleware' => 'auth', function () {

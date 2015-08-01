@@ -3,27 +3,25 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateIdiomaFraseFotoTables extends Migration
-{
+class CreateIdiomaFraseFotoTables extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
         Schema::create('idiomas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('codigo')->default('');
-            $table->string('nombre')->default('');
-            $table->string('bandera')->default('');
+            $table->string('codigo');
+            $table->string('nombre');
+            $table->string('bandera');
             $table->timestamps();
         });
 
         Schema::create('frases', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('codigo')->default('');
-            $table->text('contenido')->default('');
+            $table->string('codigo');
+            $table->text('contenido');
             $table->integer('idioma')->unsigned()->default(0);
             $table->foreign('idioma')->references('id')->on('idiomas')->onDelete('cascade');
             $table->timestamps();
@@ -31,7 +29,7 @@ class CreateIdiomaFraseFotoTables extends Migration
 
         Schema::create('fotos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('path')->default('');
+            $table->string('path');
             $table->integer('titulo')->unsigned()->default(0);
             $table->foreign('titulo')->references('id')->on('frases')->onDelete('cascade');
             $table->integer('descripcion')->unsigned()->default(0);
@@ -45,8 +43,7 @@ class CreateIdiomaFraseFotoTables extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::drop('fotos');
         Schema::drop('frases');
         Schema::drop('idiomas');

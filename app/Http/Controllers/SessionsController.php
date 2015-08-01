@@ -33,7 +33,6 @@
 
         public function destroy() {
             Auth::logout();
-            Session::flush();
             return Redirect::route('auth.create');
         }
     }

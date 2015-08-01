@@ -13,9 +13,13 @@
         {!! HTML::style('assets/js/jquery-ui-1.11.4/jquery-ui.theme.min.css') !!}
         {!! HTML::style('assets/css/estilos.css') !!}
         {!! HTML::style('assets/css/custom.css') !!}
+
         {!! HTML::script('assets/js/jquery-ui-1.11.4/external/jquery/jquery.js') !!}
         {!! HTML::script('assets/js/jquery-ui-1.11.4/jquery-ui.min.js') !!}
         {!! HTML::script('assets/bootstrap-3.3.5/js/bootstrap.min.js') !!}
+
+        {!! HTML::style('assets/css/botones.css') !!}
+        {!! HTML::style('assets/css/tablas.css') !!}
 
         <link rel="apple-touch-icon" sizes="57x57" href="{!! URL::asset('assets/images/favicons/apple-touch-icon-57x57.png')  !!}">
         <link rel="apple-touch-icon" sizes="114x114" href="{!! URL::asset('assets/images/favicons/apple-touch-icon-114x114.png')  !!}">
@@ -41,12 +45,20 @@
     </head>
     <body>
 
+        @yield('menuVert')
+
         <div class="container">
+            @yield('navbar')
+
+            @if (session('message')!='')
+                <div class="flash alert-info">
+                    <p>{{ session('message') }}</p>
+                </div>
+            @endif
 
             @yield('content')
 
             @yield('footer')
-
 
             <div class="row svt-footer">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
@@ -112,7 +124,6 @@
                     <a href="" > Contacto</a>
                 </div>
             </div>
-
             @yield('scripts')
         </div>
     </body>
