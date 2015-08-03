@@ -144,6 +144,7 @@
             App\Providers\AppServiceProvider::class,
             App\Providers\EventServiceProvider::class,
             App\Providers\RouteServiceProvider::class,
+            'App\Services\Html\NthHtmlServiceProvider' // THe service provider we just created
 
         ],
 

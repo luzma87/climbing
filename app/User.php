@@ -12,7 +12,6 @@
     class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
         use Authenticatable, CanResetPassword;
 
-
         public static $rules = [
             'email'    => 'required',
             'password' => 'required'

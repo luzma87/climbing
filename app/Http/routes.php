@@ -18,8 +18,9 @@
 
     Route::resource('auth', 'SessionsController');
     Route::resource('users', 'UsersController');
-    Route::resource('idiomas', 'IdiomaController');
-    Route::resource('fotos', 'FotoController');
+    Route::resource('frases', 'FrasesController');
+    Route::resource('idiomas', 'IdiomasController');
+    Route::resource('fotos', 'FotosController');
 
     Route::get('admin', 'AdminController@index');
     Route::get('inicio', 'AdminController@inicio');
@@ -31,7 +32,8 @@
     Route::get('galeria', 'AdminController@galeria');
     Route::get('cotizacion', 'AdminController@cotizacion');
 
-    Route::get('frases/{idioma}', array('uses' => 'FrasesController@index'));
+//    Route::get('frases/{idioma}', array('uses' => 'FrasesController@index'));
+//    Route::get('frases/create', array('uses' => 'FrasesController@create'));
 
     // Route group
     //    $router->group(['middleware' => 'auth'], function ($router) {

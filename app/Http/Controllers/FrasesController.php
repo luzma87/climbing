@@ -26,11 +26,10 @@
         /**
          * Display a listing of the resource.
          *
-         * @param $idioma
-         *
          * @return Response
          */
-        public function index($idioma) {
+        public function index() {
+            $idioma = Input::get("lang");
             $frases = $this->frase->idioma($idioma)->get();
             return view('frases.index', ['frases' => $frases]);
         }
@@ -41,7 +40,9 @@
          * @return Response
          */
         public function create() {
-            //
+//            $idiomas = Idioma::all();
+            $idiomas = Idioma::lists('nombre', 'id'); //saca solo el nombre y el id
+            return view('frases.create', ['idiomas' => $idiomas]);
         }
 
         /**
@@ -52,7 +53,13 @@
          * @return Response
          */
         public function store(Request $request) {
-            //
+            $this->frase->idioma = Input::get('idioma');
+            $this->frase->codigo = Input::get('codigo');
+            $this->frase->contenido = Input::get('contenido');
+            if (!$this->frase->isValid()) {
+                return Redirect::back()->withInput()->withErrors($this->frase->errors);
+            }
+            $this->frase->save();
         }
 
         /**

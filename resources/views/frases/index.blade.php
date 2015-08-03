@@ -23,7 +23,7 @@
                 <div class="row fila" style="margin-left: 0">
                     <div class="btn-toolbar toolbar">
                         <div class="btn-group">
-                            <a href="/zeus/persona/form" class="btn btn-verde btnCrear">
+                            <a href="{{ URL::to('frases/create') }}" class="btn btn-verde btnCrear">
                                 <i class="fa fa-file-o"></i> Crear
                             </a>
                         </div>
