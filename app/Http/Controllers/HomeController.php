@@ -1,16 +1,17 @@
 <?php
-namespace App\Http\Controllers;
+    namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+    use Illuminate\Http\Request;
 
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-class HomeController extends Controller {
+    use App\Http\Requests;
+    use App\Http\Controllers\Controller;
 
-    public function index() {
-        session(['pag' => 'home']);
-        return view('pages.home');
+    class HomeController extends Controller {
+
+        public function index() {
+            session(['pag' => 'home']);
+            return view('pages.home');
+        }
+
     }
-
-}

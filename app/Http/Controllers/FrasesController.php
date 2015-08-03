@@ -89,7 +89,7 @@
          * Update the specified resource in storage.
          *
          * @param  Request $request
-         * @param  int     $id
+         * @param  int $id
          *
          * @return Response
          */
