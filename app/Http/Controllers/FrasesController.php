@@ -17,6 +17,7 @@
 
     class FrasesController extends Controller {
         protected $frase;
+        protected $rules;
 
         public function __construct(Frase $frase) {
             $this->middleware('auth');
@@ -30,6 +31,9 @@
          */
         public function index() {
             $idioma = Input::get("lang");
+            if (!$idioma) {
+                $idioma = "es";
+            }
             $frases = $this->frase->idioma($idioma)->get();
             return view('frases.index', ['frases' => $frases]);
         }
@@ -53,13 +57,22 @@
          * @return Response
          */
         public function store(Request $request) {
-            $this->frase->idioma = Input::get('idioma');
-            $this->frase->codigo = Input::get('codigo');
-            $this->frase->contenido = Input::get('contenido');
-            if (!$this->frase->isValid()) {
-                return Redirect::back()->withInput()->withErrors($this->frase->errors);
-            }
-            $this->frase->save();
+//            $this->frase->idioma = Input::get('idioma');
+//            $this->frase->codigo = Input::get('codigo');
+//            $this->frase->contenido = Input::get('contenido');
+//            if (!$this->frase->isValid()) {
+//                return Redirect::back()->withInput()->withErrors($this->frase->errors);
+//            }
+//            $this->frase->save();
+//            return Redirect::route('frases.index');
+
+            $this->rules = Frase::$rules;
+            $this->validate($request, $this->rules);
+
+            $input = Input::all();
+            Frase::create($input);
+
+            return Redirect::route('frases.index')->with('message', 'Frase creada');
         }
 
         /**
@@ -82,7 +95,9 @@
          * @return Response
          */
         public function edit($id) {
-            //
+            $frase = $this->frase->whereId($id)->first();
+            $idiomas = Idioma::lists('nombre', 'id'); //saca solo el nombre y el id
+            return view('frases.edit', ['frase' => $frase, 'idiomas' => $idiomas]);
         }
 
         /**
@@ -94,7 +109,16 @@
          * @return Response
          */
         public function update(Request $request, $id) {
-            //
+            $frase = $this->frase->whereId($id)->first();
+
+            $this->rules = Frase::$rules;
+            $this->validate($request, $this->rules);
+
+            $input = array_except(Input::all(), '_method');
+            $frase->update($input);
+
+            return Redirect::route('frases.index')->with('message', 'Frase actualizada.');
+
         }
 
         /**
@@ -105,6 +129,9 @@
          * @return Response
          */
         public function destroy($id) {
-            //
+            $frase = $this->frase->whereId($id)->first();
+            $frase->delete();
+
+            return Redirect::route('frases.index')->with('message', 'Frase eliminada.');
         }
     }

@@ -24,10 +24,10 @@
                 <div class="row fila">
                     <div class="col-md-5">
 
-                        {!! Form::model(new App\Frase, ['id'=>'frmFrase', 'route' => ['frases.store']]) !!}
+                        {!! Form::model($frase, ['id'=>'frmFrase', 'method' => 'PATCH', 'route' => array('frases.update', $frase->id)]) !!}
                         {{--{!! Form::open(["id"=>'frmFrase', 'route' => 'frases.store'])  !!}--}}
 
-                        @include('frases/partials/_form', ['submit_text' => 'Crear frase'])
+                        @include('frases/partials/_form', ['submit_text' => 'Actualizar frase'])
 
                         {!! Form::close()  !!}
                     </div>

@@ -30,6 +30,7 @@
     Route::get('noticias', 'AdminController@noticias');
     Route::get('comentarios', 'AdminController@comentarios');
     Route::get('galeria', 'AdminController@galeria');
+    Route::get('config', 'AdminController@config');
     Route::get('cotizacion', 'AdminController@cotizacion');
 
 //    Route::get('frases/{idioma}', array('uses' => 'FrasesController@index'));

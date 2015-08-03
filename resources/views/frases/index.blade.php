@@ -41,17 +41,17 @@
                             </ul>
                         </div>
 
-                        <div class="btn-group pull-right col-md-3">
-                            <div class="input-group">
-                                <input type="text" class="form-control input-search" placeholder="Buscar" value="">
-                                    <span class="input-group-btn">
-                                        <a href="/zeus/persona/list" class="btn btn-verde btn-search">
-                                            <i class="fa fa-search"></i>&nbsp;
-                                        </a>
-                                    </span>
-                            </div>
-                            <!-- /input-group -->
-                        </div>
+                        {{--<div class="btn-group pull-right col-md-3">--}}
+                        {{--<div class="input-group">--}}
+                        {{--<input type="text" class="form-control input-search" placeholder="Buscar" value="">--}}
+                        {{--<span class="input-group-btn">--}}
+                        {{--<a href="/zeus/persona/list" class="btn btn-verde btn-search">--}}
+                        {{--<i class="fa fa-search"></i>&nbsp;--}}
+                        {{--</a>--}}
+                        {{--</span>--}}
+                        {{--</div>--}}
+                        {{--<!-- /input-group -->--}}
+                        {{--</div>--}}
                     </div>
                 </div>
 
@@ -60,9 +60,10 @@
                         <table class="table table-condensed table-bordered table-striped table-hover verde">
                             <thead>
                                 <tr>
-                                    <th class="sortable"><a href="#">Idioma</a></th>
-                                    <th class="sortable"><a href="#">Código</a></th>
-                                    <th class="sortable"><a href="#">Contenido</a></th>
+                                    <th><a href="#">Idioma</a></th>
+                                    <th><a href="#">Código</a></th>
+                                    <th><a href="#">Contenido</a></th>
+                                    <th style="width: 150px;"><a href="#">Acciones</a></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -71,7 +72,23 @@
                                         <tr>
                                             <td>{{ Idioma::find($frase->idioma)->nombre }}</td>
                                             <td>{{ $frase->codigo }}</td>
-                                            <td>{!! link_to("/frases/{$frase->id}",$frase->contenido) !!}</td>
+                                            <td>{{ $frase->contenido }}</td>
+                                            <td>
+                                                {{--<div class="btn-group" role="group" aria-label="...">--}}
+                                                {{--{!! Form::nth_img_button_clase("Ver", URL::to("frases/".$frase->id) , "fa-search", array('class' => 'btn-info')) !!}--}}
+                                                {{--{!! Form::nth_img_button_clase("Editar", URL::to("frases/edit/".$frase->id) , "fa-pencil", array('class' => 'btn-warning')) !!}--}}
+                                                {{--{!! Form::nth_img_button_clase("Eliminar", URL::to("frases/destroy/".$frase->id) , "fa-trash-o", array('class' => 'btn-danger')) !!}--}}
+
+                                                {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('frases.destroy', $frase->id))) !!}
+                                                <div class="btn-group" role="group" aria-label="...">
+                                                    {!! link_to_route('frases.edit', 'Editar', array($frase->id), array('class' => 'btn btn-info')) !!}
+                                                    {!! Form::submit('Eliminar', array('class' => 'btn btn-danger')) !!}
+                                                </div>
+                                                {!! Form::close() !!}
+
+                                                {{--</div>--}}
+                                                {{--{!! link_to("/frases/{$frase->id}",$frase->contenido) !!}--}}
+                                            </td>
                                         </tr>
                                     @endforeach
                                 @else

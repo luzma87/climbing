@@ -20,6 +20,9 @@
         {!! HTML::script('assets/js/jquery-ui-1.11.4/jquery-ui.min.js') !!}
         {!! HTML::script('assets/bootstrap-3.3.5/js/bootstrap.min.js') !!}
 
+        {!! HTML::script('assets/js/plugins/jquery-validation-1.14.0/dist/jquery.validate.min.js') !!}
+        {!! HTML::script('assets/js/plugins/jquery-validation-1.14.0/dist/localization/messages_es.min.js') !!}
+
         <link rel="apple-touch-icon" sizes="57x57" href="{!! URL::asset('assets/images/favicons/apple-touch-icon-57x57.png')  !!}">
         <link rel="apple-touch-icon" sizes="114x114" href="{!! URL::asset('assets/images/favicons/apple-touch-icon-114x114.png')  !!}">
         <link rel="apple-touch-icon" sizes="72x72" href="{!! URL::asset('assets/images/favicons/apple-touch-icon-72x72.png')  !!}">
@@ -62,51 +65,22 @@
                         </div>
                     </div>
                 </li>
-                <li class="menu-item {{ session('pag') == 'admin' ? 'active' : 'non-active' }}">
-                    <a href="{{ action('AdminController@index') }}" title="Administración">
-                        <i class="fa-menu fa fa-th-large"></i><span class="toggle-menu">Administración</span>
-                    </a>
-                </li>
-                <li class="menu-item {{ session('pag') == 'inicio' ? 'active' : 'non-active' }}">
-                    <a href="{{ URL::to('inicio') }}" title="Inicio"><i class="fa-menu fa fa-home">
-                        </i><span class="toggle-menu">Inicio</span>
-                    </a>
-                </li>
-                <li class="menu-item {{ session('pag') == 'ecuador' ? 'active' : 'non-active' }}">
-                    <a href="{{ URL::to('ecuador') }}" title="Ecuador país mega diverso">
-                        <i class="fa-menu fa fa-pagelines"></i><span class="toggle-menu">Ecuador país mega diverso</span>
-                    </a>
-                </li>
-                <li class="menu-item {{ session('pag') == 'programas' ? 'active' : 'non-active' }}">
-                    <a href="{{ URL::to('programas') }}" title="Nuestros programas">
-                        <i class="fa-menu fa fa-map"></i><span class="toggle-menu">Nuestros programas</span>
-                    </a>
-                </li>
-                <li class="menu-item {{ session('pag') == 'recomendaciones' ? 'active' : 'non-active' }}">
-                    <a href="{{ URL::to('recomendaciones') }}" title="Recomendaciones">
-                        <i class="fa-menu fa fa-weixin"></i><span class="toggle-menu">Recomendaciones</span>
-                    </a>
-                </li>
-                <li class="menu-item {{ session('pag') == 'noticias' ? 'active' : 'non-active' }}">
-                    <a href="{{ URL::to('noticias') }}" title="Noticias">
-                        <i class="fa-menu fa fa-newspaper-o"></i><span class="toggle-menu">Noticias</span>
-                    </a>
-                </li>
-                <li class="menu-item {{ session('pag') == 'comentarios' ? 'active' : 'non-active' }}">
-                    <a href="{{ URL::to('comentarios') }}" title="Comentarios">
-                        <i class="fa-menu fa fa-comments-o"></i><span class="toggle-menu">Comentarios</span>
-                    </a>
-                </li>
-                <li class="menu-item {{ session('pag') == 'galeria' ? 'active' : 'non-active' }}">
-                    <a href="{{ URL::to('galeria') }}" title="Galería">
-                        <i class="fa-menu fa fa-picture-o"></i><span class="toggle-menu">Galería</span>
-                    </a>
-                </li>
+                {!! Form::nth_menu_li("Administración", action('AdminController@index'), "fa-th-large", "admin") !!}
+                {!! Form::nth_menu_li("Inicio", URL::to('inicio'), "fa-home", "inicio") !!}
+                {!! Form::nth_menu_li("Ecuador país mega diverso", URL::to('ecuador'), "fa-pagelines", "ecuador") !!}
+                {!! Form::nth_menu_li("Nuestros programas", URL::to('programas'), "fa-map", "programas") !!}
+                {!! Form::nth_menu_li("Recomendaciones", URL::to('recomendaciones'), "fa-weixin", "recomendaciones") !!}
+                {!! Form::nth_menu_li("Noticias", URL::to('noticias'), "fa-newspaper-o", "noticias") !!}
+                {!! Form::nth_menu_li("Comentarios", URL::to('comentarios'), "fa-comments-o", "comentarios") !!}
+                {!! Form::nth_menu_li("Galería", URL::to('galeria'), "fa-picture-o", "galeria") !!}
+                {!! Form::nth_menu_li("Recomendaciones", URL::to('recomendaciones'), "fa-weixin", "recomendaciones") !!}
+                {!! Form::nth_menu_li("Configuración", URL::to('config'), "fa-cogs", "config") !!}
                 <li class="menu-item {{ session('pag') == 'cotizacion' ? 'active' : 'non-active' }}">
                     <a href="{{ URL::to('cotizacion') }}" title="Cotización">
                         <i class="fa-menu fa fa-money"></i><span class="toggle-menu">Cotización</span>
                     </a>
                 </li>
+                {!! Form::nth_menu_li("Salir", URL::to('logout'), "fa-sign-out", "logout") !!}
                 {{--<li class="menu-item non-active dropdown">--}}
                 {{--<a href="#" class="dropdown-toggle non-active " title="Chat"><i class="fa-menu fa fa-wechat"></i><span class="toggle-menu">Chat</span><span class="caret toggle-menu"></span></a>--}}
                 {{--<ul class="submenu non-active" style="margin-top: 0">--}}
@@ -116,12 +90,6 @@
                 {{--</li>--}}
                 {{--</ul>--}}
                 {{--</li>--}}
-                <li class="menu-item non-active">
-                    <a href="{{ URL::to('logout') }}" title="Salir">
-                        <i class="fa-menu fa fa-sign-out"></i>
-                        <span class="toggle-menu">Salir</span>
-                    </a>
-                </li>
             </ul>
         </div>
 
@@ -145,7 +113,7 @@
             </nav>
 
             @if (session('message')!='')
-                <div class="flash alert-info">
+                <div class="flash alert alert-info">
                     <p>{{ session('message') }}</p>
                 </div>
             @endif

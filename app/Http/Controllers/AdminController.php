@@ -55,6 +55,11 @@
             return view('admin.galeria');
         }
 
+        public function config() {
+            session(['pag' => 'config']);
+            return view('admin.config');
+        }
+
         public function cotizacion() {
             session(['pag' => 'cotizacion']);
             return view('admin.cotizacion');
