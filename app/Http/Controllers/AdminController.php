@@ -10,6 +10,10 @@ use App\Http\Controllers\Controller;
 
 class AdminController extends Controller {
 
+    public function __construct(Frase $frase) {
+        $this->middleware('auth');
+    }
+
     public function index() {
         session(['pag' => 'admin']);
         Frase::idioma("es")->codigo("culturaAventura")->get();

@@ -9,6 +9,11 @@ use App\Http\Controllers\Controller;
 
 class IdiomasController extends Controller
 {
+
+    public function __construct(Frase $frase) {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
