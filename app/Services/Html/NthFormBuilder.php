@@ -40,6 +40,33 @@ class NthFormBuilder extends \Illuminate\Html\FormBuilder {
         );
     }
 
+    public function nth_select_default($name, $contents, $selected, $default, $inputOptions = null) {
+        $inputOptions['class'] = 'form-control' . (isset($inputOptions['class']) ? ' ' . $inputOptions['class'] : '');
+        $id = isset($inputOptions['id']) ? $inputOptions['id'] : $name;
+        $sel = sprintf('<select name="%s" id="%s" class="%s">',
+                       $name,
+                       $id,
+                       $inputOptions['class']
+        );
+        $sele = $selected === '' ? 'selected' : '';
+        $sel .= sprintf('<option value="%s" %s>%s</option>',
+                        '',
+                        $sele,
+                        $default
+        );
+        foreach ($contents as $key => $value) {
+            $sele = $selected === $key ? 'selected' : '';
+            $sel .= sprintf('<option value="%s" %s>%s</option>',
+                            $key,
+                            $sele,
+                            $value
+            );
+        }
+        $sel .= "</select>";
+//        dd($sel);
+        return $sel;
+    }
+
     public function nth_submit($value = null, $options = []) {
         $options['class'] = 'btn btn-verde' . (isset($options['class']) ? ' ' . $options['class'] : '');
         return parent::submit($value, $options);
@@ -61,14 +88,26 @@ class NthFormBuilder extends \Illuminate\Html\FormBuilder {
     public function nth_img_button_clase($value = null, $url = null, $image = null, $options = []) {
         $options['class'] = 'btn ' . (isset($options['class']) ? ' ' . $options['class'] : '');
         $options['id'] = '' . (isset($options['id']) ? '' . $options['id'] : '');
-        return sprintf(
-            '<a href="%s" class="%s" id="%s"><i class="fa %s"></i> %s</a>',
-            $url,
-            $options['class'],
-            $options['id'],
-            $image,
-            $value
-        );
+        $label = isset($options['label']) ? $options['label'] : true;
+        if ($label) {
+            return sprintf(
+                '<a href="%s" class="%s" id="%s"><i class="fa %s"></i> %s</a>',
+                $url,
+                $options['class'],
+                $options['id'],
+                $image,
+                $value
+            );
+        } else {
+            return sprintf(
+                '<a href="%s" class="%s" id="%s" title="%s"><i class="fa %s"></i></a>',
+                $url,
+                $options['class'],
+                $options['id'],
+                $value,
+                $image
+            );
+        }
     }
 
     public function nth_menu_li($value = null, $url = null, $image = null, $tipo = null, $options = []) {

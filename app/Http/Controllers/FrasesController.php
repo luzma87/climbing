@@ -31,11 +31,34 @@
          */
         public function index() {
             $idioma = Input::get("lang");
+            $search = Input::get("search");
             if (!$idioma) {
-                $idioma = "es";
+                if ($search) {
+                    $frases = $this->frase
+                        ->where("codigo", "like", '%' . $search . '%')
+                        ->orWhere("contenido", "like", '%' . $search . '%')
+                        ->get();
+                } else {
+                    $frases = $this->frase->all();
+                }
+            } else {
+                if ($search) {
+//                    $frases = $this->frase
+//                        ->idioma($idioma)
+//                        ->where("codigo", "like", '%' . $search . '%')
+//                        ->orWhere("contenido", "like", '%' . $search . '%')
+//                        ->get();
+//                    $frases = app('db')->select("select * from frases where idioma = (select id from idiomas where codigo = ?) and (codigo like '%?%' or contenido like '%?%')",
+//                                                array($idioma, $search, $search));
+                    $frases = app('db')->select("select * from frases where idioma = (select id from idiomas where codigo = ?) AND (codigo like ? or contenido like ?)",
+                                                array($idioma, '%' . $search . '%', '%' . $search . '%'));
+//                    dd($frases);
+                } else {
+                    $frases = $this->frase->idioma($idioma)->get();
+                }
             }
-            $frases = $this->frase->idioma($idioma)->get();
-            return view('frases.index', ['frases' => $frases]);
+            $idiomas = Idioma::lists('nombre', 'codigo'); //saca solo el nombre y el id
+            return view('frases.index', ['frases' => $frases, 'idiomas' => $idiomas, 'idioma' => $idioma, 'search' => $search]);
         }
 
         /**

@@ -23,7 +23,7 @@
     Route::resource('fotos', 'FotosController');
 
     Route::get('admin', 'AdminController@index');
-    Route::get('inicio', 'AdminController@inicio');
+    Route::get('home', 'AdminController@home');
     Route::get('ecuador', 'AdminController@ecuador');
     Route::get('programas', 'AdminController@programas');
     Route::get('recomendaciones', 'AdminController@recomendaciones');

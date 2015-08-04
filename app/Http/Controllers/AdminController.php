@@ -20,9 +20,9 @@
             return view('admin.index');
         }
 
-        public function inicio() {
-            session(['pag' => 'inicio']);
-            return view('admin.inicio');
+        public function home() {
+            session(['pag' => 'home']);
+            return view('admin.home');
         }
 
         public function ecuador() {

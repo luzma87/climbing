@@ -3,6 +3,17 @@
     <head>
         <meta charset="utf-8">
 
+        {!! HTML::script('assets/js/jquery-ui-1.11.4/external/jquery/jquery.js') !!}
+        {!! HTML::script('assets/js/jquery-ui-1.11.4/jquery-ui.min.js') !!}
+        {!! HTML::script('assets/bootstrap-3.3.5/js/bootstrap.min.js') !!}
+
+        {!! HTML::script('assets/js/plugins/jquery-validation-1.14.0/dist/jquery.validate.min.js') !!}
+        {!! HTML::script('assets/js/plugins/jquery-validation-1.14.0/dist/localization/messages_es.min.js') !!}
+
+        {!! HTML::script('assets/js/plugins/bootbox-4.4.0/bootbox.js') !!}
+
+        {!! HTML::script('assets/js/funciones.js') !!}
+
         {!! HTML::style('assets/bootstrap-3.3.5/css/bootstrap.min.css') !!}
         {!! HTML::style('assets/bootstrap-3.3.5/css/bootstrap-theme.min.css') !!}
 
@@ -15,13 +26,7 @@
         {!! HTML::style('assets/css/custom.css') !!}
         {!! HTML::style('assets/css/botones.css') !!}
         {!! HTML::style('assets/css/tablas.css') !!}
-
-        {!! HTML::script('assets/js/jquery-ui-1.11.4/external/jquery/jquery.js') !!}
-        {!! HTML::script('assets/js/jquery-ui-1.11.4/jquery-ui.min.js') !!}
-        {!! HTML::script('assets/bootstrap-3.3.5/js/bootstrap.min.js') !!}
-
-        {!! HTML::script('assets/js/plugins/jquery-validation-1.14.0/dist/jquery.validate.min.js') !!}
-        {!! HTML::script('assets/js/plugins/jquery-validation-1.14.0/dist/localization/messages_es.min.js') !!}
+        {!! HTML::style('assets/css/customAdmin.css') !!}
 
         <link rel="apple-touch-icon" sizes="57x57" href="{!! URL::asset('assets/images/favicons/apple-touch-icon-57x57.png')  !!}">
         <link rel="apple-touch-icon" sizes="114x114" href="{!! URL::asset('assets/images/favicons/apple-touch-icon-114x114.png')  !!}">

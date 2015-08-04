@@ -11,6 +11,9 @@
 
         public function index() {
             session(['pag' => 'home']);
+            if (!session('lang')) {
+                session(['lang' => 'es']);
+            }
             return view('pages.home');
         }
 

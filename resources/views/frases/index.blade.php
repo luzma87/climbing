@@ -10,7 +10,6 @@
 @section('title', 'Frases')
 
 @section('content')
-
     <div class="row">
         <div class="col-md-12">
             <div class="panel-completo" style="padding: 5px">
@@ -27,31 +26,21 @@
                                 <i class="fa fa-file-o"></i> Crear
                             </a>
                         </div>
-                        <!-- Single button -->
                         <div class="btn-group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Action <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                            </ul>
+                            {!! Form::nth_select_default('idioma', $idiomas, $idioma, '-- Todos --', array('id'=>'idioma', 'class'=>'form-control')) !!}
                         </div>
 
-                        {{--<div class="btn-group pull-right col-md-3">--}}
-                        {{--<div class="input-group">--}}
-                        {{--<input type="text" class="form-control input-search" placeholder="Buscar" value="">--}}
-                        {{--<span class="input-group-btn">--}}
-                        {{--<a href="/zeus/persona/list" class="btn btn-verde btn-search">--}}
-                        {{--<i class="fa fa-search"></i>&nbsp;--}}
-                        {{--</a>--}}
-                        {{--</span>--}}
-                        {{--</div>--}}
-                        {{--<!-- /input-group -->--}}
-                        {{--</div>--}}
+                        <div class="btn-group pull-right col-md-3">
+                            <div class="input-group">
+                                <input type="text" class="form-control input-search" placeholder="Buscar" value="{{ $search }}">
+                                    <span class="input-group-btn">
+                                        <a href="#" class="btn btn-verde btn-search">
+                                            <i class="fa fa-search"></i>&nbsp;
+                                        </a>
+                                    </span>
+                            </div>
+                            <!-- /input-group -->
+                        </div>
                     </div>
                 </div>
 
@@ -63,39 +52,29 @@
                                     <th><a href="#">Idioma</a></th>
                                     <th><a href="#">Código</a></th>
                                     <th><a href="#">Contenido</a></th>
-                                    <th style="width: 150px;"><a href="#">Acciones</a></th>
+                                    <th class="colAcciones text-white">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @if($frases->count() > 0)
-                                    @foreach($frases as $frase)
-                                        <tr>
-                                            <td>{{ Idioma::find($frase->idioma)->nombre }}</td>
-                                            <td>{{ $frase->codigo }}</td>
-                                            <td>{{ $frase->contenido }}</td>
-                                            <td>
-                                                {{--<div class="btn-group" role="group" aria-label="...">--}}
-                                                {{--{!! Form::nth_img_button_clase("Ver", URL::to("frases/".$frase->id) , "fa-search", array('class' => 'btn-info')) !!}--}}
-                                                {{--{!! Form::nth_img_button_clase("Editar", URL::to("frases/edit/".$frase->id) , "fa-pencil", array('class' => 'btn-warning')) !!}--}}
-                                                {{--{!! Form::nth_img_button_clase("Eliminar", URL::to("frases/destroy/".$frase->id) , "fa-trash-o", array('class' => 'btn-danger')) !!}--}}
-
-                                                {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('frases.destroy', $frase->id))) !!}
-                                                <div class="btn-group" role="group" aria-label="...">
-                                                    {!! link_to_route('frases.edit', 'Editar', array($frase->id), array('class' => 'btn btn-info')) !!}
-                                                    {!! Form::submit('Eliminar', array('class' => 'btn btn-danger')) !!}
-                                                </div>
-                                                {!! Form::close() !!}
-
-                                                {{--</div>--}}
-                                                {{--{!! link_to("/frases/{$frase->id}",$frase->contenido) !!}--}}
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                @else
+                                @forelse($frases as $frase)
                                     <tr>
-                                        <td colspan="3">Nada que mostrar</td>
+                                        <td>{{ Idioma::find($frase->idioma)->nombre }}</td>
+                                        <td>{{ $frase->codigo }}</td>
+                                        <td>{{ $frase->contenido }}</td>
+                                        <td>
+                                            {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('frases.destroy', $frase->id))) !!}
+                                            <div class="btn-group" role="group" aria-label="...">
+                                                {!! Form::nth_img_button_clase("Editar", route("frases.edit", $frase->id) , "fa-pencil", array('class' => 'btn-warning btn-sm', 'label' => false)) !!}
+                                                {!! Form::nth_img_button_clase("Eliminar", null, "fa-trash-o", array('class' => 'btn-delete btn-sm btn-danger', 'label' => false)) !!}
+                                            </div>
+                                            {!! Form::close() !!}
+                                        </td>
                                     </tr>
-                                @endif
+                                @empty
+                                    <tr>
+                                        <td colspan="4" class="info text-info text-center">Nada que mostrar</td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
@@ -103,4 +82,44 @@
             </div>
         </div>
     </div>
+@stop
+
+@section('scripts')
+    <script type="text/javascript">
+        function doSearch() {
+            openLoader("Buscando...");
+            var url = "{{ URL::action('FrasesController@index') }}";
+            url += "?lang=" + $("#idioma").val();
+            url += "&search=" + $.trim($(".input-search").val());
+            location.href = url;
+        }
+        $(function () {
+            $("#idioma").change(function () {
+                doSearch();
+                {{--openLoader();--}}
+                {{--var lang = $(this).val();--}}
+                {{--var url = "{{ URL::action('FrasesController@index') }}";--}}
+                {{--url += "?lang=" + lang;--}}
+                {{--location.href = url;--}}
+            });
+            $(".btn-delete").click(function () {
+                var $frm = $(this).parents("form");
+                bootbox.confirm("¿Está seguro de querer eliminar esta frase?", function (res) {
+                    if (res) {
+                        openLoader("Eliminando");
+                        $frm.submit();
+                    }
+                });
+                return false;
+            });
+            $(".input-search").keyup(function (ev) {
+                if (ev.keyCode == 13) {
+                    doSearch();
+                }
+            });
+            $(".btn-search").click(function () {
+                doSearch();
+            });
+        });
+    </script>
 @stop

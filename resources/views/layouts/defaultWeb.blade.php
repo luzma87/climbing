@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html>
+
     <head>
+        <?php
+        use App\Frase;
+        use App\Foto;
+        use App\Idioma;
+
+        ?>
+
         <meta charset="utf-8">
 
         {!! HTML::style('assets/bootstrap-3.3.5/css/bootstrap.min.css') !!}
@@ -63,26 +71,44 @@
             <div class="row svt-footer">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
                     <div class="row hidden-lg hidden-md hidden-sm" style="margin-bottom: 10px">
-                        <div class="col-xs-6 text-center">
-                            <a href="" class="blanco">Inglés</a>
-                        </div>
-                        <div class="col-xs-6 text-center">
-                            <a href="" class="blanco active">Español</a>
-                        </div>
+                        @foreach (Idioma::all() as $idioma)
+                            <div class="col-xs-6 text-center">
+                                <a href="" class="blanco {{ session('lang') === $idioma->codigo ? 'active' : '' }}">
+                                    {{ $idioma->nombre}}
+                                </a>
+                            </div>
+                        @endforeach
                     </div>
                     <div class="row hidden-xs">
                         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-lg-offset-1 col-md-offset-1  col-sm-offset-1 text-left">
                             <ul class="lista-idiomas">
-                                <li>Idiomas</li>
-                                <li><a href="">Inglés</a></li>
-                                <li class="active"><a href="">Español</a></li>
+                                <li>
+                                    {{  Frase::codigo("footer_idiomas")->idioma(session("lang"))->get()->first()->contenido }}
+                                </li>
+                                @foreach (Idioma::all() as $idioma)
+                                    <li class="{{ session('lang') === $idioma->codigo ? 'active' : '' }}">
+                                        <a href="">{{ $idioma->nombre }}</a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                         <div class="col-xs-1 col-sm-2 col-md-2 col-lg-2 col-lg-offset-3 col-md-offset-3  col-sm-offset-3 text-left">
                             <ul class="lista-idiomas">
-                                <li  class="active"><a href="">Inicio</a></li>
-                                <li><a href="">Nosotros</a></li>
-                                <li><a href="">Contacto</a></li>
+                                <li class="{{ session('pag') === 'home' ? 'active' : '' }}">
+                                    <a href="">
+                                        {{  ucfirst(strtolower(Frase::codigo("menu_home")->idioma(session("lang"))->get()->first()->contenido)) }}
+                                    </a>
+                                </li>
+                                <li class="{{ session('pag') === 'nosotros' ? 'active' : '' }}">
+                                    <a href="">
+                                        {{  ucfirst(strtolower(Frase::codigo("menu_nosotros")->idioma(session("lang"))->get()->first()->contenido)) }}
+                                    </a>
+                                </li>
+                                <li class="{{ session('pag') === 'contacto' ? 'active' : '' }}">
+                                    <a href="">
+                                        {{  ucfirst(strtolower(Frase::codigo("menu_contacto")->idioma(session("lang"))->get()->first()->contenido)) }}
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2  text-left">
@@ -105,23 +131,30 @@
                 </div>
             </div>
             <div class="row svt-final">
-               <div class=" hidden-xs col-xs-4 col-sm-4 col-md-4 col-lg-4 col-lg-offset-1  col-md-offset-1  col-sm-offset-1">
-                   © 2014 All Rights Reserved
-               </div>
-                <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1 text-center">
-                    <a href="" >Skype</a>
+                <div class=" hidden-xs col-xs-4 col-sm-4 col-md-4 col-lg-4 col-lg-offset-1  col-md-offset-1  col-sm-offset-1">
+                    {{  Frase::codigo("footer_copyright")->idioma(session("lang"))->get()->first()->contenido }}
                 </div>
                 <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1 text-center">
-                    <a href="" > Twitter</a>
+                    <a href="">
+                        {{  Frase::codigo("footer_skype")->idioma(session("lang"))->get()->first()->contenido }}
+                    </a>
                 </div>
                 <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1 text-center">
-                    <a href="" > Facebook</a>
+                    <a href="">
+                        {{  Frase::codigo("footer_twitter")->idioma(session("lang"))->get()->first()->contenido }}</a>
+                </div>
+                <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1 text-center">
+                    <a href="">
+                        {{  Frase::codigo("footer_facebook")->idioma(session("lang"))->get()->first()->contenido }}</a>
                 </div>
                 <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 text-center">
-                    <a href="" >Mapa del sitio</a>
+                    <a href="">
+                        {{  Frase::codigo("menu_contacto")->idioma(session("lang"))->get()->first()->contenido }}
+                    </a>
                 </div>
                 <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1 text-center">
-                    <a href="" > Contacto</a>
+                    <a href="">
+                    </a>
                 </div>
             </div>
             @yield('scripts')

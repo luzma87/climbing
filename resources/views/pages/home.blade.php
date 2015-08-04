@@ -1,3 +1,9 @@
+<?php
+    use App\Frase;
+    use App\Foto;
+    use App\Idioma;
+
+?>
 @extends('layouts.defaultWeb')
 
 @section('title', 'Inicio')
@@ -7,58 +13,7 @@
     <div class="banner col-xs-12 col-md-12 col-lg-12">
         <img class="imgBanner" src="{!!  URL::asset('assets/images/montana2.jpg')  !!}" style="margin: 0px"/>
 
-        <div class="menu-container">
-            <div class="row upper-row">
-
-                <div class="logo col-xs-3 col-md-2 col-sm-3 col-lg-2 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
-                    <img class="imgBanner" src="{!!  URL::asset('assets/images/logo.PNG')  !!}" style="width: 100%;margin: 0px"/>
-                </div>
-
-                <div class="col-lg-7 col-md-6 col-sm-7 col-xs-3 menu-horizontal col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-2">
-                    <a href="#" class="btn-menu-horizontal col-lg-2 col-md-2 col-sm-2  col-xs-12 ui-corner-all active">INICIO</a>
-                    <a href="#" class="btn-menu-horizontal col-lg-2 col-md-2 col-sm-2 col-xs-12 ui-corner-all">NOSOTROS</a>
-                    <a href="#" class="btn-menu-horizontal col-lg-2 col-md-2 col-sm-2 col-xs-12 ui-corner-all">GUÍAS</a>
-                    <a href="#" class="btn-menu-horizontal col-lg-2 col-md-2 col-sm-2 col-xs-12 ui-corner-all">CONTACTO</a>
-                </div>
-            </div>
-            <div class="row menu-vertical hidden-xs">
-                <div class="col-lg-2 col-lg-offset-1 col-xs-3 col-md-2 col-sm-3 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 ">
-                    <nav class="navbar navbar-default navSvt" role="navigation" style="background: none;border: none">
-                        <div class="container-fluid navSvt">
-                            <!-- Brand and toggle get grouped for better mobile display -->
-                            <div class="navbar-header navSvt hidden-lg">
-                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>
-                                <a class="navbar-brand hidden-lg" href="#">Menú</a>
-                            </div>
-
-                        </div>
-                        <div class="collapse navbar-collapse navSvt " id="bs-example-navbar-collapse-1">
-                            <a href="#" class="btn-vertical col-lg-12 col-md-12 col-sm-12 col-xs-12  ">
-                                ECUADOR PAÍS MEGA DIVERSO
-                            </a>
-                            <a href="#" class="btn-vertical col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                                NUESTROS PROGRAMAS
-                            </a>
-                            <a href="#" class="btn-vertical col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                                RECOMENDACIONES
-                            </a>
-                            <a href="#" class="btn-vertical col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                                TÉRMINOS Y CONDICIONES
-                            </a>
-                            <a href="#" class="btn-vertical col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                                GALERÍA
-                            </a>
-                        </div>
-                    </nav>
-
-                </div>
-            </div>
-        </div>
+        @include('pages/partials/_menu')
 
         <div class="row info-row hidden-xs ">
             <div id="slider-text" class="col-lg-7 col-md-7 col-sm-7 col-xs-10  col-lg-offset-1  col-md-offset-1 col-sm-offset-1 col-xs-offset-1 info-text">
@@ -73,10 +28,10 @@
 
     <div class="row bottom-row">
         <div class="col-lg-3 col-xs-12  col-lg-offset-1 col-xs-offset-1 col-md-3  col-md-offset-1 col-sm-4  col-sm-offset-1 text-left " style="padding-left: 0px">
-            Cultura y aventura
+            {{  Frase::codigo("culturaAventura")->idioma(session("lang"))->get()->first()->contenido }}
         </div>
         <div class="col-lg-6  col-lg-offset-1 col-md-6  col-md-offset-1 hidden-sm  hidden-xs text-right">
-            Operadora Turística en Ecuador y Sud América
+            {{  Frase::codigo("operadoraTuristica")->idioma(session("lang"))->get()->first()->contenido }}
         </div>
     </div>
     <div class="row page-content">
@@ -110,13 +65,13 @@
             $(".small-slider").addClass("hidden-xs");
             active.removeClass("slider-active");
             if ($(this).hasClass("next")) {
-                index = index * 1 + 1
+                index = index * 1 + 1;
                 if (index > 4) {
                     index = 1
                 }
                 $(".sl-" + index).removeClass("hidden-xs").addClass("slider-active")
             } else {
-                index = index * 1 - 1
+                index = index * 1 - 1;
                 if (index < 0) {
                     index = 4
                 }
