@@ -1,13 +1,6 @@
-<?php
-    use App\Frase;
-    use App\Foto;
-    use App\Idioma;
-
-?>
-
 @extends('layouts.defaultAdmin')
 
-@section('title', 'Frases')
+@section('title', 'Idiomas')
 
 @section('content')
     <div class="row">
@@ -15,19 +8,16 @@
             <div class="panel-completo" style="padding: 5px">
                 <div class="row fila" style="margin-left: 0">
                     <div class="col-md-11 titulo-panel">
-                        Frases
+                        Idiomas
                     </div>
                 </div>
 
                 <div class="row fila" style="margin-left: 0">
                     <div class="btn-toolbar toolbar">
                         <div class="btn-group">
-                            <a href="{{ URL::to('frases/create') }}" class="btn btn-verde btnCrear">
+                            <a href="{{ URL::to('idiomas/create') }}" class="btn btn-verde btnCrear">
                                 <i class="fa fa-file-o"></i> Crear
                             </a>
-                        </div>
-                        <div class="btn-group">
-                            {!! Form::nth_select_default('idioma', $idiomas, $idioma, '-- Todos --', array('id'=>'idioma', 'class'=>'form-control')) !!}
                         </div>
 
                         <div class="btn-group pull-right col-md-3">
@@ -49,24 +39,26 @@
                         <table class="table table-condensed table-bordered table-striped table-hover verde">
                             <thead>
                                 <tr>
-                                    <th class="text-white">Idioma</th>
-                                    <th class="text-white">Página</th>
                                     <th class="text-white">Código</th>
-                                    <th class="text-white">Contenido</th>
+                                    <th class="text-white">Nombre</th>
+                                    <th class="text-white">Bandera</th>
                                     <th class="colAcciones text-white">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($frases as $frase)
+                                @forelse($idiomas as $idioma)
                                     <tr>
-                                        <td>{{ Idioma::find($frase->idioma)->nombre }}</td>
-                                        <td>{{ $frase->pagina }}</td>
-                                        <td>{{ $frase->codigo }}</td>
-                                        <td>{{ $frase->contenido }}</td>
+                                        <td>{{ $idioma->codigo }}</td>
+                                        <td>{{ $idioma->nombre }}</td>
                                         <td>
-                                            {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('frases.destroy', $frase->id))) !!}
+                                            @if($idioma->bandera)
+                                                <img src="{!!  URL::asset($idioma->bandera) !!}">
+                                            @endif
+                                        </td>
+                                        <td>
+                                            {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('idiomas.destroy', $idioma->codigo))) !!}
                                             <div class="btn-group" role="group" aria-label="...">
-                                                {!! Form::nth_img_button_clase("Editar", route("frases.edit", $frase->id) , "fa-pencil", array('class' => 'btn-warning btn-sm', 'label' => false)) !!}
+                                                {!! Form::nth_img_button_clase("Editar", route("idiomas.edit", $idioma->codigo) , "fa-pencil", array('class' => 'btn-warning btn-sm', 'label' => false)) !!}
                                                 {!! Form::nth_img_button_clase("Eliminar", null, "fa-trash-o", array('class' => 'btn-delete btn-sm btn-danger', 'label' => false)) !!}
                                             </div>
                                             {!! Form::close() !!}
@@ -90,23 +82,17 @@
     <script type="text/javascript">
         function doSearch() {
             openLoader("Buscando...");
-            var url = "{{ URL::action('FrasesController@index') }}";
-            url += "?lang=" + $("#idioma").val();
+            var url = "{{ URL::action('IdiomasController@index') }}";
             url += "&search=" + $.trim($(".input-search").val());
             location.href = url;
         }
         $(function () {
             $("#idioma").change(function () {
                 doSearch();
-                {{--openLoader();--}}
-                {{--var lang = $(this).val();--}}
-                {{--var url = "{{ URL::action('FrasesController@index') }}";--}}
-                {{--url += "?lang=" + lang;--}}
-                {{--location.href = url;--}}
             });
             $(".btn-delete").click(function () {
                 var $frm = $(this).parents("form");
-                bootbox.confirm("¿Está seguro de querer eliminar esta frase?", function (res) {
+                bootbox.confirm("¿Está seguro de querer eliminar esta idioma?", function (res) {
                     if (res) {
                         openLoader("Eliminando");
                         $frm.submit();

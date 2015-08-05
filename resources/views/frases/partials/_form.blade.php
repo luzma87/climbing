@@ -2,6 +2,9 @@
     {!! Form::nth_select('idioma', "Idioma", $idiomas, $errors) !!}
 </div>
 <div class="form-group">
+    {!! Form::nth_textfield('pagina', 'Página', $errors, null, array('class' => 'required')) !!}
+</div>
+<div class="form-group">
     {!! Form::nth_textfield('codigo', 'Código', $errors, null, array('class' => 'required')) !!}
 </div>
 <div class="form-group">

@@ -7,10 +7,34 @@
     use App\Http\Requests;
     use App\Http\Controllers\Controller;
 
-    class IdiomasController extends Controller {
+    use App\Idioma;
 
-        public function __construct(Frase $frase) {
+    use Hash;
+    use Auth;
+    use Input;
+    use Illuminate\Support\Facades\Redirect;
+
+    class IdiomasController extends Controller {
+        protected $idioma;
+        protected $rules;
+
+        public function __construct(Idioma $idioma) {
             $this->middleware('auth');
+            $this->idioma = $idioma;
+        }
+
+        public function doUpload($idioma, $file) {
+            $destinationPath = "assets/idiomas";
+            $fileName = "";
+            if ($file && $file->isValid()) {
+                $extension = $file->getClientOriginalExtension();
+                $fileName = Input::get('codigo') . "." . $extension;
+                $file->move($destinationPath, $fileName);
+            }
+            if ($fileName != "") {
+                $idioma->bandera = $destinationPath . "/" . $fileName;
+                $idioma->save();
+            }
         }
 
         /**
@@ -19,7 +43,16 @@
          * @return Response
          */
         public function index() {
-            //
+            $search = Input::get("search");
+            if ($search) {
+                $idiomas = $this->idioma
+                    ->where("codigo", "like", '%' . $search . '%')
+                    ->orWhere("nombre", "like", '%' . $search . '%')
+                    ->get();
+            } else {
+                $idiomas = $this->idioma->all();
+            }
+            return view('idiomas.index', ['idiomas' => $idiomas, 'search' => $search]);
         }
 
         /**
@@ -28,7 +61,7 @@
          * @return Response
          */
         public function create() {
-            //
+            return view('idiomas.create');
         }
 
         /**
@@ -38,7 +71,16 @@
          * @return Response
          */
         public function store(Request $request) {
-            //
+            $this->rules = Idioma::$rules;
+            $this->validate($request, $this->rules);
+
+            $input = Input::all();
+            Idioma::create($input);
+            $file = $request->file('bandera');
+            $idioma = $this->idioma->whereCodigo(Input::get("codigo"))->first();
+            $this->doUpload($idioma, $file);
+
+            return Redirect::route('idiomas.index')->with('message', 'Idioma creado');
         }
 
         /**
@@ -48,7 +90,8 @@
          * @return Response
          */
         public function show($id) {
-            //
+            $idioma = $this->idioma->whereCodigo($id)->first();
+            return view('idiomas.show', ['idioma' => $idioma]);
         }
 
         /**
@@ -58,7 +101,8 @@
          * @return Response
          */
         public function edit($id) {
-            //
+            $idioma = $this->idioma->whereCodigo($id)->first();
+            return view('idiomas.edit', ['idioma' => $idioma]);
         }
 
         /**
@@ -69,7 +113,16 @@
          * @return Response
          */
         public function update(Request $request, $id) {
-            //
+            $idioma = $this->idioma->whereCodigo($id)->first();
+            $this->rules = Idioma::$rules;
+            $this->validate($request, $this->rules);
+
+            $input = array_except(Input::all(), array('_method', 'bandera'));
+            $idioma->update($input);
+            $file = $request->file('bandera');
+            $this->doUpload($idioma, $file);
+
+            return Redirect::route('idiomas.index')->with('message', 'Idioma actualizado.');
         }
 
         /**
@@ -79,6 +132,9 @@
          * @return Response
          */
         public function destroy($id) {
-            //
+            $idioma = $this->idioma->whereCodigo($id)->first();
+            $idioma->delete();
+
+            return Redirect::route('idiomas.index')->with('message', 'Idioma eliminado.');
         }
     }

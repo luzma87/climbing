@@ -217,12 +217,6 @@ body {
     margin-top : 10px;
 }
 
-h1 {
-    font-weight : normal;
-    font-size   : 22px;
-    margin-top  : 0;
-}
-
 .card-inicio {
     min-height : 132px !important;
 }

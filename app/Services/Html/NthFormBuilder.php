@@ -1,6 +1,30 @@
 <?php namespace App\Services\Html;
 
+use App\Frase;
+
 class NthFormBuilder extends \Illuminate\Html\FormBuilder {
+
+    public function nth_frase_editar($codigo, $idioma, $fraseEs, $default = '') {
+        $frase = Frase::codigo($codigo)->idioma($idioma)->get()->first();
+        $fraseTxt = $frase ? $frase->contenido : $default;
+        $fraseId = $frase ? $frase->id : $fraseEs->id;
+        $clase = "warning btn-edit";
+        $texto = "Editar";
+        $icon = "pencil";
+        if ($fraseTxt == $default) {
+            $clase = "success btn-create";
+            $texto = "Crear";
+            $icon = "file-o";
+        }
+        return sprintf(
+            '<a href="" class="btn btn-xs btn-%s qtip-top" title="%s" data-id="%s"><i class="fa fa-%s"></i></a> %s',
+            $clase,
+            $texto,
+            $fraseId,
+            $icon,
+            $fraseTxt
+        );
+    }
 
     public function nth_textfield($name, $label, $errors, $labelOptions = array(), $inputOptions = array()) {
         $labelOptions['class'] = 'form-label' . (isset($labelOptions['class']) ? ' ' . $labelOptions['class'] : '');
@@ -11,6 +35,19 @@ class NthFormBuilder extends \Illuminate\Html\FormBuilder {
             parent::label($name, $label, $labelOptions),
             $errors->has($name) ? ' class="error-control"' : '',
             parent::text($name, null, $inputOptions),
+            $errors->has($name) ? '<div class="alert alert-danger"><label class="error" for="' . $name . '">' . $errors->first($name) . '</label></div>' : ''
+        );
+    }
+
+    public function nth_file($name, $label, $errors, $labelOptions = array(), $inputOptions = array()) {
+        $labelOptions['class'] = 'form-label' . (isset($labelOptions['class']) ? ' ' . $labelOptions['class'] : '');
+        $inputOptions['class'] = 'form-control' . (isset($inputOptions['class']) ? ' ' . $inputOptions['class'] : '');
+        $inputOptions['placeholder'] = $label;
+        return sprintf(
+            '<div class="form-group">%s<div%s>%s%s</div></div><!-- end form-group -->',
+            parent::label($name, $label, $labelOptions),
+            $errors->has($name) ? ' class="error-control"' : '',
+            parent::file($name, null, $inputOptions),
             $errors->has($name) ? '<div class="alert alert-danger"><label class="error" for="' . $name . '">' . $errors->first($name) . '</label></div>' : ''
         );
     }

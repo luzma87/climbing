@@ -3,6 +3,7 @@
     namespace App\Http\Controllers;
 
     use App\Frase;
+    use App\Idioma;
     use Illuminate\Http\Request;
 
     use App\Http\Requests;
@@ -22,7 +23,10 @@
 
         public function home() {
             session(['pag' => 'home']);
-            return view('admin.home');
+            $idiomas = Idioma::all();
+            $frases = Frase::pagina("home")->idioma("es")->orderBy("id", "asc")->get();
+            $prct = (int)(100 / $idiomas->count());
+            return view('admin.home', ['idiomas' => $idiomas, 'frases' => $frases, 'prct' => $prct]);
         }
 
         public function ecuador() {

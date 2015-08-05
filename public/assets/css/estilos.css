@@ -280,7 +280,22 @@ body {
 h1 {
     color       : #D11317;
     font-size   : 22px;
-    font-weight : bold;
+    font-weight : normal;
+    margin-top  : 0;
+}
+
+h2 {
+    color       : #2F4050;
+    font-size   : 20px;
+    font-weight : normal;
+    margin-top  : 0;
+}
+
+h3 {
+    color       : #18A689;
+    font-size   : 18px;
+    font-weight : normal;
+    margin-top  : 0;
 }
 
 .small-slider {

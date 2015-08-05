@@ -7,6 +7,11 @@
 
     <ul class="fa-ul">
         <li>
+            <a href="{{ action('IdiomasController@index') }}" title="Idiomas">
+                <i class="fa-menu fa fa-language"></i> Idiomas
+            </a>
+        </li>
+        <li>
             <a href="{{ action('FrasesController@index') }}" title="Frases">
                 <i class="fa-menu fa fa-font"></i> Frases
             </a>

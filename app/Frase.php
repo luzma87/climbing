@@ -4,9 +4,7 @@
 
     use Illuminate\Auth\Authenticatable;
     use Illuminate\Database\Eloquent\Model;
-    use Illuminate\Auth\Passwords\CanResetPassword;
     use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-    use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
     use Validator;
 
     class Frase extends Model implements AuthenticatableContract {
@@ -14,7 +12,8 @@
 
         public static $rules = [
             'codigo' => 'required',
-            'contenido' => 'required'
+            'contenido' => 'required',
+            'pagina' => 'pagina'
         ];
 
         public $errors;
@@ -40,6 +39,10 @@
             }
             $this->errors = $validation->messages();
             return false;
+        }
+
+        public function scopePagina($query, $pagina) {
+            return $query->wherePagina($pagina);
         }
 
         public function scopeIdioma($query, $idiomaCod) {

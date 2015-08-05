@@ -12,6 +12,7 @@
     */
 
     Route::get('/', 'HomeController@index');
+    Route::get('home', 'HomeController@index');
     Route::get('auth/login', 'SessionsController@create');
     Route::get('login', 'SessionsController@create');
     Route::get('logout', 'SessionsController@destroy');
@@ -23,18 +24,20 @@
     Route::resource('fotos', 'FotosController');
 
     Route::get('admin', 'AdminController@index');
-    Route::get('home', 'AdminController@home');
-    Route::get('ecuador', 'AdminController@ecuador');
-    Route::get('programas', 'AdminController@programas');
-    Route::get('recomendaciones', 'AdminController@recomendaciones');
-    Route::get('noticias', 'AdminController@noticias');
-    Route::get('comentarios', 'AdminController@comentarios');
-    Route::get('galeria', 'AdminController@galeria');
-    Route::get('config', 'AdminController@config');
-    Route::get('cotizacion', 'AdminController@cotizacion');
+    Route::get('admin/home', 'AdminController@home');
+    Route::get('admin/ecuador', 'AdminController@ecuador');
+    Route::get('admin/programas', 'AdminController@programas');
+    Route::get('admin/recomendaciones', 'AdminController@recomendaciones');
+    Route::get('admin/noticias', 'AdminController@noticias');
+    Route::get('admin/comentarios', 'AdminController@comentarios');
+    Route::get('admin/galeria', 'AdminController@galeria');
+    Route::get('admin/config', 'AdminController@config');
+    Route::get('admin/cotizacion', 'AdminController@cotizacion');
+    Route::get('admin/createAjax', 'FrasesController@createAjax');
+    Route::get('admin/editAjax', 'FrasesController@editAjax');
 
-//    Route::get('frases/{idioma}', array('uses' => 'FrasesController@index'));
-//    Route::get('frases/create', array('uses' => 'FrasesController@create'));
+    //    Route::get('frases/{idioma}', array('uses' => 'FrasesController@index'));
+    //    Route::get('frases/create', array('uses' => 'FrasesController@create'));
 
     // Route group
     //    $router->group(['middleware' => 'auth'], function ($router) {

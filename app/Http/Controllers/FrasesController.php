@@ -43,16 +43,8 @@
                 }
             } else {
                 if ($search) {
-//                    $frases = $this->frase
-//                        ->idioma($idioma)
-//                        ->where("codigo", "like", '%' . $search . '%')
-//                        ->orWhere("contenido", "like", '%' . $search . '%')
-//                        ->get();
-//                    $frases = app('db')->select("select * from frases where idioma = (select id from idiomas where codigo = ?) and (codigo like '%?%' or contenido like '%?%')",
-//                                                array($idioma, $search, $search));
                     $frases = app('db')->select("select * from frases where idioma = (select id from idiomas where codigo = ?) AND (codigo like ? or contenido like ?)",
                                                 array($idioma, '%' . $search . '%', '%' . $search . '%'));
-//                    dd($frases);
                 } else {
                     $frases = $this->frase->idioma($idioma)->get();
                 }
@@ -141,7 +133,6 @@
             $frase->update($input);
 
             return Redirect::route('frases.index')->with('message', 'Frase actualizada.');
-
         }
 
         /**
@@ -156,5 +147,25 @@
             $frase->delete();
 
             return Redirect::route('frases.index')->with('message', 'Frase eliminada.');
+        }
+
+        /**
+         * @param $id
+         * @return \Illuminate\View\View
+         */
+        public function createAjax($id) {
+            dd("AQUI");
+            $fraseEs = $this->frase->whereId($id)->first();
+            return view('frases.createAjax', ['fraseEs' => $fraseEs]);
+        }
+
+        /**
+         * @param $id
+         * @return \Illuminate\View\View
+         */
+        public function editAjax($id) {
+            dd("AQUI");
+            $fraseEs = $this->frase->whereId($id)->first();
+            return view('frases.createAjax', ['fraseEs' => $fraseEs]);
         }
     }

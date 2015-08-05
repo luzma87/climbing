@@ -19,6 +19,9 @@
 
         {!! HTML::style('assets/font-awesome-4.4.0/css/font-awesome.min.css') !!}
 
+        {!! HTML::script('assets/js/plugins/jquery-qtip-2.2.1/jquery.qtip.min.js') !!}
+        {!! HTML::style('assets/js/plugins/jquery-qtip-2.2.1/jquery.qtip.min.css') !!}
+
         {!! HTML::style('assets/js/jquery-ui-1.11.4/jquery-ui.min.css') !!}
         {!! HTML::style('assets/js/jquery-ui-1.11.4/jquery-ui.structure.min.css') !!}
         {!! HTML::style('assets/js/jquery-ui-1.11.4/jquery-ui.theme.min.css') !!}
@@ -70,18 +73,18 @@
                         </div>
                     </div>
                 </li>
-                {!! Form::nth_menu_li("Administración", action('AdminController@index'), "fa-th-large", "admin") !!}
-                {!! Form::nth_menu_li("Inicio", URL::to('inicio'), "fa-home", "inicio") !!}
-                {!! Form::nth_menu_li("Ecuador país mega diverso", URL::to('ecuador'), "fa-pagelines", "ecuador") !!}
-                {!! Form::nth_menu_li("Nuestros programas", URL::to('programas'), "fa-map", "programas") !!}
-                {!! Form::nth_menu_li("Recomendaciones", URL::to('recomendaciones'), "fa-weixin", "recomendaciones") !!}
-                {!! Form::nth_menu_li("Noticias", URL::to('noticias'), "fa-newspaper-o", "noticias") !!}
-                {!! Form::nth_menu_li("Comentarios", URL::to('comentarios'), "fa-comments-o", "comentarios") !!}
-                {!! Form::nth_menu_li("Galería", URL::to('galeria'), "fa-picture-o", "galeria") !!}
-                {!! Form::nth_menu_li("Recomendaciones", URL::to('recomendaciones'), "fa-weixin", "recomendaciones") !!}
-                {!! Form::nth_menu_li("Configuración", URL::to('config'), "fa-cogs", "config") !!}
+                {!! Form::nth_menu_li("Administración", URL::to('admin'), "fa-th-large", "admin") !!}
+                {!! Form::nth_menu_li("Inicio", URL::to('admin/home'), "fa-home", "inicio") !!}
+                {!! Form::nth_menu_li("Ecuador país mega diverso", URL::to('admin/ecuador'), "fa-pagelines", "ecuador") !!}
+                {!! Form::nth_menu_li("Nuestros programas", URL::to('admin/programas'), "fa-map", "programas") !!}
+                {!! Form::nth_menu_li("Recomendaciones", URL::to('admin/recomendaciones'), "fa-weixin", "recomendaciones") !!}
+                {!! Form::nth_menu_li("Noticias", URL::to('admin/noticias'), "fa-newspaper-o", "noticias") !!}
+                {!! Form::nth_menu_li("Comentarios", URL::to('admin/comentarios'), "fa-comments-o", "comentarios") !!}
+                {!! Form::nth_menu_li("Galería", URL::to('admin/galeria'), "fa-picture-o", "galeria") !!}
+                {!! Form::nth_menu_li("Recomendaciones", URL::to('admin/recomendaciones'), "fa-weixin", "recomendaciones") !!}
+                {!! Form::nth_menu_li("Configuración", URL::to('admin/config'), "fa-cogs", "config") !!}
                 <li class="menu-item {{ session('pag') == 'cotizacion' ? 'active' : 'non-active' }}">
-                    <a href="{{ URL::to('cotizacion') }}" title="Cotización">
+                    <a href="{{ URL::to('admin/cotizacion') }}" title="Cotización">
                         <i class="fa-menu fa fa-money"></i><span class="toggle-menu">Cotización</span>
                     </a>
                 </li>
@@ -159,7 +162,25 @@
                         $(this).parent().find(".submenu").toggle()
                     }
                     return false;
-                })
+                });
+                $('[title!=""]').qtip({
+                    style    : {
+                        classes : 'qtip-tipsy qtip-shadow'
+                    },
+                    position : {
+                        my : 'left center',
+                        at : 'right center'
+                    }
+                });
+                $('.qtip-top').qtip({
+                    style    : {
+                        classes : 'qtip-tipsy qtip-shadow'
+                    },
+                    position : {
+                        my : 'bottom center',
+                        at : 'top center'
+                    }
+                });
             </script>
 
             @yield('scripts')
