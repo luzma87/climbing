@@ -1,16 +1,24 @@
-{!! Form::model(new App\Frase, ['id'=>'frmFrase', 'route' => ['frases.store']]) !!}
+<html>
+    <head>
+        <title>TEST</title>
+    </head>
+    <body>
+        {!! Form::model(new App\Frase, ['id'=>'frmFrase', 'route' => ['frases.store']]) !!}
 
-@include('frases/partials/_form', ['submit_text' => 'Crear frase'])
+        @include('frases/partials/_form', ['submit_text' => 'Crear frase'])
 
-{!! Form::close()  !!}
+        {!! Form::close()  !!}
 
-<script type="text/javascript">
-    var $frm = $("#frmFrase");
+        <script type="text/javascript">
+            var $frm = $("#frmFrase");
 
-    $frm.validate();
+            $frm.validate();
 
-    $("#btnSave").click(function () {
-        $frm.submit();
-        return false;
-    });
-</script>
+            $("#btnSave").click(function () {
+                $frm.submit();
+                return false;
+            });
+        </script>
+    </body>
+</html>
+
