@@ -32,7 +32,7 @@ function closeLoader() {
 }
 
 $(function () {
-    //hace q todos los elementos con un atributo title tengan el title bonito de qtip2
+    //hace q todos los elementos con un atributo title tengan el title bonito de qtip2 -> movido al template
     //$('[title!=""]').qtip({
     //    style    : {
     //        classes : 'qtip-tipsy'
