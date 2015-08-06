@@ -17,10 +17,11 @@ class NthFormBuilder extends \Illuminate\Html\FormBuilder {
             $icon = "file-o";
         }
         return sprintf(
-            '<a href="" class="btn btn-xs btn-%s qtip-top" title="%s" data-id="%s"><i class="fa fa-%s"></i></a> %s',
+            '<a href="" class="btn btn-xs btn-%s qtip-top" title="%s" data-id="%s" data-lang="%s"><i class="fa fa-%s"></i></a> %s',
             $clase,
             $texto,
             $fraseId,
+            $idioma,
             $icon,
             $fraseTxt
         );

@@ -44,6 +44,7 @@
         $frm.validate();
 
         $("#btnSave").click(function () {
+            openLoader();
 //            if ($frm.valid()) {
 //                $frm.submit();
 //            }

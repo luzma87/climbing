@@ -37,16 +37,18 @@
                     $frases = $this->frase
                         ->where("codigo", "like", '%' . $search . '%')
                         ->orWhere("contenido", "like", '%' . $search . '%')
+                        ->orderBy("pagina", "asc")
+                        ->orderBy("idioma", "asc")
                         ->get();
                 } else {
-                    $frases = $this->frase->all();
+                    $frases = $this->frase->where("id", ">", 0)->orderBy("pagina", "asc")->orderBy("idioma", "asc")->get();
                 }
             } else {
                 if ($search) {
-                    $frases = app('db')->select("select * from frases where idioma = (select id from idiomas where codigo = ?) AND (codigo like ? or contenido like ?)",
+                    $frases = app('db')->select("select * from frases where idioma = (select id from idiomas where codigo = ?) AND (codigo like ? or contenido like ?) ORDER BY pagina ASC, idioma ASC ",
                                                 array($idioma, '%' . $search . '%', '%' . $search . '%'));
                 } else {
-                    $frases = $this->frase->idioma($idioma)->get();
+                    $frases = $this->frase->idioma($idioma)->orderBy("pagina", "asc")->orderBy("idioma", "asc")->get();
                 }
             }
             $idiomas = Idioma::lists('nombre', 'codigo'); //saca solo el nombre y el id
@@ -87,7 +89,12 @@
             $input = Input::all();
             Frase::create($input);
 
-            return Redirect::route('frases.index')->with('message', 'Frase creada');
+            $redirectme = Input::get('redirectme');
+            if ($redirectme && $redirectme != "") {
+                return Redirect::to($redirectme)->with('message', 'Frase creada');
+            } else {
+                return Redirect::route('frases.index')->with('message', 'Frase creada');
+            }
         }
 
         /**
@@ -132,7 +139,12 @@
             $input = array_except(Input::all(), '_method');
             $frase->update($input);
 
-            return Redirect::route('frases.index')->with('message', 'Frase actualizada.');
+            $redirectme = Input::get('redirectme');
+            if ($redirectme && $redirectme != "") {
+                return Redirect::to($redirectme)->with('message', 'Frase actualizada');
+            } else {
+                return Redirect::route('frases.index')->with('message', 'Frase actualizada');
+            }
         }
 
         /**
@@ -150,22 +162,24 @@
         }
 
         /**
-         * @param $id
          * @return \Illuminate\View\View
          */
-        public function createAjax($id) {
-            dd("AQUI");
-            $fraseEs = $this->frase->whereId($id)->first();
-            return view('frases.createAjax', ['fraseEs' => $fraseEs]);
+        public function createAjax() {
+            $id = Input::get("id");
+            $lang = Input::get("lang");
+            $redirectme = Input::get("redirectme");
+            $idioma = Idioma::whereCodigo($lang)->get()->first();
+            $fraseEs = $this->frase->whereId($id)->get()->first();
+            return view('frases.createAjax', ['fraseEs' => $fraseEs, "idioma" => $idioma, "redirectme" => $redirectme]);
         }
 
         /**
-         * @param $id
          * @return \Illuminate\View\View
          */
-        public function editAjax($id) {
-            dd("AQUI");
-            $fraseEs = $this->frase->whereId($id)->first();
-            return view('frases.createAjax', ['fraseEs' => $fraseEs]);
+        public function editAjax() {
+            $id = Input::get("id");
+            $redirectme = Input::get("redirectme");
+            $frase = $this->frase->whereId($id)->get()->first();
+            return view('frases.editAjax', ['frase' => $frase, "redirectme" => $redirectme]);
         }
     }

@@ -1,24 +1,20 @@
-<html>
-    <head>
-        <title>TEST</title>
-    </head>
-    <body>
-        {!! Form::model(new App\Frase, ['id'=>'frmFrase', 'route' => ['frases.store']]) !!}
+<p>
+    Traducir a <em>{{ $idioma->nombre }}</em> la frase:
+    <strong>{{ $fraseEs->contenido }}</strong>
+</p>
 
-        @include('frases/partials/_form', ['submit_text' => 'Crear frase'])
+{!! Form::model(new App\Frase, ['id'=>'frmFrase', 'route' => ['frases.store']]) !!}
 
-        {!! Form::close()  !!}
+@include('frases/partials/_formAjax', ['idioma' => $idioma->id, 'codigo'=>$fraseEs->codigo, "pagina"=>$fraseEs->pagina, "redirectme"=>$redirectme])
 
-        <script type="text/javascript">
-            var $frm = $("#frmFrase");
+{!! Form::close()  !!}
 
-            $frm.validate();
-
-            $("#btnSave").click(function () {
-                $frm.submit();
-                return false;
-            });
-        </script>
-    </body>
-</html>
-
+<script type="text/javascript">
+    var $frm = $("#frmFrase");
+    $frm.validate({
+        submitHandler : function (form) {
+            openLoader();
+            form.submit();
+        }
+    });
+</script>

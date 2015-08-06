@@ -45,47 +45,65 @@
 
 @section("scripts")
     <script type="text/javascript">
+        function openForm(tipo, $btn) {
+            openLoader();
+            var url = "", title = "";
+            if (tipo == "create") {
+                url = "{{ URL::to('admin/createAjax') }}";
+                title = "Traducir frase";
+            } else if (tipo == "edit") {
+                url = "{{ URL::to('admin/editAjax') }}";
+                title = "Modificar frase";
+            }
+            var id = $btn.data("id");
+            var lang = $btn.data("lang");
+            $.ajax({
+                type    : "POST",
+                url     : url,
+                data    : {
+                    id         : id,
+                    lang       : lang,
+                    redirectme : "admin/home"
+                },
+                success : function (msg) {
+                    closeLoader();
+                    bootbox.dialog({
+                        title   : title,
+                        message : msg,
+                        buttons : {
+                            success : {
+                                label     : "<i class='fa fa-flppy-o'></i> Guardar",
+                                className : "btn-success",
+                                callback  : function () {
+                                    var $frm = $("#frmFrase");
+                                    $frm.submit();
+                                    return false;
+                                }
+                            },
+                            danger  : {
+                                label     : "Cancelar",
+                                className : "btn-default",
+                                callback  : function () {
+                                }
+                            }
+                        }
+                    });
+                },
+                error   : function () {
+
+                }
+            });
+        }
+
         $(function () {
             $(".btn-edit").click(function () {
-                var id = $(this).data("id");
-                var url = "{{ URL::to('admin/editarFrase') }}/" + id;
-                console.log(url);
+                var $this = $(this);
+                openForm("edit", $this);
                 return false;
             });
             $(".btn-create").click(function () {
-                var id = $(this).data("id");
-                var url = "{{ URL::to('admin/createAjax') }}";
-                $.ajax({
-                    type    : "POST",
-                    url     : url,
-                    data    : {
-                        id : id
-                    },
-                    success : function (msg) {
-                        bootbox.dialog({
-                            title   : "Custom title",
-                            message : msg,
-                            buttons : {
-                                success : {
-                                    label     : "<i class='fa fa-flppy-o'></i> Guardar",
-                                    className : "btn-success",
-                                    callback  : function () {
-                                    }
-                                },
-                                danger  : {
-                                    label     : "Cancelar",
-                                    className : "btn-default",
-                                    callback  : function () {
-                                    }
-                                }
-                            }
-                        });
-                    },
-                    error   : function () {
-
-                    }
-                });
-
+                var $this = $(this);
+                openForm("create", $this);
                 return false;
             });
         });

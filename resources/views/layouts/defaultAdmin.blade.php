@@ -3,6 +3,8 @@
     <head>
         <meta charset="utf-8">
 
+        <meta name="_token" content="{!! csrf_token() !!}"/>
+
         {!! HTML::script('assets/js/jquery-ui-1.11.4/external/jquery/jquery.js') !!}
         {!! HTML::script('assets/js/jquery-ui-1.11.4/jquery-ui.min.js') !!}
         {!! HTML::script('assets/bootstrap-3.3.5/js/bootstrap.min.js') !!}
@@ -131,6 +133,10 @@
             @yield('footer')
 
             <script type="text/javascript">
+                $.ajaxSetup({
+                    headers : {'X-CSRF-Token' : $('meta[name=_token]').attr('content')}
+                });
+
                 var estadoMenu = 1;
                 $("#control-menu").click(function () {
                     $(".toggle-menu").toggle();

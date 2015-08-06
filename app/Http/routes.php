@@ -33,8 +33,8 @@
     Route::get('admin/galeria', 'AdminController@galeria');
     Route::get('admin/config', 'AdminController@config');
     Route::get('admin/cotizacion', 'AdminController@cotizacion');
-    Route::get('admin/createAjax', 'FrasesController@createAjax');
-    Route::get('admin/editAjax', 'FrasesController@editAjax');
+    Route::post('admin/createAjax', 'FrasesController@createAjax');
+    Route::post('admin/editAjax', 'FrasesController@editAjax');
 
     //    Route::get('frases/{idioma}', array('uses' => 'FrasesController@index'));
     //    Route::get('frases/create', array('uses' => 'FrasesController@create'));

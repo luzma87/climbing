@@ -13,7 +13,8 @@
         public static $rules = [
             'codigo' => 'required',
             'contenido' => 'required',
-            'pagina' => 'pagina'
+            'idioma' => 'required',
+            'pagina' => 'required'
         ];
 
         public $errors;
@@ -30,7 +31,7 @@
          *
          * @var array
          */
-        protected $fillable = ['codigo', 'contenido', 'idioma'];
+        protected $fillable = ['codigo', 'contenido', 'idioma', 'pagina'];
 
         public function isValid() {
             $validation = Validator::make($this->attributes, static::$rules);
