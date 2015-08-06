@@ -11,6 +11,7 @@
 
     use Hash;
     use Auth;
+    use Illuminate\Support\Facades\File;
     use Input;
     use Illuminate\Support\Facades\Redirect;
 
@@ -119,6 +120,7 @@
 
             $input = array_except(Input::all(), array('_method', 'bandera'));
             $idioma->update($input);
+            File::delete($idioma->bandera);
             $file = $request->file('bandera');
             $this->doUpload($idioma, $file);
 
