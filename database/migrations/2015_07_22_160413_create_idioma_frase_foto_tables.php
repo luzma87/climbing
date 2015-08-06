@@ -31,10 +31,18 @@
             Schema::create('fotos', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('path');
-                $table->integer('titulo')->unsigned()->default(0);
-                $table->foreign('titulo')->references('id')->on('frases')->onDelete('cascade');
-                $table->integer('descripcion')->unsigned()->default(0);
-                $table->foreign('descripcion')->references('id')->on('frases')->onDelete('cascade');
+                $table->string('galeria');
+                $table->timestamps();
+            });
+
+            Schema::create('frasesFoto', function (Blueprint $table) {
+                $table->increments('id');
+                $table->integer('foto')->unsigned()->default(0);
+                $table->foreign('foto')->references('id')->on('foto')->onDelete('cascade');
+                $table->integer('idioma')->unsigned()->default(0);
+                $table->foreign('idioma')->references('id')->on('idiomas')->onDelete('cascade');
+                $table->string('titulo');
+                $table->text('descripcion');
                 $table->timestamps();
             });
         }
@@ -47,6 +55,7 @@
         public function down() {
             Schema::drop('fotos');
             Schema::drop('frases');
+            Schema::drop('frasesFoto');
             Schema::drop('idiomas');
         }
     }

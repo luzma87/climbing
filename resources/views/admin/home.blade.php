@@ -40,19 +40,47 @@
     <h2>Galerías en esta página</h2>
 
     <h3>Slider principal</h3>
+    <div class="btn-toolbar" role="toolbar">
+        <div class="btn-group btn-group-sm" role="group">
+            {!! Form::nth_img_button_clase("Agregar foto", null, "fa-plus", array("id"=>"btnAddFoto", 'label'=>false, "class"=>"btn-verde qtip-top", "data"=>"data-galeria='homePrincipal'")) !!}
+        </div>
+    </div>
+
     <h3>Slider secundario</h3>
+
+
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <p>One fine body&hellip;</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 @stop
 
 @section("scripts")
     <script type="text/javascript">
-        function openForm(tipo, $btn) {
+        function openFormFrase(tipo, $btn) {
             openLoader();
             var url = "", title = "";
             if (tipo == "create") {
-                url = "{{ URL::to('admin/createAjax') }}";
+                url = "{{ URL::to('admin/createFraseAjax') }}";
                 title = "Traducir frase";
             } else if (tipo == "edit") {
-                url = "{{ URL::to('admin/editAjax') }}";
+                url = "{{ URL::to('admin/editFraseAjax') }}";
                 title = "Modificar frase";
             }
             var id = $btn.data("id");
@@ -95,15 +123,24 @@
             });
         }
 
+        function uploadFoto(tipo, $btn) {
+
+        }
+
         $(function () {
             $(".btn-edit").click(function () {
                 var $this = $(this);
-                openForm("edit", $this);
+                openFormFrase("edit", $this);
                 return false;
             });
             $(".btn-create").click(function () {
                 var $this = $(this);
-                openForm("create", $this);
+                openFormFrase("create", $this);
+                return false;
+            });
+            $("#btnAddPrincipal").click(function () {
+                var $this = $(this);
+                openFormFoto("create", $this);
                 return false;
             });
         });

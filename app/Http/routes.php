@@ -22,6 +22,7 @@
     Route::resource('frases', 'FrasesController');
     Route::resource('idiomas', 'IdiomasController');
     Route::resource('fotos', 'FotosController');
+    Route::resource('frasesFoto', 'FrasesFotoController');
 
     Route::get('admin', 'AdminController@index');
     Route::get('admin/home', 'AdminController@home');
@@ -33,8 +34,8 @@
     Route::get('admin/galeria', 'AdminController@galeria');
     Route::get('admin/config', 'AdminController@config');
     Route::get('admin/cotizacion', 'AdminController@cotizacion');
-    Route::post('admin/createAjax', 'FrasesController@createAjax');
-    Route::post('admin/editAjax', 'FrasesController@editAjax');
+    Route::post('admin/createFraseAjax', 'FrasesController@createAjax');
+    Route::post('admin/editFraseAjax', 'FrasesController@editAjax');
 
     //    Route::get('frases/{idioma}', array('uses' => 'FrasesController@index'));
     //    Route::get('frases/create', array('uses' => 'FrasesController@create'));

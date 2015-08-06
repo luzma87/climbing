@@ -135,6 +135,7 @@
          */
         public function destroy($id) {
             $idioma = $this->idioma->whereCodigo($id)->first();
+            File::delete($idioma->bandera);
             $idioma->delete();
 
             return Redirect::route('idiomas.index')->with('message', 'Idioma eliminado.');

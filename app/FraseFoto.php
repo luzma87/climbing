@@ -7,13 +7,12 @@
     use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
     use Validator;
 
-
-    class Foto extends Model implements AuthenticatableContract {
+    class FraseFoto extends Model implements AuthenticatableContract {
         use Authenticatable;
 
         public static $rules = [
-            'path' => 'required',
-            'galeria' => 'required'
+            'idioma' => 'required',
+            'foto' => 'required'
         ];
 
         public $errors;
@@ -23,17 +22,17 @@
          *
          * @var string
          */
-        protected $table = 'fotos';
+        protected $table = 'frasesFoto';
 
         /**
          * The attributes that are mass assignable.
          *
          * @var array
          */
-        protected $fillable = ['path', 'galeria'];
+        protected $fillable = ['titulo', 'descripcion', 'idioma', 'foto'];
 
-        public function frases() {
-            return $this->hasMany('App\FraseFoto');
+        public function foto() {
+            return $this->belongsTo('App\Foto');
         }
 
         public function isValid() {
@@ -45,7 +44,12 @@
             return false;
         }
 
-        public function scopeGaleria($query, $galeria) {
-            return $query->whereGaleria($galeria);
+        public function scopeIdioma($query, $idiomaCod) {
+            $idioma = Idioma::where("codigo", $idiomaCod)->get()->first()->id;
+            return $query->whereIdioma($idioma);
+        }
+
+        public function scopeFoto($query, $foto) {
+            return $query->whereFoto($foto);
         }
     }

@@ -2,7 +2,8 @@
 
     namespace App\Http\Controllers;
 
-    use App\Frase;
+    use App\FraseFoto;
+    use App\Foto;
     use App\Idioma;
 
     use Illuminate\Http\Request;
@@ -14,11 +15,11 @@
     use Input;
     use Illuminate\Support\Facades\Redirect;
 
-    class FrasesController extends Controller {
+    class FrasesFotoController extends Controller {
         protected $frase;
         protected $rules;
 
-        public function __construct(Frase $frase) {
+        public function __construct(FraseFoto $frase) {
             $this->middleware('auth');
             $this->frase = $frase;
         }
@@ -34,25 +35,23 @@
             if (!$idioma) {
                 if ($search) {
                     $frases = $this->frase
-                        ->where("codigo", "like", '%' . $search . '%')
-                        ->orWhere("contenido", "like", '%' . $search . '%')
-                        ->orWhere("pagina", "like", '%' . $search . '%')
-                        ->orderBy("pagina", "asc")
+                        ->where("titulo", "like", '%' . $search . '%')
+                        ->orWhere("descripcion", "like", '%' . $search . '%')
                         ->orderBy("idioma", "asc")
                         ->get();
                 } else {
-                    $frases = $this->frase->where("id", ">", 0)->orderBy("pagina", "asc")->orderBy("idioma", "asc")->get();
+                    $frases = $this->frase->where("id", ">", 0)->orderBy("idioma", "asc")->get();
                 }
             } else {
                 if ($search) {
-                    $frases = app('db')->select("select * from frases where idioma = (select id from idiomas where codigo = ?) AND (codigo like ? or contenido like ? or pagina like ?) ORDER BY pagina ASC, idioma ASC ",
-                                                array($idioma, '%' . $search . '%', '%' . $search . '%', '%' . $search . '%'));
+                    $frases = app('db')->select("select * from frasesFoto where idioma = (select id from idiomas where codigo = ?) AND (titulo like ? or descripcion like ? ) ORDER BY idioma ASC ",
+                                                array($idioma, '%' . $search . '%', '%' . $search . '%'));
                 } else {
-                    $frases = $this->frase->idioma($idioma)->orderBy("pagina", "asc")->orderBy("idioma", "asc")->get();
+                    $frases = $this->frase->idioma($idioma)->orderBy("idioma", "asc")->get();
                 }
             }
             $idiomas = Idioma::lists('nombre', 'codigo'); //saca solo el nombre y el id
-            return view('frases.index', ['frases' => $frases, 'idiomas' => $idiomas, 'idioma' => $idioma, 'search' => $search]);
+            return view('frasesFoto.index', ['frases' => $frases, 'idiomas' => $idiomas, 'idioma' => $idioma, 'search' => $search]);
         }
 
         /**
@@ -63,7 +62,7 @@
         public function create() {
 //            $idiomas = Idioma::all();
             $idiomas = Idioma::lists('nombre', 'id'); //saca solo el nombre y el id
-            return view('frases.create', ['idiomas' => $idiomas]);
+            return view('frasesFoto.create', ['idiomas' => $idiomas]);
         }
 
         /**
@@ -74,26 +73,17 @@
          * @return Response
          */
         public function store(Request $request) {
-//            $this->frase->idioma = Input::get('idioma');
-//            $this->frase->codigo = Input::get('codigo');
-//            $this->frase->contenido = Input::get('contenido');
-//            if (!$this->frase->isValid()) {
-//                return Redirect::back()->withInput()->withErrors($this->frase->errors);
-//            }
-//            $this->frase->save();
-//            return Redirect::route('frases.index');
-
-            $this->rules = Frase::$rules;
+            $this->rules = FraseFoto::$rules;
             $this->validate($request, $this->rules);
 
             $input = Input::all();
-            Frase::create($input);
+            FraseFoto::create($input);
 
             $redirectme = Input::get('redirectme');
             if ($redirectme && $redirectme != "") {
-                return Redirect::to($redirectme)->with('message', 'Frase creada');
+                return Redirect::to($redirectme)->with('message', 'Frase de foto creada');
             } else {
-                return Redirect::route('frases.index')->with('message', 'Frase creada');
+                return Redirect::route('frasesFoto.index')->with('message', 'Frase de foto creada');
             }
         }
 
@@ -106,7 +96,7 @@
          */
         public function show($id) {
             $frase = $this->frase->whereId($id)->first();
-            return view('frases.show', ['frase' => $frase]);
+            return view('frasesFoto.show', ['frase' => $frase]);
         }
 
         /**
@@ -119,7 +109,7 @@
         public function edit($id) {
             $frase = $this->frase->whereId($id)->first();
             $idiomas = Idioma::lists('nombre', 'id'); //saca solo el nombre y el id
-            return view('frases.edit', ['frase' => $frase, 'idiomas' => $idiomas]);
+            return view('frasesFoto.edit', ['frase' => $frase, 'idiomas' => $idiomas]);
         }
 
         /**
@@ -133,7 +123,7 @@
         public function update(Request $request, $id) {
             $frase = $this->frase->whereId($id)->first();
 
-            $this->rules = Frase::$rules;
+            $this->rules = FraseFoto::$rules;
             $this->validate($request, $this->rules);
 
             $input = array_except(Input::all(), '_method');
@@ -141,9 +131,9 @@
 
             $redirectme = Input::get('redirectme');
             if ($redirectme && $redirectme != "") {
-                return Redirect::to($redirectme)->with('message', 'Frase actualizada');
+                return Redirect::to($redirectme)->with('message', 'Frase de foto actualizada');
             } else {
-                return Redirect::route('frases.index')->with('message', 'Frase actualizada');
+                return Redirect::route('frasesFoto.index')->with('message', 'Frase de foto actualizada');
             }
         }
 
@@ -158,7 +148,7 @@
             $frase = $this->frase->whereId($id)->first();
             $frase->delete();
 
-            return Redirect::route('frases.index')->with('message', 'Frase eliminada.');
+            return Redirect::route('frasesFoto.index')->with('message', 'Frase de foto eliminada.');
         }
 
         /**
@@ -172,7 +162,7 @@
             $redirectme = Input::get("redirectme");
             $idioma = Idioma::whereCodigo($lang)->get()->first();
             $fraseEs = $this->frase->whereId($id)->get()->first();
-            return view('frases.createAjax', ['fraseEs' => $fraseEs, "idioma" => $idioma, "redirectme" => $redirectme]);
+            return view('frasesFoto.createAjax', ['fraseEs' => $fraseEs, "idioma" => $idioma, "redirectme" => $redirectme]);
         }
 
         /**
@@ -184,6 +174,6 @@
             $id = Input::get("id");
             $redirectme = Input::get("redirectme");
             $frase = $this->frase->whereId($id)->get()->first();
-            return view('frases.editAjax', ['frase' => $frase, "redirectme" => $redirectme]);
+            return view('frasesFoto.editAjax', ['frase' => $frase, "redirectme" => $redirectme]);
         }
     }

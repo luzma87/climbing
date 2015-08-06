@@ -124,25 +124,28 @@ class NthFormBuilder extends \Illuminate\Html\FormBuilder {
     }
 
     public function nth_img_button_clase($value = null, $url = null, $image = null, $options = []) {
-        $options['class'] = 'btn ' . (isset($options['class']) ? ' ' . $options['class'] : '');
+        $options['class'] = 'btn ' . (isset($options['class']) ? ' ' . $options['class'] : 'btn-verde');
         $options['id'] = '' . (isset($options['id']) ? '' . $options['id'] : '');
         $label = isset($options['label']) ? $options['label'] : true;
+        $data = isset($options['data']) ? $options['data'] : true;
         if ($label) {
             return sprintf(
-                '<a href="%s" class="%s" id="%s"><i class="fa %s"></i> %s</a>',
+                '<a href="%s" class="%s" id="%s" %s><i class="fa %s"></i> %s</a>',
                 $url,
                 $options['class'],
                 $options['id'],
+                $data,
                 $image,
                 $value
             );
         } else {
             return sprintf(
-                '<a href="%s" class="%s" id="%s" title="%s"><i class="fa %s"></i></a>',
+                '<a href="%s" class="%s" id="%s" title="%s" %s><i class="fa %s"></i></a>',
                 $url,
                 $options['class'],
                 $options['id'],
                 $value,
+                $data,
                 $image
             );
         }

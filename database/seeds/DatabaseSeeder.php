@@ -14,7 +14,6 @@
 
             $this->call('UsersTableSeeder');
             $this->call('IdiomasTableSeeder');
-            $this->call('FrasesTableSeeder');
 
             Model::reguard();
         }
