@@ -305,3 +305,21 @@ h3 {
     background-color   : transparent;
     padding-right      : 0px;
 }
+
+.menu-nosotros{
+    list-style: none;
+}
+.menu-nosotros li{
+    background: #606E87;
+    padding: 7px;
+    padding-left: 15px;
+    margin-top: 3px;
+}
+.menu-nosotros a{
+    text-decoration: none;
+    color: #ffffff;
+}
+.rojo{
+    color       : #D11317;
+    font-weight: bold;
+}
