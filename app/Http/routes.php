@@ -38,6 +38,8 @@
     Route::post('admin/editFraseAjax', 'FrasesController@editAjax');
     Route::post('admin/createFotoAjax', 'FotosController@createAjax');
     Route::post('admin/editFotoAjax', 'FotosController@editAjax');
+    Route::post('admin/createFraseFotoAjax', 'FrasesFotoController@createAjax');
+    Route::post('admin/editFraseFotoAjax', 'FrasesFotoController@editAjax');
 
     Route::get('/', 'HomeController@index');
     Route::get('home', 'HomeController@index');

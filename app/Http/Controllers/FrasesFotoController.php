@@ -157,12 +157,11 @@
          * @return \Illuminate\View\View
          */
         public function createAjax() {
-            $id = Input::get("id");
             $lang = Input::get("lang");
             $redirectme = Input::get("redirectme");
             $idioma = Idioma::whereCodigo($lang)->get()->first();
-            $fraseEs = $this->frase->whereId($id)->get()->first();
-            return view('frasesFoto.createAjax', ['fraseEs' => $fraseEs, "idioma" => $idioma, "redirectme" => $redirectme]);
+            $foto = Input::get("foto");
+            return view('frasesFoto.createAjax', ["idioma" => $idioma, "foto" => $foto, "redirectme" => $redirectme]);
         }
 
         /**

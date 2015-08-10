@@ -152,9 +152,6 @@
             });
         }
 
-        function uploadFoto(tipo, $btn) {
-        }
-
         $(function () {
             $(".btn-edit").click(function () {
                 var $this = $(this);

@@ -154,7 +154,12 @@
             File::delete($foto->path);
             $foto->delete();
 
-            return Redirect::route('fotos.index')->with('message', 'Foto eliminada . ');
+            $redirectme = Input::get('redirectme');
+            if ($redirectme && $redirectme != "") {
+                return Redirect::to($redirectme)->with('message', 'Foto eliminada.');
+            } else {
+                return Redirect::route('fotos.index')->with('message', 'Foto eliminada.');
+            }
         }
 
         /**

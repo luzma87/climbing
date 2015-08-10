@@ -1,6 +1,7 @@
 <?php namespace App\Services\Html;
 
 use App\Frase;
+use App\FraseFoto;
 
 class NthFormBuilder extends \Illuminate\Html\FormBuilder {
 
@@ -25,6 +26,41 @@ class NthFormBuilder extends \Illuminate\Html\FormBuilder {
             $icon,
             $fraseTxt
         );
+    }
+
+    public function nth_frase_foto_editar($fotoId, $idioma) {
+        $frase = FraseFoto::porFoto($fotoId)->idioma($idioma->codigo)->get()->first();
+
+        $id = "";
+        $titulo = "";
+        $descripcion = "";
+
+        $clase = "success btn-create";
+        $title = "Crear";
+        $icon = "file-o";
+
+        if ($frase) {
+            $id = $frase->id;
+            $titulo = $frase->titulo;
+            $descripcion = $frase->descripcion;
+
+            $clase = "warning btn-edit";
+            $title = "Editar";
+            $icon = "pencil";
+        }
+
+        $ret = sprintf("<tr data-id='%s' data-foto='%s' data-lang='%s'>", $id, $fotoId, $idioma->codigo);
+        $ret .= "<td class='info'>";
+        $ret .= sprintf('%s <a href="" class="btn btn-xs btn-%s qtip-top pull-right" title="%s"><i class="fa fa-%s"></i></a>',
+                        $idioma->nombre,
+                        $clase,
+                        $title,
+                        $icon);
+        $ret .= "</td>";
+        $ret .= sprintf("<td>%s</td>", $titulo);
+        $ret .= sprintf("<td>%s</td>", $descripcion);
+        $ret .= "</tr>";
+        return $ret;
     }
 
     public function nth_textfield($name, $label, $errors, $labelOptions = array(), $inputOptions = array()) {

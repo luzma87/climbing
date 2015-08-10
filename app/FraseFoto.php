@@ -12,7 +12,7 @@
 
         public static $rules = [
             'idioma' => 'required',
-            'foto' => 'required'
+            'foto_id' => 'required'
         ];
 
         public $errors;
@@ -29,7 +29,7 @@
          *
          * @var array
          */
-        protected $fillable = ['titulo', 'descripcion', 'idioma', 'foto'];
+        protected $fillable = ['titulo', 'descripcion', 'idioma', 'foto_id'];
 
         public function foto() {
             return $this->belongsTo('App\Foto');
@@ -49,7 +49,7 @@
             return $query->whereIdioma($idioma);
         }
 
-        public function scopeFoto($query, $foto) {
-            return $query->whereFoto($foto);
+        public function scopePorFoto($query, $foto) {
+            return $query->whereFotoId($foto);
         }
     }
