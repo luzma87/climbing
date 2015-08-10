@@ -28,6 +28,8 @@ Route::get('home', 'HomeController@index');
 Route::get('nosotros', 'NosotrosController@index');
 Route::get('ecuador', 'EcuadorController@index');
 Route::get('equipo', 'EquipoController@index');
+Route::get('programas', 'ProgramasController@index');
+Route::get('programa', 'ProgramasController@programa');
 
 Route::get('admin', 'AdminController@index');
 Route::get('admin/home', 'AdminController@home');

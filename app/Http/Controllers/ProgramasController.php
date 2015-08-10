@@ -17,4 +17,12 @@
             return view('pages.programas');
         }
 
+        public function programa() {
+            session(['pag' => 'programas']);
+            if (!session('lang')) {
+                session(['lang' => 'es']);
+            }
+            return view('pages.programa');
+        }
+
     }
