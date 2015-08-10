@@ -41,7 +41,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand hidden-lg" href="#">Men�</a>
+                        <a class="navbar-brand hidden-lg" href="#">Menú</a>
                     </div>
 
                 </div>
