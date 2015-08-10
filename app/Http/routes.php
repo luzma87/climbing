@@ -44,7 +44,8 @@
     Route::get('nosotros', 'NosotrosController@index');
     Route::get('ecuador', 'EcuadorController@index');
     Route::get('equipo', 'EquipoController@index');
-
+    Route::get('programas', 'ProgramasController@index');
+    Route::get('programa', 'ProgramasController@programa');
     //    Route::get('frases/{idioma}', array('uses' => 'FrasesController@index'));
     //    Route::get('frases/create', array('uses' => 'FrasesController@create'));
 
