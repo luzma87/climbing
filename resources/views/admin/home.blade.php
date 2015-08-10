@@ -42,33 +42,12 @@
     <h3>Slider principal</h3>
     <div class="btn-toolbar" role="toolbar">
         <div class="btn-group btn-group-sm" role="group">
-            {!! Form::nth_img_button_clase("Agregar foto", null, "fa-plus", array("id"=>"btnAddFoto", 'label'=>false, "class"=>"btn-verde qtip-top", "data"=>"data-galeria='homePrincipal'")) !!}
+            {!! Form::nth_img_button_clase("Agregar foto", null, "fa-plus", array("id"=>"btnAddFoto", 'label'=>false, "class"=>"btn-verde qtip-top", "data"=>"data-galeria='homePrincipal' data-galeria-name='Slider principal'")) !!}
         </div>
     </div>
 
     <h3>Slider secundario</h3>
 
-
-    <div class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Modal title</h4>
-                </div>
-                <div class="modal-body">
-                    <p>One fine body&hellip;</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div><!-- /.modal -->
 @stop
 
 @section("scripts")
@@ -123,8 +102,57 @@
             });
         }
 
-        function uploadFoto(tipo, $btn) {
+        function openFormFoto(tipo, $btn) {
+            openLoader();
+            var url = "", title = "";
+            if (tipo == "create") {
+                url = "{{ URL::to('admin/createFotoAjax') }}";
+                title = "Agregar foto";
+            } else if (tipo == "edit") {
+                url = "{{ URL::to('admin/editFotoAjax') }}";
+                title = "Modificar foto";
+            }
+            var id = $btn.data("id");
+            var lang = $btn.data("lang");
+            $.ajax({
+                type    : "POST",
+                url     : url,
+                data    : {
+                    id         : id,
+                    lang       : lang,
+                    redirectme : "admin/home"
+                },
+                success : function (msg) {
+                    closeLoader();
+                    bootbox.dialog({
+                        title   : title,
+                        message : msg,
+                        buttons : {
+                            success : {
+                                label     : "<i class='fa fa-flppy-o'></i> Guardar",
+                                className : "btn-success",
+                                callback  : function () {
+                                    var $frm = $("#frmFoto");
+                                    $frm.submit();
+                                    return false;
+                                }
+                            },
+                            danger  : {
+                                label     : "Cancelar",
+                                className : "btn-default",
+                                callback  : function () {
+                                }
+                            }
+                        }
+                    });
+                },
+                error   : function () {
 
+                }
+            });
+        }
+
+        function uploadFoto(tipo, $btn) {
         }
 
         $(function () {
@@ -138,7 +166,7 @@
                 openFormFrase("create", $this);
                 return false;
             });
-            $("#btnAddPrincipal").click(function () {
+            $("#btnAddFoto").click(function () {
                 var $this = $(this);
                 openFormFoto("create", $this);
                 return false;

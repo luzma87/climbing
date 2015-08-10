@@ -13,7 +13,7 @@
         use Authenticatable, CanResetPassword;
 
         public static $rules = [
-            'email'    => 'required',
+            'email' => 'required',
             'password' => 'required'
         ];
 

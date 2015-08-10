@@ -29,7 +29,7 @@
             $fileName = "";
             if ($file && $file->isValid()) {
                 $extension = $file->getClientOriginalExtension();
-                $fileName = $foto->galeria . date("Ymd_His") . "." . $extension;
+                $fileName = $foto->galeria . "_" . date("Ymd_His") . "." . $extension;
                 $file->move($destinationPath, $fileName);
             }
             if ($fileName != "") {
@@ -77,7 +77,7 @@
             $this->rules = Foto::$rules;
             $this->validate($request, $this->rules);
 
-            $input = Input::all();
+            $input = array_except(Input::all(), array('path'));
             $foto = Foto::create($input);
             $file = $request->file('path');
             $this->doUpload($foto, $file);
@@ -154,7 +154,7 @@
             File::delete($foto->path);
             $foto->delete();
 
-            return Redirect::route('fotos.index')->with('message', 'Foto eliminada.');
+            return Redirect::route('fotos.index')->with('message', 'Foto eliminada . ');
         }
 
         /**
@@ -163,12 +163,9 @@
          * @return \Illuminate\View\View
          */
         public function createAjax() {
-            $id = Input::get("id");
-            $lang = Input::get("lang");
             $redirectme = Input::get("redirectme");
-            $idioma = Idioma::whereCodigo($lang)->get()->first();
-            $fraseEs = $this->frase->whereId($id)->get()->first();
-            return view('frases.createAjax', ['fraseEs' => $fraseEs, "idioma" => $idioma, "redirectme" => $redirectme]);
+            $galeria = Input::get("galeria");
+            return view('fotos.createAjax', ["galeria" => $galeria, "redirectme" => $redirectme]);
         }
 
         /**
@@ -179,7 +176,7 @@
         public function editAjax() {
             $id = Input::get("id");
             $redirectme = Input::get("redirectme");
-            $frase = $this->frase->whereId($id)->get()->first();
-            return view('frases.editAjax', ['frase' => $frase, "redirectme" => $redirectme]);
+            $foto = $this->foto->whereId($id)->get()->first();
+            return view('fotos.editAjax', ['foto' => $foto, "redirectme" => $redirectme]);
         }
     }
