@@ -16,6 +16,8 @@
 
         {!! HTML::script('assets/js/funciones.js') !!}
 
+        {!! HTML::script('assets/js/uploadFoto.js') !!}
+
         {!! HTML::style('assets/bootstrap-3.3.5/css/bootstrap.min.css') !!}
         {!! HTML::style('assets/bootstrap-3.3.5/css/bootstrap-theme.min.css') !!}
 
@@ -76,6 +78,7 @@
                     </div>
                 </li>
                 {!! Form::nth_menu_li("Administración", URL::to('admin'), "fa-th-large", "admin") !!}
+                {!! Form::nth_menu_li("Slider común", URL::to('admin/slider'), "fa-clone", "slider") !!}
                 {!! Form::nth_menu_li("Inicio", URL::to('admin/home'), "fa-home", "inicio") !!}
                 {!! Form::nth_menu_li("Ecuador país mega diverso", URL::to('admin/ecuador'), "fa-pagelines", "ecuador") !!}
                 {!! Form::nth_menu_li("Nuestros programas", URL::to('admin/programas'), "fa-map", "programas") !!}

@@ -3,6 +3,7 @@
     namespace App\Http\Controllers;
 
     use App\Frase;
+    use App\Foto;
     use App\Idioma;
     use Illuminate\Http\Request;
 
@@ -19,6 +20,13 @@
             session(['pag' => 'admin']);
             Frase::idioma("es")->codigo("culturaAventura")->get();
             return view('admin.index');
+        }
+
+        public function slider() {
+            session(['pag' => 'slider']);
+            $fotos = Foto::galeria("sliderPrincipal")->orderBy("id", "asc")->get();
+            $idiomas = Idioma::all();
+            return view('admin.slider', ['fotos' => $fotos, 'idiomas' => $idiomas]);
         }
 
         public function home() {
