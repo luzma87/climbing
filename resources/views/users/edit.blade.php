@@ -1,6 +1,6 @@
 @extends('layouts.defaultAdmin')
 
-@section('title', 'Actualizar idioma')
+@section('title', 'Actualizar usuario')
 
 @section('content')
     <div class="row">
@@ -8,14 +8,14 @@
             <div class="panel-completo" style="padding: 5px">
                 <div class="row fila" style="margin-left: 0">
                     <div class="col-md-11 titulo-panel">
-                        Actualizar idioma
+                        Actualizar usuario
                     </div>
                 </div>
 
                 <div class="row fila" style="margin-left: 0">
                     <div class="btn-toolbar toolbar">
                         <div class="btn-group">
-                            {!! Form::nth_img_button("Lista", action('IdiomasController@index'), "fa-list", array('class' => 'btn-nth')) !!}
+                            {!! Form::nth_img_button("Lista", action('UsersController@index'), "fa-list", array('class' => 'btn-nth')) !!}
                         </div>
                     </div>
                 </div>
@@ -24,9 +24,9 @@
                 <div class="row fila">
                     <div class="col-md-5">
 
-                        {!! Form::model($idioma, ['id'=>'frmIdioma', 'files' => true, 'method' => 'PATCH', 'route' => array('idiomas.update', $idioma->codigo)]) !!}
+                        {!! Form::model($user, ['id'=>'frmUser', 'files' => true, 'method' => 'PATCH', 'route' => array('users.update', $user->email)]) !!}
 
-                        @include('idiomas/partials/_form', ['submit_text' => 'Actualizar idioma'])
+                        @include('users/partials/_form', ['submit_text' => 'Actualizar usuario'])
 
                         {!! Form::close()  !!}
                     </div>
@@ -38,7 +38,7 @@
 
 @section('scripts')
     <script type="text/javascript">
-        var $frm = $("#frmIdioma");
+        var $frm = $("#frmUser");
 
         $frm.validate({
             submitHandler : function (form) {

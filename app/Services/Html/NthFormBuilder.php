@@ -76,6 +76,28 @@ class NthFormBuilder extends \Illuminate\Html\FormBuilder {
         );
     }
 
+    public function nth_passfield($name, $label, $errors, $labelOptions = array(), $inputOptions = array()) {
+        $labelOptions['class'] = 'form-label' . (isset($labelOptions['class']) ? ' ' . $labelOptions['class'] : '');
+        $inputOptions['class'] = 'form-control' . (isset($inputOptions['class']) ? ' ' . $inputOptions['class'] : '');
+        $inputOptions['placeholder'] = $label;
+
+        $inputOptions2['class'] = 'form-control' . (isset($inputOptions['class']) ? ' ' . $inputOptions['class'] : '');
+        $inputOptions2['placeholder'] = 'Repita ' . $label;
+        $inputOptions2['equalTo'] = '#' . $name;
+        return sprintf(
+            '<div class="form-group">%s<div%s>%s%s</div></div><!-- end form-group --><div class="form-group">%s<div%s>%s%s</div></div><!-- end form-group -->',
+            parent::label($name, $label, $labelOptions),
+            $errors->has($name) ? ' class="error-control"' : '',
+            parent::password($name, $inputOptions),
+            $errors->has($name) ? '<div class="alert alert-danger"><label class="error" for="' . $name . '">' . $errors->first($name) . '</label></div>' : '',
+
+            parent::label($name . '2', 'Repita ' . $label, $labelOptions),
+            $errors->has($name . '2') ? ' class="error-control"' : '',
+            parent::password($name . '2', $inputOptions2),
+            $errors->has($name . '2') ? '<div class="alert alert-danger"><label class="error" for="' . $name . '">' . $errors->first($name) . '</label></div>' : ''
+        );
+    }
+
     public function nth_file($name, $label, $errors, $labelOptions = array(), $inputOptions = array()) {
         $labelOptions['class'] = 'form-label' . (isset($labelOptions['class']) ? ' ' . $labelOptions['class'] : '');
         $inputOptions['class'] = 'form-control' . (isset($inputOptions['class']) ? ' ' . $inputOptions['class'] : '');

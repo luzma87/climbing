@@ -16,6 +16,7 @@
 
     class UsersController extends Controller {
         protected $user;
+        protected $rules;
 
         public function __construct(User $user) {
             $this->middleware('auth');
@@ -28,8 +29,17 @@
          * @return Response
          */
         public function index() {
-            $users = $this->user->all();
-            return view('users.index', ['users' => $users]);
+            $search = Input::get("search");
+//            $users = $this->user->all();
+            if ($search) {
+                $users = $this->user
+                    ->where("name", "like", '%' . $search . '%')
+                    ->orWhere("email", "like", '%' . $search . '%')
+                    ->get();
+            } else {
+                $users = $this->user->all();
+            }
+            return view('users.index', ['users' => $users, 'search' => $search]);
         }
 
 
@@ -46,26 +56,39 @@
         /**
          * Store a newly created resource in storage.
          *
+         * @param  Request $request
          * @return Response
          */
-        public function store() {
+        public function store(Request $request) {
 //        $validation = Validator::make(Input::all(), User::$rules);
 //        if($validation->fails()) {
 //            return Redirect::back()->withInput()->withErrors($validation->messages());
 //        }
 //        $input = Input::all();
-            $this->user->email = Input::get('email');
-            $this->user->password = Hash::make(Input::get('password'));
-            if (!$this->user->isValid()) {
-                return Redirect::back()->withInput()->withErrors($this->user->errors);
-            }
-            $this->user->save();
+//            $this->user->email = Input::get('email');
+//            $this->user->password = Hash::make(Input::get('password'));
+//            if (!$this->user->isValid()) {
+//                return Redirect::back()->withInput()->withErrors($this->user->errors);
+//            }
+//            $this->user->save();
 //        $user = new User;
 //        $user->username = Input::get('username');
 //        $user->password = Hash::make(Input::get('passowrd'));
 //        $user->save();
 //        return Redirect::to('/users');s
-            return Redirect::route('users.index');
+//            return Redirect::route('users.index');
+
+            $this->rules = User::$rules;
+            $this->validate($request, $this->rules);
+
+            $input = array_except(Input::all(), array('_method', 'password', 'password2'));
+            $pass = Input::get('passowrd');
+            if ($pass && $pass !== "") {
+                $input["password"] = Hash::make($pass);
+            }
+            User::create($input);
+
+            return Redirect::route('users.index')->with('message', 'Usuario creado');
         }
 
 
@@ -89,20 +112,32 @@
          *
          * @return Response
          */
-        public function edit($id) {
-            //
+        public function edit($mail) {
+            $user = $this->user->whereEmail($mail)->first();
+            return view('users.edit', ['user' => $user]);
         }
 
 
         /**
          * Update the specified resource in storage.
          *
+         * @param Request $request
          * @param  int $id
-         *
          * @return Response
          */
-        public function update($id) {
-            //
+        public function update(Request $request, $mail) {
+            $user = $this->user->whereEmail($mail)->first();
+            $this->rules = User::$rules;
+            $this->validate($request, $this->rules);
+
+            $input = array_except(Input::all(), array('_method', 'password', 'password2'));
+            $pass = Input::get('passowrd');
+            if ($pass && $pass !== "") {
+                $input["password"] = Hash::make($pass);
+            }
+            $user->update($input);
+
+            return Redirect::route('users.index')->with('message', 'Usuario actualizado.');
         }
 
 
@@ -113,7 +148,10 @@
          *
          * @return Response
          */
-        public function destroy($id) {
-            //
+        public function destroy($mail) {
+            $user = $this->user->whereEmail($mail)->first();
+            $user->delete();
+
+            return Redirect::route('users.index')->with('message', 'Usuario eliminado.');
         }
     }

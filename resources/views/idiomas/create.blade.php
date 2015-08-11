@@ -40,10 +40,14 @@
     <script type="text/javascript">
         var $frm = $("#frmIdioma");
 
-        $frm.validate();
+        $frm.validate({
+            submitHandler : function (form) {
+                openLoader();
+                form.submit();
+            }
+        });
 
         $("#btnSave").click(function () {
-            openLoader("Creando");
             $frm.submit();
             return false;
         });

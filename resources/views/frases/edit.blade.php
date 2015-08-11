@@ -41,13 +41,14 @@
     <script type="text/javascript">
         var $frm = $("#frmFrase");
 
-        $frm.validate();
+        $frm.validate({
+            submitHandler : function (form) {
+                openLoader();
+                form.submit();
+            }
+        });
 
         $("#btnSave").click(function () {
-            openLoader();
-//            if ($frm.valid()) {
-//                $frm.submit();
-//            }
             $frm.submit();
             return false;
         });
