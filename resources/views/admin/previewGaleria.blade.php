@@ -13,36 +13,56 @@
     {!! HTML::script('assets/js/plugins/jssor/js/jssor.slider.js') !!}
 
     <style type="text/css">
-        div.slider_container {
+        div.slider_banner_container {
             position : relative;
             top      : 0;
             left     : 0;
-            width    : 600px;
-            height   : 300px;
+            /*width    : 600px;*/
+            height   : 484px;
         }
 
-        div.slider_container div.loading {
+        div.slider_carroussel_container {
+            position : relative;
+            margin   : 0 auto;
+            /*width    : 809px;*/
+            height   : 240px;
+            overflow : hidden;
+        }
+
+        div.loading {
             position : absolute;
             top      : 0;
             left     : 0;
         }
 
-        div.slider_container div.slides {
+        div.slider_banner_container div.slider_banner_slides {
             cursor   : move;
             position : absolute;
             overflow : hidden;
             left     : 0;
             top      : 0;
-            width    : 600px;
-            height   : 300px;
+            /*width    : 600px;*/
+            height   : 484px;
         }
 
-        div.slides div.caption {
+        div.slider_carroussel_container div.slider_carroussel_slides {
+            cursor   : move;
+            position : absolute;
+            left     : 0;
+            top      : 30px;
+            /*width    : 809px;*/
+            height   : 200px;
+            overflow : hidden;
+        }
+
+        div.slider_banner_slides div.slider_banner_caption {
             position   : absolute;
-            bottom     : 5px;
+            bottom     : 10px;
             left       : 5px;
             background : white;
-            width      : 590px;
+            overflow   : hidden;
+            /*width       : 300px;*/
+            /*margin-left : 150px;*/
             color      : #999;
             padding    : 5px;
         }
@@ -85,68 +105,50 @@
         }
 
         .jssorb01 .av {
-            background-color : #2a3755;
+            background-color : #324368;
         }
 
         .jssorb01 .dn, .jssorb01 .dn:hover {
             background-color : #555555;
         }
+
+        /* jssor slider arrow navigator skin 15 css */
+        /*
+        .jssora15l                  (normal)
+        .jssora15r                  (normal)
+        .jssora15l:hover            (normal mouseover)
+        .jssora15r:hover            (normal mouseover)
+        .jssora15l.jssora15ldn      (mousedown)
+        .jssora15r.jssora15rdn      (mousedown)
+        */
+        .jssora15l, .jssora15r {
+            /*display  : block;*/
+            /*position : absolute;*/
+            /* size of arrow element */
+            /*width    : 20px;*/
+            /*height   : 38px;*/
+            cursor   : pointer;
+            overflow : hidden;
+            color    : #555;
+        }
+
+        .jssora15l:hover {
+            color : #999;
+        }
+
+        .jssora15r:hover {
+            color : #999;
+        }
+
     </style>
 @stop
 
 @section('content')
-    <div id="slider1_container" class="slider_container">
-        <!-- Loading Screen -->
-        <div u="loading" class="loading">
-            Cargando la galería
-        </div>
-
-        <!-- Slides Container -->
-        <div u="slides" class="slides">
-
-            @forelse($fotos as $foto)
-                <div>
-                    <img u="image" src="{!!  URL::asset($foto->path) !!}" class="img-thumbnail">
-
-                    <div u="caption" class="caption" t="caption-transition-name">
-                        {{ getTituloFoto($foto->id, session("lang"), "Sin título") }}
-                    </div>
-                </div>
-            @empty
-                <div class="col-md-10 col-md-offset-1 alert alert-info">
-                    <h3>No hay fotos en esta galería!</h3>
-                </div>
-            @endforelse
-        </div>
-
-        <!-- Navigator Skin Begin -->
-        <!--#region Bullet Navigator Skin Begin -->
-        <!-- Help: http://www.jssor.com/development/slider-with-bullet-navigator-jquery.html -->
-        <!-- bullet navigator container -->
-        <div u="navigator" class="jssorb01" style="top: 70px; right: 40px;">
-            <!-- bullet navigator item prototype -->
-            <div u="prototype"></div>
-        </div>
-        <!--#endregion Bullet Navigator Skin End -->
-        <!-- Navigator Skin End -->
+    <div class="row">
+        @if($galeria == 'sliderPrincipal')
+            @include('admin/partials/_bannerSlider', ['fotos' => $fotos])
+        @elseif ($galeria == 'homePrincipal')
+            @include('admin/partials/_carrouselSlider', ['fotos' => $fotos])
+        @endif
     </div>
-
-    <script>
-        jQuery(document).ready(function ($) {
-            var jssor_slider1 = new $JssorSlider$('slider1_container', {
-                $AutoPlay               : true,
-                $BulletNavigatorOptions : {                  //[Optional] Options to specify and enable navigator or not
-                    $Class        : $JssorBulletNavigator$,  //[Required] Class to create navigator instance
-                    $ChanceToShow : 2,                       //[Required] 0 Never, 1 Mouse Over, 2 Always
-                    $AutoCenter   : 0,                       //[Optional] Auto center navigator in parent container, 0 None, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
-                    $Steps        : 1,                       //[Optional] Steps to go for each navigation request, default value is 1
-                    $Lanes        : 1,                       //[Optional] Specify lanes to arrange items, default value is 1
-                    $SpacingX     : 3,                       //[Optional] Horizontal space between each item in pixel, default value is 0
-                    $SpacingY     : 10,                      //[Optional] Vertical space between each item in pixel, default value is 0
-                    $Orientation  : 1                        //[Optional] The orientation of the navigator, 1 horizontal, 2 vertical, default value is 1
-                }
-            });
-        });
-    </script>
-
 @stop

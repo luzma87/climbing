@@ -37,135 +37,56 @@
         </tbody>
     </table>
 
-    <h2>Galerías en esta página</h2>
-
-    <h3>Slider principal</h3>
+    <h2>
+        Fotos en esta página: Carrusel Slider
+        <small>
+            <a href="{{ URL::to('admin/previewGaleria','homePrincipal') }}" target="_blank">Ver slider</a>
+        </small>
+    </h2>
     <div class="btn-toolbar" role="toolbar">
         <div class="btn-group btn-group-sm" role="group">
-            {!! Form::nth_img_button_clase("Agregar foto", null, "fa-plus", array("id"=>"btnAddFoto", 'label'=>false, "class"=>"btn-verde qtip-top", "data"=>"data-galeria='homePrincipal' data-galeria-name='Slider principal'")) !!}
+            {!! Form::nth_img_button_clase("Agregar foto", null, "fa-plus", array("id"=>"btnAddFoto", 'label'=>false, "class"=>"btn-verde qtip-top", "data"=>"data-galeria='homePrincipal' data-galeria-name='Carrusel slider'")) !!}
         </div>
     </div>
-
-    <h3>Slider secundario</h3>
+    <div class="row" style="margin-top: 10px;">
+        @forelse($fotos as $foto)
+            @include('admin/partials/_galeria', ['fotos' => $foto, 'idiomas'=>$idiomas, 'redirectme'=>'admin/slider'])
+        @empty
+            <div>
+                <h3>No hay fotos en esta galería!</h3>
+            </div>
+        @endforelse
+    </div>
 
 @stop
 
 @section("scripts")
     <script type="text/javascript">
-        function openFormFrase(tipo, $btn) {
-            openLoader();
-            var url = "", title = "";
-            if (tipo == "create") {
-                url = "{{ URL::to('admin/createFraseAjax') }}";
-                title = "Traducir frase";
-            } else if (tipo == "edit") {
-                url = "{{ URL::to('admin/editFraseAjax') }}";
-                title = "Modificar frase";
-            }
-            var id = $btn.data("id");
-            var lang = $btn.data("lang");
-            $.ajax({
-                type    : "POST",
-                url     : url,
-                data    : {
-                    id         : id,
-                    lang       : lang,
-                    redirectme : "admin/home"
-                },
-                success : function (msg) {
-                    closeLoader();
-                    bootbox.dialog({
-                        title   : title,
-                        message : msg,
-                        buttons : {
-                            success : {
-                                label     : "<i class='fa fa-floppy-o'></i> Guardar",
-                                className : "btn-success",
-                                callback  : function () {
-                                    var $frm = $("#frmFrase");
-                                    $frm.submit();
-                                    return false;
-                                }
-                            },
-                            danger  : {
-                                label     : "Cancelar",
-                                className : "btn-default",
-                                callback  : function () {
-                                }
-                            }
-                        }
-                    });
-                },
-                error   : function () {
-
-                }
-            });
-        }
-
-        function openFormFoto(tipo, $btn) {
-            openLoader();
-            var url = "", title = "";
-            if (tipo == "create") {
-                url = "{{ URL::to('admin/createFotoAjax') }}";
-                title = "Agregar foto";
-            } else if (tipo == "edit") {
-                url = "{{ URL::to('admin/editFotoAjax') }}";
-                title = "Modificar foto";
-            }
-            var id = $btn.data("id");
-            var lang = $btn.data("lang");
-            $.ajax({
-                type    : "POST",
-                url     : url,
-                data    : {
-                    id         : id,
-                    lang       : lang,
-                    redirectme : "admin/home"
-                },
-                success : function (msg) {
-                    closeLoader();
-                    bootbox.dialog({
-                        title   : title,
-                        message : msg,
-                        buttons : {
-                            success : {
-                                label     : "<i class='fa fa-floppy-o'></i> Guardar",
-                                className : "btn-success",
-                                callback  : function () {
-                                    var $frm = $("#frmFoto");
-                                    $frm.submit();
-                                    return false;
-                                }
-                            },
-                            danger  : {
-                                label     : "Cancelar",
-                                className : "btn-default",
-                                callback  : function () {
-                                }
-                            }
-                        }
-                    });
-                },
-                error   : function () {
-
-                }
-            });
-        }
-
+        var redirectme = "admin/home";
         $(function () {
-            $(".btn-edit").click(function () {
-                var $this = $(this);
-                openFormFrase("edit", $this);
+            $(".btn-edit-frase").click(function () {
+                openFormFrase("edit", $(this), "{{ URL::to('admin/editFraseAjax') }}", redirectme);
                 return false;
             });
-            $(".btn-create").click(function () {
-                var $this = $(this);
-                openFormFrase("create", $this);
+            $(".btn-create-frase").click(function () {
+                openFormFrase("create", $(this), "{{ URL::to('admin/createFraseAjax') }}", redirectme);
+                return false;
+            });
+
+            $(".btn-edit-frase-foto").click(function () {
+                openFormFraseFoto("edit", $(this), "{{ URL::to('admin/editFraseFotoAjax') }}", redirectme);
+                return false;
+            });
+            $(".btn-create-frase-foto").click(function () {
+                openFormFraseFoto("create", $(this), "{{ URL::to('admin/createFraseFotoAjax') }}", redirectme);
                 return false;
             });
             $("#btnAddFoto").click(function () {
-                var $this = $(this);
-                openFormFoto("create", $this);
+                openFormFoto("create", $(this), "{{ URL::to('admin/createFotoAjax') }}", redirectme);
+                return false;
+            });
+            $(".btn-delete-foto").click(function () {
+                deleteFoto($(this));
                 return false;
             });
         });

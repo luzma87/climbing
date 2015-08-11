@@ -18,7 +18,7 @@
 
         public function previewGaleria($galeria) {
             $fotos = Foto::galeria($galeria)->orderBy("id", "asc")->get();
-            return view('admin.previewGaleria', ['fotos' => $fotos]);
+            return view('admin.previewGaleria', ['fotos' => $fotos, 'galeria' => $galeria]);
         }
 
         public function index() {
@@ -37,9 +37,10 @@
         public function home() {
             session(['pag' => 'home']);
             $idiomas = Idioma::all();
+            $fotos = Foto::galeria("homePrincipal")->orderBy("id", "asc")->get();
             $frases = Frase::pagina("home")->idioma("es")->orderBy("id", "asc")->get();
             $prct = (int)(100 / $idiomas->count());
-            return view('admin.home', ['idiomas' => $idiomas, 'frases' => $frases, 'prct' => $prct]);
+            return view('admin.home', ['idiomas' => $idiomas, 'frases' => $frases, 'fotos' => $fotos, 'prct' => $prct]);
         }
 
         public function ecuador() {

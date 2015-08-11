@@ -6,11 +6,11 @@
 ?>
 @extends('layouts.defaultAdmin')
 
-@section('title', 'Administrar: Slider principal')
+@section('title', 'Administrar: Banner slider')
 
 @section('content')
     <h1>
-        Editar slider principal
+        Editar banner slider
         <small>
             <a href="{{ URL::to('admin/previewGaleria','sliderPrincipal') }}" target="_blank">Ver slider</a>
         </small>
@@ -35,86 +35,22 @@
 
 @section("scripts")
     <script type="text/javascript">
-        function openFormFrase(tipo, $btn) {
-            openLoader();
-            var url = "", title = "";
-            if (tipo == "create") {
-                url = "{{ URL::to('admin/createFraseFotoAjax') }}";
-                title = "Crear frases";
-            } else if (tipo == "edit") {
-                url = "{{ URL::to('admin/editFraseFotoAjax') }}";
-                title = "Modificar frases";
-            }
-            var $tr = $btn.parents("tr");
-            var id = $tr.data("id");
-            var lang = $tr.data("lang");
-            var foto = $tr.data("foto");
-            $.ajax({
-                type    : "POST",
-                url     : url,
-                data    : {
-                    id         : id,
-                    lang       : lang,
-                    foto       : foto,
-                    redirectme : "admin/slider"
-                },
-                success : function (msg) {
-                    closeLoader();
-                    bootbox.dialog({
-                        title   : title,
-                        message : msg,
-                        buttons : {
-                            success : {
-                                label     : "<i class='fa fa-floppy-o'></i> Guardar",
-                                className : "btn-success",
-                                callback  : function () {
-                                    var $frm = $("#frmFraseFoto");
-                                    $frm.submit();
-                                    return false;
-                                }
-                            },
-                            danger  : {
-                                label     : "Cancelar",
-                                className : "btn-default",
-                                callback  : function () {
-                                }
-                            }
-                        }
-                    });
-                },
-                error   : function () {
-
-                }
-            });
-        }
-
+        var redirectme = "admin/slider";
         $(function () {
             $("#btnAddFoto").click(function () {
-                var $this = $(this);
-                openFormFoto("create", $this, "{{ URL::to('admin/createFotoAjax') }}", "{{ URL::to('admin/editFotoAjax') }}", "admin/slider");
+                openFormFoto("create", $(this), "{{ URL::to('admin/createFotoAjax') }}", redirectme);
                 return false;
             });
-
-            $(".btn-edit").click(function () {
-                var $this = $(this);
-                openFormFrase("edit", $this);
+            $(".btn-edit-frase-foto").click(function () {
+                openFormFraseFoto("edit", $(this), "{{ URL::to('admin/editFraseFotoAjax') }}", redirectme);
                 return false;
             });
-
-            $(".btn-create").click(function () {
-                var $this = $(this);
-                openFormFrase("create", $this);
+            $(".btn-create-frase-foto").click(function () {
+                openFormFraseFoto("create", $(this), "{{ URL::to('admin/createFraseFotoAjax') }}", redirectme);
                 return false;
             });
-
             $(".btn-delete-foto").click(function () {
-                var $frm = $(this).parents("form");
-                bootbox.confirm("¿Está seguro de querer eliminar esta foto y todas sus frases?", function (res) {
-                    if (res) {
-                        openLoader("Eliminando");
-                        $frm.submit();
-                    }
-                });
+                deleteFoto($(this));
                 return false;
             });
         });

@@ -9,11 +9,11 @@ class NthFormBuilder extends \Illuminate\Html\FormBuilder {
         $frase = Frase::codigo($codigo)->idioma($idioma)->get()->first();
         $fraseTxt = $frase ? $frase->contenido : $default;
         $fraseId = $frase ? $frase->id : $fraseEs->id;
-        $clase = "warning btn-edit";
+        $clase = "warning btn-edit-frase";
         $texto = "Editar";
         $icon = "pencil";
         if ($fraseTxt == $default) {
-            $clase = "success btn-create";
+            $clase = "success btn-create-frase";
             $texto = "Crear";
             $icon = "file-o";
         }
@@ -35,7 +35,7 @@ class NthFormBuilder extends \Illuminate\Html\FormBuilder {
         $titulo = "";
         $descripcion = "";
 
-        $clase = "success btn-create";
+        $clase = "success btn-create-frase-foto";
         $title = "Crear";
         $icon = "file-o";
 
@@ -44,7 +44,7 @@ class NthFormBuilder extends \Illuminate\Html\FormBuilder {
             $titulo = $frase->titulo;
             $descripcion = $frase->descripcion;
 
-            $clase = "warning btn-edit";
+            $clase = "warning btn-edit-frase-foto";
             $title = "Editar";
             $icon = "pencil";
         }
