@@ -37,8 +37,8 @@
 
             Schema::create('frasesFoto', function (Blueprint $table) {
                 $table->increments('id');
-                $table->integer('foto')->unsigned()->default(0);
-                $table->foreign('foto')->references('id')->on('foto')->onDelete('cascade');
+                $table->integer('foto_id')->unsigned()->default(0);
+                $table->foreign('foto_id')->references('id')->on('fotos')->onDelete('cascade');
                 $table->integer('idioma')->unsigned()->default(0);
                 $table->foreign('idioma')->references('id')->on('idiomas')->onDelete('cascade');
                 $table->string('titulo');

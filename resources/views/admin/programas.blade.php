@@ -1,7 +1,7 @@
 @extends('layouts.defaultAdmin')
 
-@section('title', 'Programas')
+@section('title', 'Admin: Nuestros Programas')
 
 @section('content')
-    <h1>PROGRAMAS</h1>
+
 @stop

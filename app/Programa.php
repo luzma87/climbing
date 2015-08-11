@@ -14,7 +14,6 @@
             'grupoPrograma_id' => 'required',
             'codigo' => 'required',
             'nombre' => 'required',
-            'graduacion' => 'required',
             'itinerario' => 'required',
             'descripcion' => 'required',
             'recomendaciones' => 'required',
@@ -41,17 +40,24 @@
         protected $fillable = ['grupoPrograma_id',
                                'codigo',
                                'nombre',
-                               'graduacion',
+                               'graduacion', //en los de 1 solo dia
+                               'logistica', //en los de varios dias
+                               'dificultad', //en los de varios dias
                                'itinerario',
                                'descripcion',
                                'recomendaciones',
                                'requisitos',
                                'llevar',
                                'incluye',
-                               'noIncluye'];
+                               'noIncluye',
+                               'costo'];
 
         public function grupoPrograma() {
             return $this->belongsTo('App\GrupoPrograma');
+        }
+
+        public function dias() {
+            return $this->hasMany('App\DiaPrograma');
         }
 
         public function scopePorGrupoPrograma($query, $id) {
