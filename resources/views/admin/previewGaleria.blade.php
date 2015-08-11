@@ -103,20 +103,20 @@
 
         <!-- Slides Container -->
         <div u="slides" class="slides">
-            <div>
-                <img u="image" src="{!!  URL::asset('assets/images/montana2.jpg')  !!}"/>
 
-                <div u="caption" class="caption" t="caption-transition-name">
-                    Caption montana2
-                </div>
-            </div>
-            <div>
-                <img u="image" src="{!!  URL::asset('assets/images/disenio.PNG')  !!}"/>
+            @forelse($fotos as $foto)
+                <div>
+                    <img u="image" src="{!!  URL::asset($foto->path) !!}" class="img-thumbnail">
 
-                <div u="caption" class="caption" t="caption-transition-name">
-                    Caption disenio
+                    <div u="caption" class="caption" t="caption-transition-name">
+                        {{ getTituloFoto($foto->id, session("lang"), "Sin título") }}
+                    </div>
                 </div>
-            </div>
+            @empty
+                <div class="col-md-10 col-md-offset-1 alert alert-info">
+                    <h3>No hay fotos en esta galería!</h3>
+                </div>
+            @endforelse
         </div>
 
         <!-- Navigator Skin Begin -->

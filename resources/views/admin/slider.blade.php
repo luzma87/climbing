@@ -6,11 +6,11 @@
 ?>
 @extends('layouts.defaultAdmin')
 
-@section('title', 'Administrar: Slider común')
+@section('title', 'Administrar: Slider principal')
 
 @section('content')
     <h1>
-        Editar slider común
+        Editar slider principal
         <small>
             <a href="{{ URL::to('admin/previewGaleria','sliderPrincipal') }}" target="_blank">Ver slider</a>
         </small>
@@ -26,7 +26,7 @@
         @forelse($fotos as $foto)
             @include('admin/partials/_galeria', ['fotos' => $foto, 'idiomas'=>$idiomas, 'redirectme'=>'admin/slider'])
         @empty
-            <div class="col-md-10 col-md-offset-1 alert alert-info">
+            <div>
                 <h3>No hay fotos en esta galería!</h3>
             </div>
         @endforelse
