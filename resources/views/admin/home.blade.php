@@ -79,7 +79,7 @@
                         message : msg,
                         buttons : {
                             success : {
-                                label     : "<i class='fa fa-flppy-o'></i> Guardar",
+                                label     : "<i class='fa fa-floppy-o'></i> Guardar",
                                 className : "btn-success",
                                 callback  : function () {
                                     var $frm = $("#frmFrase");
@@ -129,7 +129,7 @@
                         message : msg,
                         buttons : {
                             success : {
-                                label     : "<i class='fa fa-flppy-o'></i> Guardar",
+                                label     : "<i class='fa fa-floppy-o'></i> Guardar",
                                 className : "btn-success",
                                 callback  : function () {
                                     var $frm = $("#frmFoto");

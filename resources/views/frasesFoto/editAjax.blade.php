@@ -3,14 +3,14 @@
     <strong>{{ $frase->contenido }}</strong>
 </p>
 
-{!! Form::model($frase, ['id'=>'frmFrase', 'method' => 'PATCH', 'route' => array('frases.update', $frase->id)]) !!}
+{!! Form::model($frase, ['id'=>'frmFraseFoto', 'method' => 'PATCH', 'route' => array('frasesFoto.update', $frase->id)]) !!}
 
-@include('frases/partials/_formAjax', ['idioma' => $frase->idioma, 'codigo'=>$frase->codigo, "pagina"=>$frase->pagina, "redirectme"=>$redirectme])
+@include('frasesFoto/partials/_formAjax', ['idioma' => $frase->idioma, 'foto'=>$frase->foto_id, "redirectme"=>$redirectme])
 
 {!! Form::close()  !!}
 
 <script type="text/javascript">
-    var $frm = $("#frmFrase");
+    var $frm = $("#frmFraseFoto");
     $frm.validate({
         submitHandler : function (form) {
             openLoader();

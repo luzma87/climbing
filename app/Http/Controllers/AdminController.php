@@ -16,6 +16,11 @@
             $this->middleware('auth');
         }
 
+        public function previewGaleria($galeria) {
+            $fotos = Foto::galeria($galeria)->orderBy("id", "asc")->get();
+            return view('admin.previewGaleria', ['fotos' => $fotos]);
+        }
+
         public function index() {
             session(['pag' => 'admin']);
             Frase::idioma("es")->codigo("culturaAventura")->get();

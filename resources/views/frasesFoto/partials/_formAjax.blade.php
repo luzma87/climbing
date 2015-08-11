@@ -1,5 +1,5 @@
 <input type="hidden" name="idioma" value="{{ $idioma }}"/>
-<input type="hidden" name="foto" value="{{ $foto }}"/>
+<input type="hidden" name="foto_id" value="{{ $foto }}"/>
 <input type="hidden" name="redirectme" value="{{ $redirectme }}"/>
 
 <div class="form-group">

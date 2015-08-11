@@ -11,7 +11,9 @@
 @section('content')
     <h1>
         Editar slider común
-        <small><a href="{{ URL::to('home') }}" target="_blank">Ver página de inicio</a></small>
+        <small>
+            <a href="{{ URL::to('admin/previewGaleria','sliderPrincipal') }}" target="_blank">Ver slider</a>
+        </small>
     </h1>
 
     <div class="btn-toolbar" role="toolbar">
@@ -38,10 +40,10 @@
             var url = "", title = "";
             if (tipo == "create") {
                 url = "{{ URL::to('admin/createFraseFotoAjax') }}";
-                title = "Traducir frase";
+                title = "Crear frases";
             } else if (tipo == "edit") {
                 url = "{{ URL::to('admin/editFraseFotoAjax') }}";
-                title = "Modificar frase";
+                title = "Modificar frases";
             }
             var $tr = $btn.parents("tr");
             var id = $tr.data("id");
@@ -63,10 +65,10 @@
                         message : msg,
                         buttons : {
                             success : {
-                                label     : "<i class='fa fa-flppy-o'></i> Guardar",
+                                label     : "<i class='fa fa-floppy-o'></i> Guardar",
                                 className : "btn-success",
                                 callback  : function () {
-                                    var $frm = $("#frmFrase");
+                                    var $frm = $("#frmFraseFoto");
                                     $frm.submit();
                                     return false;
                                 }

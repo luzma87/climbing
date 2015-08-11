@@ -21,6 +21,8 @@
     Route::resource('idiomas', 'IdiomasController');
     Route::resource('fotos', 'FotosController');
     Route::resource('frasesFoto', 'FrasesFotoController');
+    Route::resource('grupoPrograma', 'GrupoProgramaController');
+    Route::resource('programa', 'ProgramaController');
 
     Route::get('admin', 'AdminController@index');
     Route::get('admin/slider', 'AdminController@slider');
@@ -32,6 +34,8 @@
     Route::get('admin/comentarios', 'AdminController@comentarios');
     Route::get('admin/galeria', 'AdminController@galeria');
     Route::get('admin/config', 'AdminController@config');
+    Route::get('admin/previewGaleria/{codigo}', 'AdminController@previewGaleria');
+
     Route::get('admin/cotizacion', 'AdminController@cotizacion');
 
     Route::post('admin/createFraseAjax', 'FrasesController@createAjax');
@@ -40,6 +44,7 @@
     Route::post('admin/editFotoAjax', 'FotosController@editAjax');
     Route::post('admin/createFraseFotoAjax', 'FrasesFotoController@createAjax');
     Route::post('admin/editFraseFotoAjax', 'FrasesFotoController@editAjax');
+
 
     Route::get('/', 'HomeController@index');
     Route::get('home', 'HomeController@index');
