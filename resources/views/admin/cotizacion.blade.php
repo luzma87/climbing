@@ -34,7 +34,7 @@
                 </td>
                 <td class="web"></td>
                 <td class="mov"></td>
-                <td class="ad"></td>
+                <td class="ad done"></td>
             </tr>
             <tr>
                 <td class="">Nosotros</td>

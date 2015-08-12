@@ -1,4 +1,4 @@
-@extends('layouts.defaultWeb')
+@extends('layouts.defaultLogin')
 
 @section('title', 'Entrar')
 
@@ -57,19 +57,19 @@
         }
         $(function () {
             $form.validate({
-                errorElement: "div",
-                errorClass: "label label-danger",
-                errorPlacement: function (error, element) {
+                errorElement   : "div",
+                errorClass     : "label label-danger",
+                errorPlacement : function (error, element) {
                     if (element.parent().hasClass("input-group")) {
                         error.insertAfter(element.parent());
                     } else {
                         error.insertAfter(element);
                     }
                 },
-                highlight: function (element, errorClass) {
+                highlight      : function (element, errorClass) {
                     $(element).parents(".form-group").addClass("has-error");
                 },
-                unhighlight: function (element, errorClass) {
+                unhighlight    : function (element, errorClass) {
                     $(element).parents(".form-group").removeClass("has-error");
                 }
             });

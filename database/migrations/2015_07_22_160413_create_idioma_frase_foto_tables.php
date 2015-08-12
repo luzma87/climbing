@@ -1,54 +1,61 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\Migrations\Migration;
+    use Illuminate\Database\Schema\Blueprint;
+    use Illuminate\Database\Migrations\Migration;
 
-class CreateIdiomaFraseFotoTables extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('idiomas', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('codigo')->default('');
-            $table->string('nombre')->default('');
-            $table->string('bandera')->default('');
-            $table->timestamps();
-        });
+    class CreateIdiomaFraseFotoTables extends Migration {
+        /**
+         * Run the migrations.
+         *
+         * @return void
+         */
+        public function up() {
+            Schema::create('idiomas', function (Blueprint $table) {
+                $table->increments('id');
+                $table->string('codigo');
+                $table->string('nombre');
+                $table->string('bandera');
+                $table->timestamps();
+            });
 
-        Schema::create('frases', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('codigo')->default('');
-            $table->text('contenido')->default('');
-            $table->integer('idioma')->unsigned()->default(0);
-            $table->foreign('idioma')->references('id')->on('idiomas')->onDelete('cascade');
-            $table->timestamps();
-        });
+            Schema::create('frases', function (Blueprint $table) {
+                $table->increments('id');
+                $table->string('codigo');
+                $table->text('contenido');
+                $table->string('pagina');
+                $table->integer('idioma')->unsigned()->default(0);
+                $table->foreign('idioma')->references('id')->on('idiomas')->onDelete('cascade');
+                $table->timestamps();
+            });
 
-        Schema::create('fotos', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('path')->default('');
-            $table->integer('titulo')->unsigned()->default(0);
-            $table->foreign('titulo')->references('id')->on('frases')->onDelete('cascade');
-            $table->integer('descripcion')->unsigned()->default(0);
-            $table->foreign('descripcion')->references('id')->on('frases')->onDelete('cascade');
-            $table->timestamps();
-        });
+            Schema::create('fotos', function (Blueprint $table) {
+                $table->increments('id');
+                $table->string('path');
+                $table->string('galeria');
+                $table->timestamps();
+            });
+
+            Schema::create('frasesFoto', function (Blueprint $table) {
+                $table->increments('id');
+                $table->integer('foto_id')->unsigned()->default(0);
+                $table->foreign('foto_id')->references('id')->on('fotos')->onDelete('cascade');
+                $table->integer('idioma')->unsigned()->default(0);
+                $table->foreign('idioma')->references('id')->on('idiomas')->onDelete('cascade');
+                $table->string('titulo');
+                $table->text('descripcion');
+                $table->timestamps();
+            });
+        }
+
+        /**
+         * Reverse the migrations.
+         *
+         * @return void
+         */
+        public function down() {
+            Schema::drop('fotos');
+            Schema::drop('frases');
+            Schema::drop('frasesFoto');
+            Schema::drop('idiomas');
+        }
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::drop('fotos');
-        Schema::drop('frases');
-        Schema::drop('idiomas');
-    }
-}

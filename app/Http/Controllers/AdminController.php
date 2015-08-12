@@ -2,6 +2,9 @@
 
     namespace App\Http\Controllers;
 
+    use App\Frase;
+    use App\Foto;
+    use App\Idioma;
     use Illuminate\Http\Request;
 
     use App\Http\Requests;
@@ -9,14 +12,35 @@
 
     class AdminController extends Controller {
 
+        public function __construct(Frase $frase) {
+            $this->middleware('auth');
+        }
+
+        public function previewGaleria($galeria) {
+            $fotos = Foto::galeria($galeria)->orderBy("id", "asc")->get();
+            return view('admin.previewGaleria', ['fotos' => $fotos, 'galeria' => $galeria]);
+        }
+
         public function index() {
             session(['pag' => 'admin']);
+            Frase::idioma("es")->codigo("culturaAventura")->get();
             return view('admin.index');
         }
 
-        public function inicio() {
-            session(['pag' => 'inicio']);
-            return view('admin.inicio');
+        public function slider() {
+            session(['pag' => 'slider']);
+            $fotos = Foto::galeria("sliderPrincipal")->orderBy("id", "asc")->get();
+            $idiomas = Idioma::all();
+            return view('admin.slider', ['fotos' => $fotos, 'idiomas' => $idiomas]);
+        }
+
+        public function home() {
+            session(['pag' => 'home']);
+            $idiomas = Idioma::all();
+            $fotos = Foto::galeria("homePrincipal")->orderBy("id", "asc")->get();
+            $frases = Frase::pagina("home")->idioma("es")->orderBy("id", "asc")->get();
+            $prct = (int)(100 / $idiomas->count());
+            return view('admin.home', ['idiomas' => $idiomas, 'frases' => $frases, 'fotos' => $fotos, 'prct' => $prct]);
         }
 
         public function ecuador() {
@@ -47,6 +71,11 @@
         public function galeria() {
             session(['pag' => 'galeria']);
             return view('admin.galeria');
+        }
+
+        public function config() {
+            session(['pag' => 'config']);
+            return view('admin.config');
         }
 
         public function cotizacion() {

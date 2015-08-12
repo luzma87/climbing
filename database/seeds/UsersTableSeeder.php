@@ -9,12 +9,14 @@
             DB::table('users')->delete();
 
             $users = array(
-                ['id'         => 1,
-                 'name'       => 'admin',
-                 'email'      => 'luzma_87@yahoo.com',
-                 'password'   => '$2y$10$mxz1oy0SXBdSXs8LRWw8pOqqPUTYBhTSaF5ib5YSHkMwglHvR4X1u',
-                 'created_at' => new DateTime,
-                 'updated_at' => new DateTime],
+                [
+                    'id' => 1,
+                    'name' => 'admin',
+                    'email' => 'luzma_87@yahoo.com',
+                    'password' => '$2y$10$mxz1oy0SXBdSXs8LRWw8pOqqPUTYBhTSaF5ib5YSHkMwglHvR4X1u',
+                    'created_at' => new DateTime,
+                    'updated_at' => new DateTime
+                ],
             );
 
             // Uncomment the below to run the seeder

@@ -3,10 +3,28 @@
     <head>
         <meta charset="utf-8">
 
+        <meta name="_token" content="{!! csrf_token() !!}"/>
+
+        {!! HTML::script('assets/js/jquery-ui-1.11.4/external/jquery/jquery.js') !!}
+        {!! HTML::script('assets/js/jquery-ui-1.11.4/jquery-ui.min.js') !!}
+        {!! HTML::script('assets/bootstrap-3.3.5/js/bootstrap.min.js') !!}
+
+        {!! HTML::script('assets/js/plugins/jquery-validation-1.14.0/dist/jquery.validate.min.js') !!}
+        {!! HTML::script('assets/js/plugins/jquery-validation-1.14.0/dist/localization/messages_es.min.js') !!}
+
+        {!! HTML::script('assets/js/plugins/bootbox-4.4.0/bootbox.js') !!}
+
+        {!! HTML::script('assets/js/funciones.js') !!}
+
+        {!! HTML::script('assets/js/funcionesEditor.js') !!}
+
         {!! HTML::style('assets/bootstrap-3.3.5/css/bootstrap.min.css') !!}
         {!! HTML::style('assets/bootstrap-3.3.5/css/bootstrap-theme.min.css') !!}
 
         {!! HTML::style('assets/font-awesome-4.4.0/css/font-awesome.min.css') !!}
+
+        {!! HTML::script('assets/js/plugins/jquery-qtip-2.2.1/jquery.qtip.min.js') !!}
+        {!! HTML::style('assets/js/plugins/jquery-qtip-2.2.1/jquery.qtip.min.css') !!}
 
         {!! HTML::style('assets/js/jquery-ui-1.11.4/jquery-ui.min.css') !!}
         {!! HTML::style('assets/js/jquery-ui-1.11.4/jquery-ui.structure.min.css') !!}
@@ -14,6 +32,8 @@
         {!! HTML::style('assets/css/estilos.css') !!}
         {!! HTML::style('assets/css/custom.css') !!}
         {!! HTML::style('assets/css/botones.css') !!}
+        {!! HTML::style('assets/css/tablas.css') !!}
+        {!! HTML::style('assets/css/customAdmin.css') !!}
 
         <link rel="apple-touch-icon" sizes="57x57" href="{!! URL::asset('assets/images/favicons/apple-touch-icon-57x57.png')  !!}">
         <link rel="apple-touch-icon" sizes="114x114" href="{!! URL::asset('assets/images/favicons/apple-touch-icon-114x114.png')  !!}">
@@ -57,33 +77,23 @@
                         </div>
                     </div>
                 </li>
-                <li class="menu-item {{ session('pag') == 'admin' ? 'active' : 'non-active' }}">
-                    <a href="{{ action('AdminController@index') }}" title="Administración"><i class="fa-menu fa fa-th-large"></i><span class="toggle-menu">Administración</span></a>
-                </li>
-                <li class="menu-item {{ session('pag') == 'inicio' ? 'active' : 'non-active' }}">
-                    <a href="{{ URL::to('inicio') }}" title="Inicio"><i class="fa-menu fa fa-home"></i><span class="toggle-menu">Inicio</span></a>
-                </li>
-                <li class="menu-item {{ session('pag') == 'ecuador' ? 'active' : 'non-active' }}">
-                    <a href="{{ URL::to('ecuador') }}" title="Ecuador país mega diverso"><i class="fa-menu fa fa-pagelines"></i><span class="toggle-menu">Ecuador país mega diverso</span></a>
-                </li>
-                <li class="menu-item {{ session('pag') == 'programas' ? 'active' : 'non-active' }}">
-                    <a href="{{ URL::to('programas') }}" title="Nuestros programas"><i class="fa-menu fa fa-map"></i><span class="toggle-menu">Nuestros programas</span></a>
-                </li>
-                <li class="menu-item {{ session('pag') == 'recomendaciones' ? 'active' : 'non-active' }}">
-                    <a href="{{ URL::to('recomendaciones') }}" title="Recomendaciones"><i class="fa-menu fa fa-weixin"></i><span class="toggle-menu">Recomendaciones</span></a>
-                </li>
-                <li class="menu-item {{ session('pag') == 'noticias' ? 'active' : 'non-active' }}">
-                    <a href="{{ URL::to('noticias') }}" title="Noticias"><i class="fa-menu fa fa-newspaper-o"></i><span class="toggle-menu">Noticias</span></a>
-                </li>
-                <li class="menu-item {{ session('pag') == 'comentarios' ? 'active' : 'non-active' }}">
-                    <a href="{{ URL::to('comentarios') }}" title="Comentarios"><i class="fa-menu fa fa-comments-o"></i><span class="toggle-menu">Comentarios</span></a>
-                </li>
-                <li class="menu-item {{ session('pag') == 'galeria' ? 'active' : 'non-active' }}">
-                    <a href="{{ URL::to('galeria') }}" title="Galería"><i class="fa-menu fa fa-picture-o"></i><span class="toggle-menu">Galería</span></a>
-                </li>
+                {!! Form::nth_menu_li("Administración", URL::to('admin'), "fa-th-large", "admin") !!}
+                {!! Form::nth_menu_li("Banner slider", URL::to('admin/slider'), "fa-clone", "slider") !!}
+                {!! Form::nth_menu_li("Inicio", URL::to('admin/home'), "fa-home", "inicio") !!}
+                {!! Form::nth_menu_li("Ecuador país mega diverso", URL::to('admin/ecuador'), "fa-pagelines", "ecuador") !!}
+                {!! Form::nth_menu_li("Nuestros programas", URL::to('admin/programas'), "fa-map", "programas") !!}
+                {!! Form::nth_menu_li("Recomendaciones", URL::to('admin/recomendaciones'), "fa-weixin", "recomendaciones") !!}
+                {!! Form::nth_menu_li("Noticias", URL::to('admin/noticias'), "fa-newspaper-o", "noticias") !!}
+                {!! Form::nth_menu_li("Comentarios", URL::to('admin/comentarios'), "fa-comments-o", "comentarios") !!}
+                {!! Form::nth_menu_li("Galería", URL::to('admin/galeria'), "fa-picture-o", "galeria") !!}
+                {!! Form::nth_menu_li("Recomendaciones", URL::to('admin/recomendaciones'), "fa-weixin", "recomendaciones") !!}
+                {!! Form::nth_menu_li("Configuración", URL::to('admin/config'), "fa-cogs", "config") !!}
                 <li class="menu-item {{ session('pag') == 'cotizacion' ? 'active' : 'non-active' }}">
-                    <a href="{{ URL::to('cotizacion') }}" title="Cotización"><i class="fa-menu fa fa-money"></i><span class="toggle-menu">Cotización</span></a>
+                    <a href="{{ URL::to('admin/cotizacion') }}" title="Cotización">
+                        <i class="fa-menu fa fa-money"></i><span class="toggle-menu">Cotización</span>
+                    </a>
                 </li>
+                {!! Form::nth_menu_li("Salir", URL::to('logout'), "fa-sign-out", "logout") !!}
                 {{--<li class="menu-item non-active dropdown">--}}
                 {{--<a href="#" class="dropdown-toggle non-active " title="Chat"><i class="fa-menu fa fa-wechat"></i><span class="toggle-menu">Chat</span><span class="caret toggle-menu"></span></a>--}}
                 {{--<ul class="submenu non-active" style="margin-top: 0">--}}
@@ -93,12 +103,6 @@
                 {{--</li>--}}
                 {{--</ul>--}}
                 {{--</li>--}}
-                <li class="menu-item non-active">
-                    <a href="{{ URL::to('logout') }}" title="Salir">
-                        <i class="fa-menu fa fa-sign-out"></i>
-                        <span class="toggle-menu">Salir</span>
-                    </a>
-                </li>
             </ul>
         </div>
 
@@ -121,47 +125,71 @@
                 </div>
             </nav>
 
+            @if (session('message')!='')
+                <div class="flash alert alert-info">
+                    <p>{{ session('message') }}</p>
+                </div>
+            @endif
+
             @yield('content')
 
             @yield('footer')
 
-            {!! HTML::script('assets/js/jquery-ui-1.11.4/external/jquery/jquery.js') !!}
-            {!! HTML::script('assets/js/jquery-ui-1.11.4/jquery-ui.min.js') !!}
-            {!! HTML::script('assets/bootstrap-3.3.5/js/bootstrap.min.js') !!}
-
             <script type="text/javascript">
+                $.ajaxSetup({
+                    headers : {'X-CSRF-Token' : $('meta[name=_token]').attr('content')}
+                });
+
                 var estadoMenu = 1;
                 $("#control-menu").click(function () {
                     $(".toggle-menu").toggle();
                     if (estadoMenu == 1) {
                         $(".submenu").hide();
                         $(".menu").animate({
-                            width: 55
+                            width : 55
                         });
                         $(".contenido").animate({
-                            marginLeft: "55"
+                            marginLeft : "55"
                         });
                         estadoMenu = 0;
                     } else {
                         $(".menu").animate({
-                            width: 190
+                            width : 190
                         });
                         $(".contenido").animate({
-                            marginLeft: "190"
+                            marginLeft : "190"
                         });
                         estadoMenu = 1;
                     }
                     return false;
                 });
                 $(".dropdown-toggle").click(function () {
-                    if (estadoMenu == 1)
+                    if (estadoMenu == 1) {
                         $(this).parent().find(".submenu").toggle();
-                    else {
+                    } else {
                         $("#control-menu").click();
                         $(this).parent().find(".submenu").toggle()
                     }
                     return false;
-                })
+                });
+                $('[title!=""]').qtip({
+                    style    : {
+                        classes : 'qtip-tipsy qtip-shadow'
+                    },
+                    position : {
+                        my : 'left center',
+                        at : 'right center'
+                    }
+                });
+                $('.qtip-top').qtip({
+                    style    : {
+                        classes : 'qtip-tipsy qtip-shadow'
+                    },
+                    position : {
+                        my : 'bottom center',
+                        at : 'top center'
+                    }
+                });
             </script>
 
             @yield('scripts')

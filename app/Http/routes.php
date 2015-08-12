@@ -11,35 +11,59 @@
     |
     */
 
-    Route::get('/', function () {
-        return View::make('enConstruccion');
-    });
-
-
     Route::get('auth/login', 'SessionsController@create');
     Route::get('login', 'SessionsController@create');
     Route::get('logout', 'SessionsController@destroy');
 
     Route::resource('auth', 'SessionsController');
+    Route::resource('users', 'UsersController');
+    Route::resource('frases', 'FrasesController');
+    Route::resource('idiomas', 'IdiomasController');
+    Route::resource('fotos', 'FotosController');
+    Route::resource('frasesFoto', 'FrasesFotoController');
+    Route::resource('grupoPrograma', 'GrupoProgramaController');
+    Route::resource('programa', 'ProgramaController');
 
-    Route::get('inicio', 'AdminController@inicio');
-    Route::get('ecuador', 'AdminController@ecuador');
-    Route::get('programas', 'AdminController@programas');
-    Route::get('recomendaciones', 'AdminController@recomendaciones');
-    Route::get('noticias', 'AdminController@noticias');
-    Route::get('comentarios', 'AdminController@comentarios');
-    Route::get('galeria', 'AdminController@galeria');
-    Route::get('cotizacion', 'AdminController@cotizacion');
+    Route::get('admin', 'AdminController@index');
+    Route::get('admin/slider', 'AdminController@slider');
+    Route::get('admin/home', 'AdminController@home');
+    Route::get('admin/ecuador', 'AdminController@ecuador');
+    Route::get('admin/programas', 'AdminController@programas');
+    Route::get('admin/recomendaciones', 'AdminController@recomendaciones');
+    Route::get('admin/noticias', 'AdminController@noticias');
+    Route::get('admin/comentarios', 'AdminController@comentarios');
+    Route::get('admin/galeria', 'AdminController@galeria');
+    Route::get('admin/config', 'AdminController@config');
+    Route::get('admin/previewGaleria/{codigo}', 'AdminController@previewGaleria');
+
+    Route::get('admin/cotizacion', 'AdminController@cotizacion');
+
+    Route::post('admin/createFraseAjax', 'FrasesController@createAjax');
+    Route::post('admin/editFraseAjax', 'FrasesController@editAjax');
+    Route::post('admin/createFotoAjax', 'FotosController@createAjax');
+    Route::post('admin/editFotoAjax', 'FotosController@editAjax');
+    Route::post('admin/createFraseFotoAjax', 'FrasesFotoController@createAjax');
+    Route::post('admin/editFraseFotoAjax', 'FrasesFotoController@editAjax');
+
+
+    Route::get('/', 'HomeController@index');
+    Route::get('home', 'HomeController@index');
+    Route::get('nosotros', 'NosotrosController@index');
+    Route::get('ecuador', 'EcuadorController@index');
+    Route::get('equipo', 'EquipoController@index');
+    Route::get('programas', 'ProgramasController@index');
+    Route::get('programa', 'ProgramasController@programa');
+    //    Route::get('frases/{idioma}', array('uses' => 'FrasesController@index'));
+    //    Route::get('frases/create', array('uses' => 'FrasesController@create'));
 
     // Route group
-    $router->group(['middleware' => 'auth'], function ($router) {
-        // lots of routes that require auth middleware
-        $router->resource('admin', 'AdminController');
-        $router->resource('users', 'UsersController');
-        $router->resource('idiomas', 'IdiomasController');
-        $router->resource('frases', 'FrasesController');
-        $router->resource('fotos', 'FotosController');
-    });
+    //    $router->group(['middleware' => 'auth'], function ($router) {
+    //        // lots of routes that require auth middleware
+    //        $router->resource('admin', 'AdminController');
+    //        $router->resource('users', 'UsersController');
+    //        $router->resource('idiomas', 'IdiomasController');
+    //        $router->resource('fotos', 'FotosController');
+    //    });
 
     // Auth With A Route Closure...
     //    Route::get('admin', ['middleware' => 'auth', function () {

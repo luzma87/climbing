@@ -9,12 +9,22 @@
             DB::table('idiomas')->delete();
 
             $idiomas = array(
-                ['id'         => 1,
-                 'codigo'     => 'es',
-                 'nombre'     => 'Español',
-                 'bandera'    => '',
-                 'created_at' => new DateTime,
-                 'updated_at' => new DateTime],
+                [
+                    'id' => 1,
+                    'codigo' => 'es',
+                    'nombre' => 'Español',
+                    'bandera' => '',
+                    'created_at' => new DateTime,
+                    'updated_at' => new DateTime
+                ],
+                [
+                    'id' => 2,
+                    'codigo' => 'en',
+                    'nombre' => 'English',
+                    'bandera' => '',
+                    'created_at' => new DateTime,
+                    'updated_at' => new DateTime
+                ],
             );
 
             // Uncomment the below to run the seeder
