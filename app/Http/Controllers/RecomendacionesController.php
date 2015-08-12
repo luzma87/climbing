@@ -25,6 +25,13 @@ class RecomendacionesController extends Controller {
         }
         return view('pages.reserva');
     }
+    public function cancelaciones() {
+        session(['pag' => 'recomendaciones']);
+        if (!session('lang')) {
+            session(['lang' => 'es']);
+        }
+        return view('pages.cancelaciones');
+    }
     public function entrega() {
         session(['pag' => 'recomendaciones']);
         if (!session('lang')) {

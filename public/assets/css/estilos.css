@@ -309,6 +309,12 @@ h5 {
     font-weight : normal;
     margin-top  : 15px;
 }
+h6{
+    color: #606E87;
+    font-size   : 18px;
+    font-weight : normal;
+    margin-top  : 15px;
+}
 .p-azul{
     color: #646E9C;
 }
