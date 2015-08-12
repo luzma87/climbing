@@ -7,12 +7,14 @@
     use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
     use Validator;
 
-    class Programa extends Model implements AuthenticatableContract {
+    class FraseTipoDificultad extends Model implements AuthenticatableContract {
         use Authenticatable;
 
         public static $rules = [
-            'grupoPrograma_id' => 'required',
-            'codigo' => 'required'
+            'idioma' => 'required',
+            'tipoDificultad_id' => 'required',
+            'codigo' => 'required',
+            'descripcion' => 'required'
         ];
 
         public $errors;
@@ -22,32 +24,20 @@
          *
          * @var string
          */
-        protected $table = 'programas';
+        protected $table = 'frasesTipoDificultad';
 
         /**
          * The attributes that are mass assignable.
          *
          * @var array
          */
-        protected $fillable = ['grupoPrograma_id',
-                               'codigo',
-                               'foto',
+        protected $fillable = ['codigo',
+                               'descripcion',
+                               'idioma',
                                'tipoDificultad_id'];
 
-        public function grupoPrograma() {
-            return $this->belongsTo('App\GrupoPrograma');
-        }
-
-        public function frases() {
-            return $this->hasMany('App\FrasePrograma');
-        }
-
-        public function partes() {
-            return $this->hasMany('App\PartePrograma');
-        }
-
-        public function scopePorGrupoPrograma($query, $id) {
-            return $query->whereGrupoProgramaId($id);
+        public function dificultad() {
+            return $this->belongsTo('App\TipoDificultad');
         }
 
         public function isValid() {
@@ -59,4 +49,12 @@
             return false;
         }
 
+        public function scopeIdioma($query, $idiomaCod) {
+            $idioma = Idioma::where("codigo", $idiomaCod)->get()->first()->id;
+            return $query->whereIdioma($idioma);
+        }
+
+        public function scopePorTipoDificultad($query, $dificultad) {
+            return $query->whereTipoDificultadId($dificultad);
+        }
     }

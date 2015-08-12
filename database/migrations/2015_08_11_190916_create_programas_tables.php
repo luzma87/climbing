@@ -10,8 +10,31 @@
          * @return void
          */
         public function up() {
+            Schema::create('tiposDificultad', function (Blueprint $table) {
+                $table->increments('id');
+                $table->timestamps();
+            });
+            Schema::create('frasesTipoDificultad', function (Blueprint $table) {
+                $table->increments('id');
+                $table->integer('tipoDificultad_id')->unsigned()->default(0);
+                $table->foreign('tipoDificultad_id')->references('id')->on('tiposDificultad')->onDelete('cascade');
+                $table->integer('idioma')->unsigned()->default(0);
+                $table->foreign('idioma')->references('id')->on('idiomas')->onDelete('cascade');
+                $table->string('codigo');
+                $table->string('descripcion');
+                $table->timestamps();
+            });
+
             Schema::create('gruposPrograma', function (Blueprint $table) {
                 $table->increments('id');
+                $table->timestamps();
+            });
+            Schema::create('frasesGrupoPrograma', function (Blueprint $table) {
+                $table->increments('id');
+                $table->integer('grupoPrograma_id')->unsigned()->default(0);
+                $table->foreign('grupoPrograma_id')->references('id')->on('gruposPrograma')->onDelete('cascade');
+                $table->integer('idioma')->unsigned()->default(0);
+                $table->foreign('idioma')->references('id')->on('idiomas')->onDelete('cascade');
                 $table->string('nombre');
                 $table->string('nombreMenu');
                 $table->timestamps();
@@ -21,30 +44,50 @@
                 $table->increments('id');
                 $table->integer('grupoPrograma_id')->unsigned()->default(0);
                 $table->foreign('grupoPrograma_id')->references('id')->on('gruposPrograma')->onDelete('cascade');
+                $table->integer('tipoDificultad_id')->unsigned()->default(0);
+                $table->foreign('tipoDificultad_id')->references('id')->on('tiposDificultad')->onDelete('cascade');
                 $table->string('codigo');
+                $table->string('foto');
+                $table->timestamps();
+            });
+            Schema::create('frasesPrograma', function (Blueprint $table) {
+                $table->increments('id');
+                $table->integer('programa_id')->unsigned()->default(0);
+                $table->foreign('programa_id')->references('id')->on('programas')->onDelete('cascade');
+                $table->integer('idioma')->unsigned()->default(0);
+                $table->foreign('idioma')->references('id')->on('idiomas')->onDelete('cascade');
                 $table->string('nombre');
-                $table->text('graduacion');
-                $table->text('logistica');
-                $table->text('dificultad');
-                $table->text('itinerario');
-                $table->text('descripcion');
-                $table->text('recomendaciones');
-                $table->text('requisitos');
-                $table->text('llevar');
-                $table->text('incluye');
-                $table->text('noIncluye');
+                $table->string('descripcion');
+                $table->string('logistica');
+                $table->string('itinerario');
+                $table->string('recomendaciones');
+                $table->string('requisitos');
+                $table->string('llevar');
+                $table->string('incluye');
+                $table->string('noIncluye');
                 $table->string('costo');
                 $table->timestamps();
             });
 
-            Schema::create('diasPrograma', function (Blueprint $table) {
+            Schema::create('partesPrograma', function (Blueprint $table) {
                 $table->increments('id');
                 $table->integer('programa_id')->unsigned()->default(0);
                 $table->foreign('programa_id')->references('id')->on('programas')->onDelete('cascade');
+                $table->integer('tipoDificultad_id')->unsigned()->default(0);
+                $table->foreign('tipoDificultad_id')->references('id')->on('tiposDificultad')->onDelete('cascade');
+                $table->string('orden');
+                $table->string('foto');
+                $table->timestamps();
+            });
+            Schema::create('frasesPartePrograma', function (Blueprint $table) {
+                $table->increments('id');
+                $table->integer('partePrograma_id')->unsigned()->default(0);
+                $table->foreign('partePrograma_id')->references('id')->on('partesPrograma')->onDelete('cascade');
+                $table->integer('idioma')->unsigned()->default(0);
+                $table->foreign('idioma')->references('id')->on('idiomas')->onDelete('cascade');
                 $table->string('nombre');
                 $table->string('resumen');
-                $table->string('pathFoto');
-                $table->text('descripcion');
+                $table->string('descripcion');
                 $table->timestamps();
             });
         }
@@ -55,8 +98,13 @@
          * @return void
          */
         public function down() {
-            Schema::drop('diasPrograma');
+            Schema::drop('frasesPartePrograma');
+            Schema::drop('partesPrograma');
+            Schema::drop('frasesPrograma');
             Schema::drop('programas');
+            Schema::drop('frasesGrupoPrograma');
             Schema::drop('gruposPrograma');
+            Schema::drop('frasesTipoDificultad');
+            Schema::drop('tiposDificultad');
         }
     }

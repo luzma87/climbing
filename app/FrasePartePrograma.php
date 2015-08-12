@@ -7,14 +7,14 @@
     use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
     use Validator;
 
-    class DiaPrograma extends Model implements AuthenticatableContract {
+    class FrasePartePrograma extends Model implements AuthenticatableContract {
         use Authenticatable;
 
         public static $rules = [
-            'programa_id' => 'required',
+            'idioma' => 'required',
+            'partePrograma_id' => 'required',
             'nombre' => 'required',
-            'resumen' => 'required',
-            'descripcion' => 'required'
+            'resumen' => 'required'
         ];
 
         public $errors;
@@ -24,25 +24,21 @@
          *
          * @var string
          */
-        protected $table = 'diasPrograma';
+        protected $table = 'frasesPrograma';
 
         /**
          * The attributes that are mass assignable.
          *
          * @var array
          */
-        protected $fillable = ['programa_id',
+        protected $fillable = ['idioma',
+                               'partePrograma_id',
                                'nombre',
                                'resumen',
-                               'pathFoto',
                                'descripcion'];
 
-        public function programa() {
-            return $this->belongsTo('App\Programa');
-        }
-
-        public function scopePorPrograma($query, $id) {
-            return $query->whereProgramaId($id);
+        public function partePrograma() {
+            return $this->belongsTo('App\PartePrograma');
         }
 
         public function isValid() {
@@ -54,4 +50,12 @@
             return false;
         }
 
+        public function scopeIdioma($query, $idiomaCod) {
+            $idioma = Idioma::where("codigo", $idiomaCod)->get()->first()->id;
+            return $query->whereIdioma($idioma);
+        }
+
+        public function scopePorPartePrograma($query, $parte) {
+            return $query->whereParteProgramaId($parte);
+        }
     }

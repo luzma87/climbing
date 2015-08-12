@@ -7,7 +7,7 @@
     use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
     use Validator;
 
-    class GrupoPrograma extends Model implements AuthenticatableContract {
+    class TipoDificultad extends Model implements AuthenticatableContract {
         use Authenticatable;
 
         public static $rules = [
@@ -20,7 +20,7 @@
          *
          * @var string
          */
-        protected $table = 'gruposPrograma';
+        protected $table = 'tiposDificultad';
 
         /**
          * The attributes that are mass assignable.
@@ -30,11 +30,7 @@
         protected $fillable = [];
 
         public function frases() {
-            return $this->hasMany('App\FraseGrupoPrograma');
-        }
-
-        public function programas() {
-            return $this->hasMany('App\Programa');
+            return $this->hasMany('App\FraseTipoDificultad');
         }
 
         public function isValid() {

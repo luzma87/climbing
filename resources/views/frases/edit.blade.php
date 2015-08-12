@@ -45,6 +45,22 @@
             submitHandler : function (form) {
                 openLoader();
                 form.submit();
+            },
+            rules         : {
+                codigo : {
+                    remote : {
+                        url  : "{{ URL::to('frases/validarUniqueCodigoAjax') }}",
+                        type : "post",
+                        data : {
+                            id : "{{ $frase->id }}"
+                        }
+                    }
+                }
+            },
+            messages      : {
+                codigo : {
+                    remote : "Este código ya está siendo utilizado, por favor utiliza otro"
+                }
             }
         });
 

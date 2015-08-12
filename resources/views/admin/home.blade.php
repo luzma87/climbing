@@ -65,24 +65,24 @@
         var redirectme = "admin/home";
         $(function () {
             $(".btn-edit-frase").click(function () {
-                openFormFrase("edit", $(this), "{{ URL::to('admin/editFraseAjax') }}", redirectme);
+                openFormFrase("edit", $(this), "{{ URL::to('frases/editAjax') }}", redirectme);
                 return false;
             });
             $(".btn-create-frase").click(function () {
-                openFormFrase("create", $(this), "{{ URL::to('admin/createFraseAjax') }}", redirectme);
+                openFormFrase("create", $(this), "{{ URL::to('frases/createAjax') }}", redirectme);
                 return false;
             });
 
             $(".btn-edit-frase-foto").click(function () {
-                openFormFraseFoto("edit", $(this), "{{ URL::to('admin/editFraseFotoAjax') }}", redirectme);
+                openFormFraseFoto("edit", $(this), "{{ URL::to('frasesFoto/editAjax') }}", redirectme);
                 return false;
             });
             $(".btn-create-frase-foto").click(function () {
-                openFormFraseFoto("create", $(this), "{{ URL::to('admin/createFraseFotoAjax') }}", redirectme);
+                openFormFraseFoto("create", $(this), "{{ URL::to('frasesFoto/createAjax') }}", redirectme);
                 return false;
             });
             $("#btnAddFoto").click(function () {
-                openFormFoto("create", $(this), "{{ URL::to('admin/createFotoAjax') }}", redirectme);
+                openFormFoto("create", $(this), "{{ URL::to('foto/createAjax') }}", redirectme);
                 return false;
             });
             $(".btn-delete-foto").click(function () {

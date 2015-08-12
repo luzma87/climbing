@@ -2,6 +2,12 @@ body {
     background : #fff;
 }
 
+.modal-body-max-height {
+    max-height : 800px;
+    overflow-y : auto;
+    overflow-x : hidden;
+}
+
 .top {
 
     height     : 40px;
