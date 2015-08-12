@@ -7,10 +7,12 @@
     use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
     use Validator;
 
-    class GrupoPrograma extends Model implements AuthenticatableContract {
+    class PartePrograma extends Model implements AuthenticatableContract {
         use Authenticatable;
 
         public static $rules = [
+            'programa_id' => 'required',
+            'orden' => 'required'
         ];
 
         public $errors;
@@ -20,21 +22,28 @@
          *
          * @var string
          */
-        protected $table = 'gruposPrograma';
+        protected $table = 'partesPrograma';
 
         /**
          * The attributes that are mass assignable.
          *
          * @var array
          */
-        protected $fillable = [];
+        protected $fillable = ['programa_id',
+                               'orden',
+                               'foto',
+                               'tipoDificultad_id'];
 
-        public function frases() {
-            return $this->hasMany('App\FraseGrupoPrograma');
+        public function programa() {
+            return $this->belongsTo('App\Programa');
         }
 
-        public function programas() {
-            return $this->hasMany('App\Programa');
+        public function frases() {
+            return $this->hasMany('App\FrasePartePrograma');
+        }
+
+        public function scopePorPrograma($query, $id) {
+            return $query->whereProgramaId($id);
         }
 
         public function isValid() {

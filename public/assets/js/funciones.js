@@ -2,6 +2,11 @@
  * Created by LUZ on 003 03 Aug 15.
  */
 
+/**
+ * Abre un dialog que bloquea la interacción del usuario mientras se procesa algo
+ * @param msg
+ * @param title
+ */
 function openLoader(msg, title) {
     msg = $.trim(msg);
     title = $.trim(title);
@@ -26,9 +31,21 @@ function openLoader(msg, title) {
     $(".modal-backdrop").css({zIndex : 1060});
 }
 
+/**
+ * Cierra el dialog de carga
+ */
 function closeLoader() {
     $("#dlgLoader").modal('hide');
     $(".modal-backdrop").css({zIndex : 1040});
+}
+
+/**
+ * retorna true en caso de q la tecla presionada no sea espacio
+ * @param ev
+ * @returns {boolean}
+ */
+function validarEspacios(ev) {
+    return (ev.keyCode != 32);
 }
 
 $(function () {
@@ -50,4 +67,7 @@ $(function () {
         show        : true
     });
 
+    $(".noEspacios").keydown(function (ev) {
+        return validarEspacios(ev);
+    });
 });

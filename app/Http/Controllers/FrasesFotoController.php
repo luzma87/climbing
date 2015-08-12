@@ -25,44 +25,28 @@
         }
 
         /**
-         * Display a listing of the resource.
+         * Show the ajax form for creating a new resource.
          *
-         * @return Response
+         * @return \Illuminate\View\View
          */
-        public function index() {
-            $idioma = Input::get("lang");
-            $search = Input::get("search");
-            if (!$idioma) {
-                if ($search) {
-                    $frases = $this->frase
-                        ->where("titulo", "like", '%' . $search . '%')
-                        ->orWhere("descripcion", "like", '%' . $search . '%')
-                        ->orderBy("idioma", "asc")
-                        ->get();
-                } else {
-                    $frases = $this->frase->where("id", ">", 0)->orderBy("idioma", "asc")->get();
-                }
-            } else {
-                if ($search) {
-                    $frases = app('db')->select("select * from frasesFoto where idioma = (select id from idiomas where codigo = ?) AND (titulo like ? or descripcion like ? ) ORDER BY idioma ASC ",
-                                                array($idioma, '%' . $search . '%', '%' . $search . '%'));
-                } else {
-                    $frases = $this->frase->idioma($idioma)->orderBy("idioma", "asc")->get();
-                }
-            }
-            $idiomas = Idioma::lists('nombre', 'codigo'); //saca solo el nombre y el id
-            return view('frasesFoto.index', ['frases' => $frases, 'idiomas' => $idiomas, 'idioma' => $idioma, 'search' => $search]);
+        public function createAjax() {
+            $lang = Input::get("lang");
+            $redirectme = Input::get("redirectme");
+            $idioma = Idioma::whereCodigo($lang)->get()->first();
+            $foto = Input::get("foto");
+            return view('frasesFoto.createAjax', ["idioma" => $idioma, "foto" => $foto, "redirectme" => $redirectme]);
         }
 
         /**
-         * Show the form for creating a new resource.
+         * Show the ajax form for editing the specified resource.
          *
-         * @return Response
+         * @return \Illuminate\View\View
          */
-        public function create() {
-//            $idiomas = Idioma::all();
-            $idiomas = Idioma::lists('nombre', 'id'); //saca solo el nombre y el id
-            return view('frasesFoto.create', ['idiomas' => $idiomas]);
+        public function editAjax() {
+            $id = Input::get("id");
+            $redirectme = Input::get("redirectme");
+            $frase = $this->frase->whereId($id)->get()->first();
+            return view('frasesFoto.editAjax', ['frase' => $frase, "redirectme" => $redirectme]);
         }
 
         /**
@@ -88,31 +72,6 @@
         }
 
         /**
-         * Display the specified resource.
-         *
-         * @param  int $id
-         *
-         * @return Response
-         */
-        public function show($id) {
-            $frase = $this->frase->whereId($id)->first();
-            return view('frasesFoto.show', ['frase' => $frase]);
-        }
-
-        /**
-         * Show the form for editing the specified resource.
-         *
-         * @param  int $id
-         *
-         * @return Response
-         */
-        public function edit($id) {
-            $frase = $this->frase->whereId($id)->first();
-            $idiomas = Idioma::lists('nombre', 'id'); //saca solo el nombre y el id
-            return view('frasesFoto.edit', ['frase' => $frase, 'idiomas' => $idiomas]);
-        }
-
-        /**
          * Update the specified resource in storage.
          *
          * @param  Request $request
@@ -135,44 +94,5 @@
             } else {
                 return Redirect::route('frasesFoto.index')->with('message', 'Frase de foto actualizada');
             }
-        }
-
-        /**
-         * Remove the specified resource from storage.
-         *
-         * @param  int $id
-         *
-         * @return Response
-         */
-        public function destroy($id) {
-            $frase = $this->frase->whereId($id)->first();
-            $frase->delete();
-
-            return Redirect::route('frasesFoto.index')->with('message', 'Frase de foto eliminada.');
-        }
-
-        /**
-         * Show the ajax form for creating a new resource.
-         *
-         * @return \Illuminate\View\View
-         */
-        public function createAjax() {
-            $lang = Input::get("lang");
-            $redirectme = Input::get("redirectme");
-            $idioma = Idioma::whereCodigo($lang)->get()->first();
-            $foto = Input::get("foto");
-            return view('frasesFoto.createAjax', ["idioma" => $idioma, "foto" => $foto, "redirectme" => $redirectme]);
-        }
-
-        /**
-         * Show the ajax form for editing the specified resource.
-         *
-         * @return \Illuminate\View\View
-         */
-        public function editAjax() {
-            $id = Input::get("id");
-            $redirectme = Input::get("redirectme");
-            $frase = $this->frase->whereId($id)->get()->first();
-            return view('frasesFoto.editAjax', ['frase' => $frase, "redirectme" => $redirectme]);
         }
     }

@@ -186,4 +186,23 @@
             $frase = $this->frase->whereId($id)->get()->first();
             return view('frases.editAjax', ['frase' => $frase, "redirectme" => $redirectme]);
         }
+
+        /**
+         * @return bool
+         */
+        public function validarUniqueCodigoAjax() {
+            $codigo = trim(Input::get("codigo"));
+            $id = Input::get("id");
+            if ($id) {
+                $obj = Frase::whereId($id)->get()->first();
+                if (strtolower($obj->codigo) == strtolower($codigo)) {
+                    return 'true';
+                } else {
+                    return Frase::whereCodigo($codigo)->count() == 0 ? 'true' : 'false';
+                }
+            } else {
+                return Frase::whereCodigo($codigo)->count() == 0 ? 'true' : 'false';
+            }
+        }
+
     }

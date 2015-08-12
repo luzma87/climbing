@@ -5,7 +5,7 @@
     {!! Form::nth_textfield('pagina', 'Página', $errors, null, array('class' => 'required')) !!}
 </div>
 <div class="form-group">
-    {!! Form::nth_textfield('codigo', 'Código', $errors, null, array('class' => 'required')) !!}
+    {!! Form::nth_textfield('codigo', 'Código', $errors, null, array('class' => 'required noEspacios')) !!}
 </div>
 <div class="form-group">
     {!! Form::nth_textarea('contenido', 'Contenido', $errors, null, array('class' => 'required')) !!}

@@ -24,6 +24,11 @@
             $this->foto = $foto;
         }
 
+        /**
+         * Sube un archivo de imagen al path de la galeria correspondiente y actualiza el path del objeto $foto
+         * @param $foto
+         * @param $file
+         */
         public function doUpload($foto, $file) {
             $destinationPath = "assets/galerias/" . $foto->galeria;
             $fileName = "";
@@ -39,31 +44,14 @@
         }
 
         /**
-         * Display a listing of the resource.
+         * Show the ajax form for creating a new resource.
          *
-         * @return Response
+         * @return \Illuminate\View\View
          */
-        public function index() {
-            $search = Input::get("search");
-            if ($search) {
-                $fotos = $this->foto
-                    ->where("galeria", "like", '%' . $search . '%')
-                    ->orderBy("galeria", "asc")
-                    ->get();
-            } else {
-                $fotos = $this->foto->where("id", ">", 0)->orderBy("galeria", "asc")->get();
-            }
-
-            return view('fotos.index', ['fotos' => $fotos, 'search' => $search]);
-        }
-
-        /**
-         * Show the form for creating a new resource.
-         *
-         * @return Response
-         */
-        public function create() {
-            return view('fotos.create');
+        public function createAjax() {
+            $redirectme = Input::get("redirectme");
+            $galeria = Input::get("galeria");
+            return view('fotos.createAjax', ["galeria" => $galeria, "redirectme" => $redirectme]);
         }
 
         /**
@@ -91,58 +79,6 @@
         }
 
         /**
-         * Display the specified resource.
-         *
-         * @param  int $id
-         *
-         * @return Response
-         */
-        public function show($id) {
-            $foto = $this->foto->whereId($id)->first();
-            return view('fotos.show', ['foto' => $foto]);
-        }
-
-        /**
-         * Show the form for editing the specified resource.
-         *
-         * @param  int $id
-         *
-         * @return Response
-         */
-        public function edit($id) {
-            $foto = $this->foto->whereId($id)->first();
-            return view('fotos.edit', ['foto' => $foto]);
-        }
-
-        /**
-         * Update the specified resource in storage.
-         *
-         * @param  Request $request
-         * @param  int $id
-         *
-         * @return Response
-         */
-        public function update(Request $request, $id) {
-            $foto = $this->foto->whereId($id)->first();
-            $this->rules = Foto::$rules;
-            $this->validate($request, $this->rules);
-
-            $input = array_except(Input::all(), array('_method', 'path'));
-            $foto->update($input);
-            File::delete($foto->path);
-            $file = $request->file('path');
-            $this->doUpload($foto, $file);
-
-            $redirectme = Input::get('redirectme');
-            if ($redirectme && $redirectme != "") {
-                return Redirect::to($redirectme)->with('message', 'Foto actualizada');
-            } else {
-                return Redirect::route('fotos.index')->with('message', 'Foto actualizada');
-            }
-
-        }
-
-        /**
          * Remove the specified resource from storage.
          *
          * @param  int $id
@@ -160,28 +96,5 @@
             } else {
                 return Redirect::route('fotos.index')->with('message', 'Foto eliminada.');
             }
-        }
-
-        /**
-         * Show the ajax form for creating a new resource.
-         *
-         * @return \Illuminate\View\View
-         */
-        public function createAjax() {
-            $redirectme = Input::get("redirectme");
-            $galeria = Input::get("galeria");
-            return view('fotos.createAjax', ["galeria" => $galeria, "redirectme" => $redirectme]);
-        }
-
-        /**
-         * Show the ajax form for editing the specified resource.
-         *
-         * @return \Illuminate\View\View
-         */
-        public function editAjax() {
-            $id = Input::get("id");
-            $redirectme = Input::get("redirectme");
-            $foto = $this->foto->whereId($id)->get()->first();
-            return view('fotos.editAjax', ['foto' => $foto, "redirectme" => $redirectme]);
         }
     }
