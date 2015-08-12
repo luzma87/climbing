@@ -1,4 +1,4 @@
-<div class="col-xs-10 col-sm-4 col-md-4 col-lg-4">
+<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
     <ul class="menu-nosotros">
         <li>
             <a href="#">{{ getFrase("mediaMontana",session("lang"), "Media Montaña (1 día)") }}</a>

@@ -64,33 +64,31 @@ use App\Idioma;
     </div>
 
     <div class="col-xs-7 col-sm-5 col-md-5 col-lg-5 " style="text-align: justify">
+        <img style="width: 100%;margin-bottom: 10px" src="{!!  URL::asset('assets/images/equipo/fabricioBig.PNG')  !!}">
         <h1>
-            Nuestro equipo
+            Fabricio Erazo
         </h1>
-        <p>Nuestro equipo está conformado por guías certificados con
-            muchos años de experiencia como montañeros, escaladores y
-            deportistas de aventura.</p>
         <p>
-            Apasionados por la montaña y la cultura, con un alto sentido de
-            responsabilidad, buen sentido del humor y calidad humana
-            Dentro de las certificaciones más destacadas de nuestro
-            equipo están:
+            Quiteño de 46 años, varias ocasiones galardonado como mejor deportista de Pichincha
+            y una ocasión como mejor andinista del Ecuador por haber realizado varias primeras
+            ascensiones para nuestro país. Seleccionado por la provincia y el país para participar en
+            varias expediciones internacionales.
         </p>
         <p>
-            ASEGUIM (Asociación de Ecuatoriana de Guías de Montaña)
+            Como directivo de la Federación Ecuatoriana de Andinismo creo
+            la Escuela Nacional de Montaña e impulsó la escalada deportiva para que sea
+            considerada como disciplina deportiva y ahora parte de los Juegos Deportivos Nacionales.
         </p>
         <p>
-            UIAGM (Unión Internacional de Guías de Montaña)
+            Formado como Comunicador Social por la Universidad Central del Ecuador
+            y además guía ASEGUIM (Asociación Ecuatoria-na de Guías de Montaña).
+            A sido miembro del CUSA (Cuerpo de Socorro Andino).
         </p>
         <p>
-            WFR (Wilderness First Responder), WAFA (Wilderness Advanced
-            First Aid) acreditada por NOLS (National Outdoor Leadership
-            School) Wilderness Medicine Institute.
+            Fabricio habla fluido español, inglés y frances.
         </p>
 
-        <p style="text-align: center">
-            <img src="{!!  URL::asset('assets/images/iconos.PNG')  !!}" style="height: 90%">
-        </p>
+
     </div>
     @include('pages/partials/_menuNosotros')
 

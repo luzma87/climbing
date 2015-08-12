@@ -64,33 +64,37 @@ use App\Idioma;
     </div>
 
     <div class="col-xs-7 col-sm-5 col-md-5 col-lg-5 " style="text-align: justify">
+        <img style="width: 100%;margin-bottom: 10px" src="{!!  URL::asset('assets/images/equipo/nicolasBig.PNG')  !!}">
         <h1>
-            Nuestro equipo
+            Nicolás Miranda
         </h1>
-        <p>Nuestro equipo está conformado por guías certificados con
-            muchos años de experiencia como montañeros, escaladores y
-            deportistas de aventura.</p>
         <p>
-            Apasionados por la montaña y la cultura, con un alto sentido de
-            responsabilidad, buen sentido del humor y calidad humana
-            Dentro de las certificaciones más destacadas de nuestro
-            equipo están:
+            Quiteño, nació el 27 de Julio de 1977,
+            cuenta con 20 Años de experiencia como andinista.
+            En los cuales sobresalen incontables ascensiones y
+            aperturas de nuevas vías en distintas montañas del Ecuador y Sur América.
         </p>
         <p>
-            ASEGUIM (Asociación de Ecuatoriana de Guías de Montaña)
+            Ha realizado importantes expediciones internacionales,
+            siendo una de las más importantes su expedición a la
+            Antártida donde alcanzó una nueva cumbre para el país que la bautizó con el nombre de Cumbre Ecuador.
         </p>
         <p>
-            UIAGM (Unión Internacional de Guías de Montaña)
+            Guía de Alta Montaña  con certificación nacional (ASEGUIM) e internacional (UIAGM).
+            También es uno de los mejores instructores de la Escuela de Formación de Guías del Ecuador.
+            Certificación Internacional en primeros auxilios en zonas agrestes Wilderness Advanced First Aid.
         </p>
         <p>
-            WFR (Wilderness First Responder), WAFA (Wilderness Advanced
-            First Aid) acreditada por NOLS (National Outdoor Leadership
-            School) Wilderness Medicine Institute.
+            Además es un deportista élite, dedica su vida a la práctica de deportes  de
+            Aventura, Montañismo, Ciclismo de montaña, Atletismo, Escalada en roca, Escalada
+            en hielo, Rafting a nivel todos estos deportes a nivel elite; Lo que le ha permitido
+            participar en el Mundial de Carreras de Aventura 2014 con una destacada intervención.
+        </p>
+        <p>
+           Nicolás habla fluidamente español e inglés
         </p>
 
-        <p style="text-align: center">
-            <img src="{!!  URL::asset('assets/images/iconos.PNG')  !!}" style="height: 90%">
-        </p>
+
     </div>
     @include('pages/partials/_menuNosotros')
 

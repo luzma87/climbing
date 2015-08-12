@@ -1,7 +1,7 @@
 <?php
-use App\Frase;
-use App\Foto;
-use App\Idioma;
+    use App\Frase;
+    use App\Foto;
+    use App\Idioma;
 
 ?>
 @extends('layouts.defaultWeb')
@@ -64,33 +64,37 @@ use App\Idioma;
     </div>
 
     <div class="col-xs-7 col-sm-5 col-md-5 col-lg-5 " style="text-align: justify">
+        <img style="width: 100%;margin-bottom: 10px" src="{!!  URL::asset('assets/images/equipo/ignacioBig.PNG')  !!}">
         <h1>
-            Nuestro equipo
+            Ignacio Espinosa Andrade
         </h1>
-        <p>Nuestro equipo está conformado por guías certificados con
-            muchos años de experiencia como montañeros, escaladores y
-            deportistas de aventura.</p>
         <p>
-            Apasionados por la montaña y la cultura, con un alto sentido de
-            responsabilidad, buen sentido del humor y calidad humana
-            Dentro de las certificaciones más destacadas de nuestro
-            equipo están:
+            Quiteño, nació el  26 de Noviembre de 1976 en Quito.
+            Conocido en el mundo de la montaña como Nacho cuenta con más de 17 años de experiencia en Alta Montaña,
+            13 años de experiencia profesional como Guía de Alta Montaña.
         </p>
         <p>
-            ASEGUIM (Asociación de Ecuatoriana de Guías de Montaña)
+            Cuenta con formación certificada a
+            nivel nacional e internacional: ASEGUIM
+            (Asociación Ecuatoriana de Guías de Montaña),
+            Certificación de Guía UIAGM (Union Internationale des Associations de Guides de Montagnes),
+            Certificación WFR (Wilderness First Responder) acreditada por NOLS (National Outdoor Leadership School).
         </p>
         <p>
-            UIAGM (Unión Internacional de Guías de Montaña)
+            Es miembro del cuerpo de instructores y Monitor en los cursos dictados por la
+            Escuela de Guías del Ecuador ASEGUIM. Ha realizado trabajos de
+            investigación para la Cruz Roja Suiza y la Fundación RIOS en levantamiento de
+            información en la rama de etnomedicina.
         </p>
         <p>
-            WFR (Wilderness First Responder), WAFA (Wilderness Advanced
-            First Aid) acreditada por NOLS (National Outdoor Leadership
-            School) Wilderness Medicine Institute.
+            Destaca su habilidad para adaptarse e interactuar con grupos humanos diversos,
+            precautelando su seguridad y satisfacción de sus clientes.
+        </p>
+        <p>
+            Habla fluidamente español e inglés
         </p>
 
-        <p style="text-align: center">
-            <img src="{!!  URL::asset('assets/images/iconos.PNG')  !!}" style="height: 90%">
-        </p>
+
     </div>
     @include('pages/partials/_menuNosotros')
 

@@ -17,4 +17,49 @@
             return view('pages.equipo');
         }
 
+
+        public function ignacio() {
+            session(['pag' => 'equipo']);
+            if (!session('lang')) {
+                session(['lang' => 'es']);
+            }
+            return view('pages.ignacio');
+        }
+
+
+        public function romel() {
+            session(['pag' => 'equipo']);
+            if (!session('lang')) {
+                session(['lang' => 'es']);
+            }
+            return view('pages.romel');
+        }
+
+
+        public function nicolas() {
+            session(['pag' => 'equipo']);
+            if (!session('lang')) {
+                session(['lang' => 'es']);
+            }
+            return view('pages.nicolas');
+        }
+
+        public function robisson() {
+            session(['pag' => 'equipo']);
+            if (!session('lang')) {
+                session(['lang' => 'es']);
+            }
+            return view('pages.robisson');
+        }
+
+        public function fabricio() {
+            session(['pag' => 'equipo']);
+            if (!session('lang')) {
+                session(['lang' => 'es']);
+            }
+            return view('pages.fabricio');
+        }
+
+
+
     }

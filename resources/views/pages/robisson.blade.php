@@ -64,33 +64,39 @@ use App\Idioma;
     </div>
 
     <div class="col-xs-7 col-sm-5 col-md-5 col-lg-5 " style="text-align: justify">
+        <img style="width: 100%;margin-bottom: 10px" src="{!!  URL::asset('assets/images/equipo/robissonBig.PNG')  !!}">
         <h1>
-            Nuestro equipo
+            Robinsson Solari
         </h1>
-        <p>Nuestro equipo está conformado por guías certificados con
-            muchos años de experiencia como montañeros, escaladores y
-            deportistas de aventura.</p>
         <p>
-            Apasionados por la montaña y la cultura, con un alto sentido de
-            responsabilidad, buen sentido del humor y calidad humana
-            Dentro de las certificaciones más destacadas de nuestro
-            equipo están:
+            Quiteño, nació el 12 de enero de 1973,
+            cuenta con más de 20 años de experiencia,
+            ha realizado ascensiones todas las montañas del Ecuador.
         </p>
         <p>
-            ASEGUIM (Asociación de Ecuatoriana de Guías de Montaña)
+            Ha participado en expediciones internacionales en Perú,
+            Bolivia y Argentina. También fue seleccionado de escalada deportiva de la
+            Provincia de Pichincha  (Asociación de Andinismo de Pichincha),
+            teniendo una destacada participación. Nombrado el mejor escalador
+            del país dignidad que lo otorgó la FEDAN (Federación Ecuatoriana de Andinismo).
         </p>
         <p>
-            UIAGM (Unión Internacional de Guías de Montaña)
+            Profesionalmente es guía de montaña, habiendo obtenido este título a nivel
+            nacional en la ASEGUIM (Asociación de Guías de Montaña del Ecuador) y a
+            nivel internacional  la certificación de guía de montaña UIAGM
+            (Unión Internacional de Guías de Montaña) en Bolivia, durante el período 2007 al 2009.
+            Certificación Internacional en primeros auxilios en zonas agrestes Wilderness Advanced First Aid.
+            Pertenece al grupo de instructores de la FEDAN y de la ASEGUIM.
         </p>
         <p>
-            WFR (Wilderness First Responder), WAFA (Wilderness Advanced
-            First Aid) acreditada por NOLS (National Outdoor Leadership
-            School) Wilderness Medicine Institute.
+            Destaca su habilidad para adaptarse e interactuar con grupos humanos diversos,
+            precautelando su seguridad y satisfacción de sus clientes.
+        </p>
+        <p>
+            Robinsson habla fluido español e inglés.
         </p>
 
-        <p style="text-align: center">
-            <img src="{!!  URL::asset('assets/images/iconos.PNG')  !!}" style="height: 90%">
-        </p>
+
     </div>
     @include('pages/partials/_menuNosotros')
 
