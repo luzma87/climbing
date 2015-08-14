@@ -113,15 +113,17 @@ function openFormFrase(tipo, $btn, url, urlRedirect) {
     var id = $btn.data("id");
     var lang = $btn.data("lang");
     $.ajax({
-        type    : "POST",
-        url     : url,
-        data    : {
+        type     : "POST",
+        url      : url,
+        data     : {
             id         : id,
             lang       : lang,
             redirectme : urlRedirect
         },
-        success : function (msg) {
+        complete : function () {
             closeLoader();
+        },
+        success  : function (msg) {
             bootbox.dialog({
                 title   : title,
                 message : msg,
@@ -144,8 +146,8 @@ function openFormFrase(tipo, $btn, url, urlRedirect) {
                 }
             });
         },
-        error   : function () {
-
+        error    : function () {
+            bootbox.alert("Ha ocurrido un error interno");
         }
     });
 }

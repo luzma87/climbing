@@ -1,16 +1,13 @@
-<p>
-    Modificar la frase:
-    <strong>{{ $frase->contenido }}</strong>
-</p>
-
-{!! Form::model($frase, ['id'=>'frmFraseFoto', 'method' => 'PATCH', 'route' => array('frasesFoto.update', $frase->id)]) !!}
-
-@include('frasesFoto/partials/_formAjax', ['idioma' => $frase->idioma, 'foto'=>$frase->foto_id, "redirectme"=>$redirectme])
-
-{!! Form::close()  !!}
+<div class="modal-body-max-height">
+    {!! Form::model($grupo, ['id'=>'frmGrupoPrograma','method' => 'PATCH', 'route' => ['gruposPrograma.update', $grupo->id]]) !!}
+    <div class="row">
+        @include('gruposPrograma/partials/_formAjax', ['idiomas' => $idiomas, 'grupo' => $grupo])
+    </div>
+    {!! Form::close()  !!}
+</div>
 
 <script type="text/javascript">
-    var $frm = $("#frmFraseFoto");
+    var $frm = $("#frmGrupoPrograma");
     $frm.validate({
         submitHandler : function (form) {
             openLoader();

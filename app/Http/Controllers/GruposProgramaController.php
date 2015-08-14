@@ -3,6 +3,7 @@
     namespace App\Http\Controllers;
 
     use App\Frase;
+    use App\FraseGrupoPrograma;
     use App\GrupoPrograma;
     use App\Idioma;
 
@@ -42,7 +43,22 @@
         public function editAjax() {
             $id = Input::get("id");
             $grupo = $this->grupo->whereId($id)->get()->first();
-            return view('gruposPrograma.editAjax', ['grupo' => $grupo]);
+            $idiomas = Idioma::all();
+            return view('gruposPrograma.editAjax', ['grupo' => $grupo, 'idiomas' => $idiomas]);
+        }
+
+        private function makeData($input) {
+            $data = array();
+            foreach ($input as $key => $value) {
+                $parts = explode("__", $key);
+                $size = sizeof($parts);
+                if ($size == 2) {
+                    $campo = $parts[0];
+                    $lang = $parts[1];
+                    $data[$lang][$campo] = $value;
+                }
+            }
+            return $data;
         }
 
         /**
@@ -53,13 +69,16 @@
          * @return Response
          */
         public function store(Request $request) {
-            $this->rules = FraseFoto::$rules;
-            $this->validate($request, $this->rules);
-
             $input = Input::all();
-            GrupoPrograma::create($input);
-
-            return Redirect::route('admin/programas')->with('message', 'Grupo de programas creado');
+            $data = $this->makeData($input);
+            $grupo = GrupoPrograma::create();
+            foreach ($data as $lang => $inputs) {
+                $idioma = Idioma::whereCodigo($lang)->get()->first();
+                $inputs["grupo_programa_id"] = $grupo->id;
+                $inputs["idioma"] = $idioma->id;
+                FraseGrupoPrograma::create($inputs);
+            }
+            return Redirect::to('admin/programas')->with('message', 'Grupo de programas creado');
         }
 
         /**
@@ -72,14 +91,24 @@
          */
         public function update(Request $request, $id) {
             $grupo = $this->grupo->whereId($id)->first();
-
-            $this->rules = GrupoPrograma::$rules;
-            $this->validate($request, $this->rules);
-
             $input = array_except(Input::all(), '_method');
-            $grupo->update($input);
+            $data = $this->makeData($input);
+            $grupo->frases()->delete();
+            foreach ($data as $lang => $inputs) {
+                $idioma = Idioma::whereCodigo($lang)->get()->first();
+                $inputs["grupo_programa_id"] = $grupo->id;
+                $inputs["idioma"] = $idioma->id;
+                FraseGrupoPrograma::create($inputs);
+            }
+            return Redirect::to('admin/programas')->with('message', 'Grupo de programas creado');
 
-            return Redirect::route('admin/programas')->with('message', 'Grupo de programas actualizado');
+//            $this->rules = GrupoPrograma::$rules;
+//            $this->validate($request, $this->rules);
+//
+//            $input = array_except(Input::all(), '_method');
+//            $grupo->update($input);
+//
+//            return Redirect::ti('admin/programas')->with('message', 'Grupo de programas actualizado');
         }
 
         /**
@@ -93,6 +122,6 @@
             $grupo = $this->grupo->whereId($id)->first();
             $grupo->delete();
 
-            return Redirect::route('admin/programas')->with('message', 'Grupo de programas eliminado');
+            return Redirect::to('admin/programas')->with('message', 'Grupo de programas eliminado');
         }
     }

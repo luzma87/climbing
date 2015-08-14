@@ -42,7 +42,7 @@ use App\Idioma;
                 </a>
             </li>
             <li style="text-align: center">
-                <a href="{{URL::to('robisson')}}" style="color: #000000">
+                <a href="{{URL::to('robinsson')}}" style="color: #000000">
                     <img src="{!!  URL::asset('assets/images/equipo/robinson.PNG')  !!}" style="width: 100%;margin: 0px"/>
                     Robinsson Solari
                 </a>

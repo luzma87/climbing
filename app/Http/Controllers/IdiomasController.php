@@ -24,7 +24,7 @@
             $this->idioma = $idioma;
         }
 
-        public function doUpload($idioma, $file) {
+        private function doUpload($idioma, $file) {
             $destinationPath = "assets/idiomas";
             $fileName = "";
             if ($file && $file->isValid()) {

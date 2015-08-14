@@ -29,7 +29,7 @@
          * @param $foto
          * @param $file
          */
-        public function doUpload($foto, $file) {
+        private function doUpload($foto, $file) {
             $destinationPath = "assets/galerias/" . $foto->galeria;
             $fileName = "";
             if ($file && $file->isValid()) {

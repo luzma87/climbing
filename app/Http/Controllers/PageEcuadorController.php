@@ -7,7 +7,7 @@
     use App\Http\Requests;
     use App\Http\Controllers\Controller;
 
-    class EcuadorController extends Controller {
+    class PageEcuadorController extends Controller {
 
         public function index() {
             session(['pag' => 'ecuador']);

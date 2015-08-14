@@ -11,7 +11,7 @@
         use Authenticatable;
 
         public static $rules = [
-            'grupoPrograma_id' => 'required',
+            'grupo_programa_id' => 'required',
             'codigo' => 'required'
         ];
 
@@ -29,10 +29,20 @@
          *
          * @var array
          */
-        protected $fillable = ['grupoPrograma_id',
+        protected $fillable = ['grupo_programa_id',
                                'codigo',
                                'foto',
                                'tipoDificultad_id'];
+
+        public static function boot() {
+            parent::boot();
+
+            // cause a delete of a product to cascade to children so they are also deleted
+            static::deleting(function ($programa) {
+                $programa->frases()->delete();
+                $programa->partes()->delete();
+            });
+        }
 
         public function grupoPrograma() {
             return $this->belongsTo('App\GrupoPrograma');

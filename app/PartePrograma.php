@@ -34,6 +34,15 @@
                                'foto',
                                'tipoDificultad_id'];
 
+        public static function boot() {
+            parent::boot();
+
+            // cause a delete of a product to cascade to children so they are also deleted
+            static::deleting(function ($parte) {
+                $parte->frases()->delete();
+            });
+        }
+
         public function programa() {
             return $this->belongsTo('App\Programa');
         }

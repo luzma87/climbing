@@ -98,11 +98,6 @@
         $(function () {
             $("#idioma").change(function () {
                 doSearch();
-                {{--openLoader();--}}
-                {{--var lang = $(this).val();--}}
-                {{--var url = "{{ URL::action('FrasesController@index') }}";--}}
-                {{--url += "?lang=" + lang;--}}
-                {{--location.href = url;--}}
             });
             $(".btn-delete").click(function () {
                 var $frm = $(this).parents("form");

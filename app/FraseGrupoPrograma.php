@@ -12,7 +12,7 @@
 
         public static $rules = [
             'idioma' => 'required',
-            'grupoPrograma_id' => 'required',
+            'grupo_programa_id' => 'required',
             'nombre' => 'required',
             'nombreMenu' => 'required'
         ];
@@ -34,7 +34,7 @@
         protected $fillable = ['nombre',
                                'nombreMenu',
                                'idioma',
-                               'grupoPrograma_id'];
+                               'grupo_programa_id'];
 
         public function grupo() {
             return $this->belongsTo('App\GrupoPrograma');

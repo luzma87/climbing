@@ -29,6 +29,15 @@
          */
         protected $fillable = [];
 
+        public static function boot() {
+            parent::boot();
+
+            // cause a delete of a product to cascade to children so they are also deleted
+            static::deleting(function ($tipo) {
+                $tipo->frases()->delete();
+            });
+        }
+
         public function frases() {
             return $this->hasMany('App\FraseTipoDificultad');
         }

@@ -7,7 +7,7 @@
     use App\Http\Requests;
     use App\Http\Controllers\Controller;
 
-    class EquipoController extends Controller {
+    class PageEquipoController extends Controller {
 
         public function index() {
             session(['pag' => 'equipo']);
@@ -59,7 +59,6 @@
             }
             return view('pages.fabricio');
         }
-
 
 
     }

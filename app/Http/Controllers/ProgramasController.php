@@ -1,28 +1,33 @@
 <?php
+
     namespace App\Http\Controllers;
 
-    use Illuminate\Http\Request;
+    use App\Frase;
+    use App\FraseGrupoPrograma;
+    use App\Programa;
+    use App\GrupoPrograma;
+    use App\Idioma;
 
+    use Illuminate\Http\Request;
 
     use App\Http\Requests;
     use App\Http\Controllers\Controller;
 
+    use Auth;
+    use Input;
+    use Illuminate\Support\Facades\Redirect;
+
     class ProgramasController extends Controller {
+        protected $programa;
+        protected $rules;
 
-        public function index() {
-            session(['pag' => 'programas']);
-            if (!session('lang')) {
-                session(['lang' => 'es']);
-            }
-            return view('pages.programas');
+        public function __construct(Programa $programa) {
+            $this->middleware('auth');
+            $this->programa = $programa;
         }
 
-        public function programa() {
-            session(['pag' => 'programas']);
-            if (!session('lang')) {
-                session(['lang' => 'es']);
-            }
-            return view('pages.programa');
+        public function create($grupoId, $tipo) {
+            $grupo = GrupoPrograma::whereId($grupoId)->get()->first();
+            return view('programas.create', ["grupo" => $grupo, "tipo" => $tipo]);
         }
-
     }

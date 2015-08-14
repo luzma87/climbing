@@ -67,11 +67,13 @@ class NthFormBuilder extends \Illuminate\Html\FormBuilder {
         $labelOptions['class'] = 'form-label' . (isset($labelOptions['class']) ? ' ' . $labelOptions['class'] : '');
         $inputOptions['class'] = 'form-control' . (isset($inputOptions['class']) ? ' ' . $inputOptions['class'] : '');
         $inputOptions['placeholder'] = $label;
+        $value = '' . (isset($inputOptions['value']) ? '' . $inputOptions['value'] : '');
+//        dd($value);
         return sprintf(
             '<div class="form-group">%s<div%s>%s%s</div></div><!-- end form-group -->',
             parent::label($name, $label, $labelOptions),
             $errors->has($name) ? ' class="error-control"' : '',
-            parent::text($name, null, $inputOptions),
+            parent::text($name, $value, $inputOptions),
             $errors->has($name) ? '<div class="alert alert-danger"><label class="error" for="' . $name . '">' . $errors->first($name) . '</label></div>' : ''
         );
     }

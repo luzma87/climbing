@@ -1,4 +1,4 @@
-@extends('layouts.defaultAdmin')
+@extends('layouts.defaultWeb')
 @section('title', 'Error 404!')
 @section('content')
     <div class="alert alert-danger">

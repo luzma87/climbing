@@ -4,6 +4,7 @@
 
     use App\Frase;
     use App\Foto;
+    use App\GrupoPrograma;
     use App\Idioma;
     use Illuminate\Http\Request;
 
@@ -50,7 +51,9 @@
 
         public function programas() {
             session(['pag' => 'programas']);
-            return view('admin.programas');
+            $idiomas = Idioma::all();
+            $grupos = GrupoPrograma::all();
+            return view('admin.programas', ['idiomas' => $idiomas, 'grupos' => $grupos]);
         }
 
         public function recomendaciones() {
