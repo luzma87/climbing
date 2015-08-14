@@ -8,6 +8,7 @@
     use App\GrupoPrograma;
     use App\Idioma;
 
+    use App\TipoDificultad;
     use Illuminate\Http\Request;
 
     use App\Http\Requests;
@@ -34,7 +35,8 @@
         public function create($grupoId, $tipo) {
             $grupo = GrupoPrograma::whereId($grupoId)->get()->first();
             $nombre = $grupo->frases()->idioma("es")->first()->nombre;
-            return view('programas.create', ["grupo" => $grupo, "nombre" => $nombre, "tipo" => $tipo]);
+            $tipos = TipoDificultad::all()->sortBy('orden');
+            return view('programas.create', ["grupo" => $grupo, "nombre" => $nombre, "tipo" => $tipo, "tipos" => $tipos]);
         }
 
         /**

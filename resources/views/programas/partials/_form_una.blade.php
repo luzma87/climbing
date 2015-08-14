@@ -9,5 +9,5 @@
     {!! Form::nth_textfield('nombre', 'Nombre', $errors, null, array('class' => 'required')) !!}
 </div>
 <div class="form-group">
-    {!! Form::nth_textfield('nombre', 'Nombre', $errors, null, array('class' => 'required')) !!}
+    {!! Form::nth_select('tipo_dificultad', 'Graduación de técnica', $tipos, $errors, null, array()) !!}
 </div>
