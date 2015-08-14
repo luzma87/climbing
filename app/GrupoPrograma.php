@@ -11,6 +11,7 @@
         use Authenticatable;
 
         public static $rules = [
+            'orden' => 'required'
         ];
 
         public $errors;
@@ -27,7 +28,7 @@
          *
          * @var array
          */
-        protected $fillable = [];
+        protected $fillable = ['orden'];
 
         public static function boot() {
             parent::boot();

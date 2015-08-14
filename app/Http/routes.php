@@ -25,8 +25,8 @@
     Route::resource('gruposPrograma', 'GruposProgramaController');
     Route::resource('idiomas', 'IdiomasController');
     Route::resource('partePrograma', 'PartesProgramasController');
-    Route::resource('programa', 'ProgramasController');
-    Route::resource('tipoDificultad', 'TiposDificultadController');
+    Route::resource('programas', 'ProgramasController');
+    Route::resource('tiposDificultad', 'TiposDificultadController');
     Route::resource('auth', 'SessionsController');
     Route::resource('users', 'UsersController');
 
@@ -56,6 +56,9 @@
 
     Route::post('gruposPrograma/createAjax', 'GruposProgramaController@createAjax');
     Route::post('gruposPrograma/editAjax', 'GruposProgramaController@editAjax');
+
+    Route::post('tiposDificultad/createAjax', 'TiposDificultadController@createAjax');
+    Route::post('tiposDificultad/editAjax', 'TiposDificultadController@editAjax');
 
     Route::post('frases/validarUniqueCodigoAjax', 'FrasesController@validarUniqueCodigoAjax');
 

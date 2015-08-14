@@ -2,6 +2,11 @@ body {
     background : #fff;
 }
 
+th, td {
+    vertical-align : middle !important;
+    text-align     : center !important;
+}
+
 .modal-body-max-height {
     max-height : 800px;
     overflow-y : auto;
@@ -303,26 +308,30 @@ h3 {
     font-weight : normal;
     margin-top  : 15px;
 }
+
 h4 {
     color       : #000000;
     font-size   : 18px;
     font-weight : normal;
     margin-top  : 15px;
 }
+
 h5 {
     color       : #D11317;
     font-size   : 18px;
     font-weight : normal;
     margin-top  : 15px;
 }
-h6{
-    color: #606E87;
+
+h6 {
+    color       : #606E87;
     font-size   : 18px;
     font-weight : normal;
     margin-top  : 15px;
 }
-.p-azul{
-    color: #646E9C;
+
+.p-azul {
+    color : #646E9C;
 }
 
 .small-slider {
@@ -333,54 +342,63 @@ h6{
     padding-right      : 0px;
 }
 
-.menu-nosotros{
-    list-style: none;
-    padding-left: 0px;
-    margin: 0px;
+.menu-nosotros {
+    list-style   : none;
+    padding-left : 0px;
+    margin       : 0px;
 }
-.menu-nosotros li{
-    background: #606E87;
-    padding: 0px;
-    margin-top: 3px;
-    margin-left: 0px;
-    padding-top: 7px;
-    padding-bottom: 7px;
+
+.menu-nosotros li {
+    background     : #606E87;
+    padding        : 0px;
+    margin-top     : 3px;
+    margin-left    : 0px;
+    padding-top    : 7px;
+    padding-bottom : 7px;
 }
-.menu-nosotros a{
-    text-decoration: none;
-    color: #ffffff;
-    margin: 15px;
-    margin-top: 30px !important;
+
+.menu-nosotros a {
+    text-decoration : none;
+    color           : #ffffff;
+    margin          : 15px;
+    margin-top      : 30px !important;
 }
-.rojo{
+
+.rojo {
     color       : #D11317;
-    font-weight: bold;
+    font-weight : bold;
 }
-.menu-nosotros .active{
-    background: #444C5C
+
+.menu-nosotros .active {
+    background : #444C5C
 }
-.submenu-nosotros{
-    background: white;
-    margin-top: 7px;
-    display: none;
+
+.submenu-nosotros {
+    background : white;
+    margin-top : 7px;
+    display    : none;
 }
-.submenu-nosotros li{
-    background: transparent;
-    color: #000000;
+
+.submenu-nosotros li {
+    background : transparent;
+    color      : #000000;
 }
-.submenu-nosotros li.active{
-    background: transparent;
-    color       : #D11317;
-    padding-left: 15px;
+
+.submenu-nosotros li.active {
+    background   : transparent;
+    color        : #D11317;
+    padding-left : 15px;
 
 }
-.submenu-nosotros a{
-    background: transparent;
-    color: inherit;
-    text-decoration: none;
+
+.submenu-nosotros a {
+    background      : transparent;
+    color           : inherit;
+    text-decoration : none;
 }
-.submenu-nosotros a:active{
-    background: transparent;
-    color: inherit;
-    text-decoration: none;
+
+.submenu-nosotros a:active {
+    background      : transparent;
+    color           : inherit;
+    text-decoration : none;
 }

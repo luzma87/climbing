@@ -1,3 +1,8 @@
+<div class="row">
+    <div class="form-group col-md-6 col-md-offset-3">
+        {!! Form::nth_textfield('orden', 'Orden', $errors, null, array('value'=>($grupo?$grupo->orden:''), 'class' => 'required')) !!}
+    </div>
+</div>
 @foreach($idiomas as $idioma)
     <?php
     $fr = null;

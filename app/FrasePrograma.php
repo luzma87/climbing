@@ -34,6 +34,7 @@
         protected $fillable = ['idioma',
                                'programa_id',
                                'nombre',
+                               'resumen',
                                'descripcion',
                                'logistica',
                                'itinerario',

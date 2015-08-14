@@ -26,8 +26,25 @@
             $this->programa = $programa;
         }
 
+        /**
+         * Show the ajax form for creating a new resource.
+         *
+         * @return \Illuminate\View\View
+         */
         public function create($grupoId, $tipo) {
             $grupo = GrupoPrograma::whereId($grupoId)->get()->first();
-            return view('programas.create', ["grupo" => $grupo, "tipo" => $tipo]);
+            $nombre = $grupo->frases()->idioma("es")->first()->nombre;
+            return view('programas.create', ["grupo" => $grupo, "nombre" => $nombre, "tipo" => $tipo]);
+        }
+
+        /**
+         * Store a newly created resource in storage.
+         *
+         * @param  Request $request
+         *
+         * @return Response
+         */
+        public function store() {
+
         }
     }

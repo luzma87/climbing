@@ -2,27 +2,28 @@
 
     namespace App\Http\Controllers;
 
-    use App\Frase;
-    use App\FraseGrupoPrograma;
-    use App\GrupoPrograma;
-    use App\Idioma;
-
+    use App\FraseTipoDificultad;
+    use App\TipoDificultad;
     use Illuminate\Http\Request;
 
     use App\Http\Requests;
     use App\Http\Controllers\Controller;
 
+    use App\Idioma;
+
+    use Hash;
     use Auth;
+    use Illuminate\Support\Facades\File;
     use Input;
     use Illuminate\Support\Facades\Redirect;
 
-    class GruposProgramaController extends Controller {
-        protected $grupo;
+    class TiposDificultadController extends Controller {
+        protected $tipo;
         protected $rules;
 
-        public function __construct(GrupoPrograma $grupo) {
+        public function __construct(TipoDificultad $tipo) {
             $this->middleware('auth');
-            $this->grupo = $grupo;
+            $this->tipo = $tipo;
         }
 
         /**
@@ -45,13 +46,25 @@
         }
 
         /**
+         * Display a listing of the resource.
+         *
+         * @return Response
+         */
+        public function index() {
+            $tipos = $this->tipo->all()->sortBy('orden');
+            $idiomas = Idioma::all();
+            return view('tiposDificultad.index', ['tipos' => $tipos, 'idiomas' => $idiomas]);
+        }
+
+
+        /**
          * Show the ajax form for creating a new resource.
          *
          * @return \Illuminate\View\View
          */
         public function createAjax() {
             $idiomas = Idioma::all();
-            return view('gruposPrograma.createAjax', ['idiomas' => $idiomas]);
+            return view('tiposDificultad.createAjax', ["idiomas" => $idiomas]);
         }
 
         /**
@@ -61,31 +74,30 @@
          */
         public function editAjax() {
             $id = Input::get("id");
-            $grupo = $this->grupo->whereId($id)->get()->first();
             $idiomas = Idioma::all();
-            return view('gruposPrograma.editAjax', ['grupo' => $grupo, 'idiomas' => $idiomas]);
+            $tipo = $this->tipo->whereId($id)->get()->first();
+            return view('tiposDificultad.editAjax', ['tipo' => $tipo, "idiomas" => $idiomas]);
         }
 
         /**
          * Store a newly created resource in storage.
          *
          * @param  Request $request
-         *
          * @return Response
          */
         public function store(Request $request) {
             $input = Input::all();
             $data = $this->makeData($input);
-            $grupo = GrupoPrograma::create();
-            $grupo->orden = Input::get("orden");
-            $grupo->save();
+            $tipo = TipoDificultad::create();
+            $tipo->orden = Input::get('orden');
+            $tipo->save();
             foreach ($data as $lang => $inputs) {
                 $idioma = Idioma::whereCodigo($lang)->get()->first();
-                $inputs["grupo_programa_id"] = $grupo->id;
+                $inputs["tipo_dificultad_id"] = $tipo->id;
                 $inputs["idioma"] = $idioma->id;
-                FraseGrupoPrograma::create($inputs);
+                FraseTipoDificultad::create($inputs);
             }
-            return Redirect::to('admin/programas')->with('message', 'Grupo de programas creado');
+            return Redirect::to('tiposDificultad')->with('message', 'Tipo de dificultad creado');
         }
 
         /**
@@ -93,36 +105,34 @@
          *
          * @param  Request $request
          * @param  int $id
-         *
          * @return Response
          */
         public function update(Request $request, $id) {
-            $grupo = $this->grupo->whereId($id)->first();
+            $tipo = $this->tipo->whereId($id)->first();
             $input = Input::all();
             $data = $this->makeData($input);
-            $grupo->frases()->delete();
-            $grupo->orden = Input::get("orden");
-            $grupo->save();
+            $tipo->frases()->delete();
+            $tipo->orden = Input::get('orden');
+            $tipo->save();
             foreach ($data as $lang => $inputs) {
                 $idioma = Idioma::whereCodigo($lang)->get()->first();
-                $inputs["grupo_programa_id"] = $grupo->id;
+                $inputs["tipo_dificultad_id"] = $tipo->id;
                 $inputs["idioma"] = $idioma->id;
-                FraseGrupoPrograma::create($inputs);
+                FraseTipoDificultad::create($inputs);
             }
-            return Redirect::to('admin/programas')->with('message', 'Grupo de programas actualizado');
+            return Redirect::to('tiposDificultad')->with('message', 'Tipo de dificultad actualizado');
         }
 
         /**
          * Remove the specified resource from storage.
          *
          * @param  int $id
-         *
          * @return Response
          */
         public function destroy($id) {
-            $grupo = $this->grupo->whereId($id)->first();
-            $grupo->delete();
+            $tipo = $this->tipo->whereId($id)->first();
+            $tipo->delete();
 
-            return Redirect::to('admin/programas')->with('message', 'Grupo de programas eliminado');
+            return Redirect::route('tiposDificultad.index')->with('message', 'Tipo de dificultad eliminado.');
         }
     }

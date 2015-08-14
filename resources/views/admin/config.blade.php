@@ -21,5 +21,10 @@
                 <i class="fa-menu fa fa-users"></i> Usuarios
             </a>
         </li>
+        <li>
+            <a href="{{ action('TiposDificultadController@index') }}" title="Tipos de dificultad">
+                <i class="fa-menu fa fa-cubes"></i> Tipos de dificultad
+            </a>
+        </li>
     </ul>
 @stop

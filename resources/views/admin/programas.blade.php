@@ -6,7 +6,7 @@
 
     <div class="btn-toolbar" role="toolbar" style="margin-bottom: 10px;">
         <div class="btn-group btn-group-sm" role="group">
-            {!! Form::nth_img_button_clase("Agregar grupo de programa", null, "fa-plus", array("id"=>"btnAddGrupo",  "class"=>"btn-verde qtip-top")) !!}
+            {!! Form::nth_img_button_clase("Agregar grupo de programas", null, "fa-plus", array("id"=>"btnAddGrupo",  "class"=>"btn-verde qtip-top")) !!}
         </div>
     </div>
 
@@ -21,7 +21,7 @@
                         <h4 class="panel-title">
                             <a class="clickable" role="button" data-toggle="collapse" href="#collapse{{ $index }}" aria-expanded="true" aria-controls="collapse{{ $index }}">
                                 <i class="fa fa-caret-down"></i>
-                                {{ $nombre }}
+                                {{ $grupo->orden }}.- {{ $nombre }}
                             </a>
                         </h4>
                     </div>
@@ -133,7 +133,7 @@
 
                 bootbox.dialog({
                     title   : "Agregar programa al grupo <span class='text-verde'>" + nombre + "</span>",
-                    message : "<p>¿Desea crear un programa de una sola parte o día, o uno de varias partes/días?</p>",
+                    message : "<p>¿Desea crear un programa de una sola parte o día, uno de varias partes/días o uno de capacitación/cursos?</p>",
                     buttons : {
                         una    : {
                             label     : "<i class='fa fa-stop'></i> Una parte/día",
@@ -147,6 +147,13 @@
                             className : "btn-info",
                             callback  : function () {
                                 location.href = "{{ URL::to('programas/create') }}/" + id + "/varias";
+                            }
+                        },
+                        cursos : {
+                            label     : "<i class='fa fa-graduation-cap'></i> Capacitación/cursos",
+                            className : "btn-warning",
+                            callback  : function () {
+                                location.href = "{{ URL::to('programas/create') }}/" + id + "/cursos";
                             }
                         },
                         cancel : {

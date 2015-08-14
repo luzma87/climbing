@@ -12,7 +12,7 @@
 
         public static $rules = [
             'idioma' => 'required',
-            'tipoDificultad_id' => 'required',
+            'tipo_dificultad_id' => 'required',
             'codigo' => 'required',
             'descripcion' => 'required'
         ];
@@ -34,7 +34,7 @@
         protected $fillable = ['codigo',
                                'descripcion',
                                'idioma',
-                               'tipoDificultad_id'];
+                               'tipo_dificultad_id'];
 
         public function dificultad() {
             return $this->belongsTo('App\TipoDificultad');

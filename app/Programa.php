@@ -12,7 +12,9 @@
 
         public static $rules = [
             'grupo_programa_id' => 'required',
-            'codigo' => 'required'
+            'codigo' => 'required',
+            'tipo' => 'required',
+            'orden' => 'orden'
         ];
 
         public $errors;
@@ -32,6 +34,8 @@
         protected $fillable = ['grupo_programa_id',
                                'codigo',
                                'foto',
+                               'tipo', //U => un dia, V => varios dias, C => cursos
+                               'orden',
                                'tipoDificultad_id'];
 
         public static function boot() {
