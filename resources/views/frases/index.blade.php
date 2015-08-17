@@ -27,7 +27,7 @@
                             </a>
                         </div>
                         <div class="btn-group">
-                            {!! Form::nth_select_default('idioma', $idiomas, '-- Todos --', array('value'=>$idioma,'id'=>'idioma', 'class'=>'form-control')) !!}
+                            {!! Form::nth_select_default_noLbl('idioma', $idiomas, '-- Todos --', array('value'=>$idioma,'id'=>'idioma', 'class'=>'form-control')) !!}
                         </div>
 
                         <div class="btn-group pull-right col-md-3">

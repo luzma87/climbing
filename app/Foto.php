@@ -5,6 +5,7 @@
     use Illuminate\Auth\Authenticatable;
     use Illuminate\Database\Eloquent\Model;
     use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+    use Illuminate\Support\Facades\File;
     use Validator;
 
 
@@ -41,6 +42,7 @@
 
             // cause a delete of a product to cascade to children so they are also deleted
             static::deleting(function ($foto) {
+                File::delete($foto->path);
                 $foto->frases()->delete();
             });
         }

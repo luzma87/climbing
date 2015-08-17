@@ -87,7 +87,6 @@
          */
         public function destroy($id) {
             $foto = $this->foto->whereId($id)->first();
-            File::delete($foto->path);
             $foto->delete();
 
             $redirectme = Input::get('redirectme');

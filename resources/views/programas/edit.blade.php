@@ -4,8 +4,8 @@
 
 @section('content')
 
-    {!! Form::model(new App\Programa, ['id'=>'frmPrograma', 'files' => true, 'route' => ['adminProgramas.store']]) !!}
-    @include('programas/partials/_form_'.$tipo, ['submit_text' => 'Crear programa', 'grupo' => $grupo, 'nombre'=>$nombre, "tipos" => $tipos, "recomendaciones"=>$recomendaciones, "lang" => "es"])
+    {!! Form::model($programa, ['id'=>'frmPrograma', 'files' => true, 'route' => ['adminProgramas.update']]) !!}
+    @include('programas/partials/_form_'.$programa->tipo, ['submit_text' => 'Actualizar programa', 'grupo' => $grupo, 'nombre'=>$nombre, "tipos" => $tipos, "recomendaciones"=>$recomendaciones, "lang" => $lang])
     {!! Form::close()  !!}
 @stop
 

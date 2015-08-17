@@ -42,6 +42,47 @@
                             {!! Form::nth_img_button_clase("Agregar programa", null, "fa-plus", array('label' => false, "class"=>"btn-add-programa btn-verde qtip-top", "data" => "data-id='".$grupo->id."' data-nombre='".$nombre."'")) !!}
                         </div>
                     </div>
+
+                    <table class="table table-bordered table-hover table-striped table-condensed verde">
+                        <thead>
+                            <tr>
+                                <th class="text-white">Programa</th>
+                                <th class="text-white">Tipo</th>
+                                <th class="text-white">Idiomas</th>
+                                <th class="text-white">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($grupo->programas as $programa)
+                                <tr>
+                                    <td>
+                                        {{ $programa->frases()->idioma("es")->get()->first()->nombre }}
+                                    </td>
+                                    <td>
+                                        {{ $programa->tipo == 'una' ? 'Una parte/día' : ($programa->tipo == 'varias' ? 'Varias partes/días' : 'Curso') }}
+                                    </td>
+                                    <td>
+                                        {{ implode(", ",$programa->idiomas($programa->id)) }}
+                                    </td>
+                                    <td>
+                                        {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('adminProgramas.destroy', $programa->id))) !!}
+                                        <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                                            {!! Form::nth_img_button_clase("Ver", route("adminProgramas.show", $programa->id) , "fa-search", array('class' => 'btn-info btn-sm qtip-top', 'label' => false)) !!}
+                                            {!! Form::nth_img_button_clase("Editar", URL::to("adminProgramas/edit/".$programa->id."/". "es") , "fa-pencil", array('class' => 'btn-warning btn-sm qtip-top', 'label' => false)) !!}
+                                            {!! Form::nth_img_button_clase("Eliminar", null, "fa-trash-o", array('class' => 'btn-delete-programa btn-sm btn-danger qtip-top', 'label' => false)) !!}
+                                        </div>
+                                        {!! Form::close() !!}
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="4">
+                                        Este grupo no tiene programas
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -168,6 +209,16 @@
                 return false;
             });
 
+            $(".btn-delete-programa").click(function () {
+                var $frm = $(this).parents("form");
+                bootbox.confirm("¿Está seguro de querer eliminar este programa y todos sus componentes (frases, fotos, archivos, recomendaciones, partes/días)?", function (res) {
+                    if (res) {
+                        openLoader("Eliminando");
+                        $frm.submit();
+                    }
+                });
+                return false;
+            });
         });
     </script>
 

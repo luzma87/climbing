@@ -5,6 +5,7 @@
     use Illuminate\Auth\Authenticatable;
     use Illuminate\Database\Eloquent\Model;
     use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+    use Illuminate\Support\Facades\File;
     use Validator;
 
     class FrasePrograma extends Model implements AuthenticatableContract {
@@ -45,6 +46,15 @@
                                'incluye',
                                'noIncluye',
                                'costo'];
+
+        public static function boot() {
+            parent::boot();
+
+            // cause a delete of a product to cascade to children so they are also deleted
+            static::deleting(function ($frase) {
+                File::delete($frase->llevarFile);
+            });
+        }
 
         public function programa() {
             return $this->belongsTo('App\Programa');

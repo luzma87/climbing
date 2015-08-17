@@ -140,7 +140,19 @@ class NthFormBuilder extends \Illuminate\Html\FormBuilder {
         );
     }
 
-    public function nth_select_default($name, $contents, $default, $inputOptions = null) {
+    public function nth_select_default($name, $label, $contents, $default, $errors, $labelOptions = array(), $inputOptions = array()) {
+        $labelOptions['class'] = 'form-label';
+        $inputOptions['class'] = 'form-control';
+        return sprintf(
+            '<div class="form-group">%s<div%s>%s%s</div></div><!-- end form-group -->',
+            parent::label($name, $label, $labelOptions),
+            $errors->has($name) ? ' class="error-control"' : '',
+            $this->nth_select_default_noLbl($name, $contents, $default, $inputOptions),
+            $errors->has($name) ? '<div class="alert alert-danger"><label class="error" for="' . $name . '">' . $errors->first($name) . '</label></div>' : ''
+        );
+    }
+
+    public function nth_select_default_noLbl($name, $contents, $default, $inputOptions = null) {
         $inputOptions['class'] = 'form-control' . (isset($inputOptions['class']) ? ' ' . $inputOptions['class'] : '');
         $id = isset($inputOptions['id']) ? $inputOptions['id'] : $name;
         $selected = (isset($inputOptions['value']) ? '' . $inputOptions['value'] : null);

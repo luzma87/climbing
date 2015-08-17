@@ -12,7 +12,7 @@
 
         public static $rules = [
             'idioma' => 'required',
-            'partePrograma_id' => 'required',
+            'parte_programa_id' => 'required',
             'nombre' => 'required',
             'resumen' => 'required'
         ];
@@ -32,7 +32,7 @@
          * @var array
          */
         protected $fillable = ['idioma',
-                               'partePrograma_id',
+                               'parte_programa_id',
                                'nombre',
                                'resumen',
                                'descripcion'];

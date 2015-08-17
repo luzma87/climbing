@@ -41,7 +41,8 @@
     Route::get('admin/galeria', 'AdminController@galeria');
     Route::get('admin/config', 'AdminController@config');
     Route::get('admin/previewGaleria/{codigo}', 'AdminController@previewGaleria');
-    Route::get('adminProgramas/create/{programa}/{tipo}', 'ProgramasController@create');
+    Route::get('adminProgramas/create/{grupo}/{tipo}', 'ProgramasController@create');
+    Route::get('adminProgramas/edit/{programa}/{idioma}', 'ProgramasController@edit');
 
     Route::get('admin/cotizacion', 'AdminController@cotizacion');
 

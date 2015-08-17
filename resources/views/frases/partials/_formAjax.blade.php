@@ -3,6 +3,4 @@
 <input type="hidden" name="codigo" value="{{ $codigo }}"/>
 <input type="hidden" name="redirectme" value="{{ $redirectme }}"/>
 
-<div class="form-group">
-    {!! Form::nth_textarea('contenido', 'Contenido', $errors, null, array('class' => 'required')) !!}
-</div>
+{!! Form::nth_textarea('contenido', 'Contenido', $errors, null, array('class' => 'required')) !!}

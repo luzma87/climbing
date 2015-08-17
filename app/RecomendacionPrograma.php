@@ -7,12 +7,15 @@
     use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
     use Validator;
 
-    class PartePrograma extends Model implements AuthenticatableContract {
+    class RecomendacionPrograma extends Model implements AuthenticatableContract {
         use Authenticatable;
 
         public static $rules = [
+            'idioma' => 'required',
             'programa_id' => 'required',
-            'orden' => 'required'
+            'orden' => 'required',
+            'texto' => 'required',
+            'link' => 'required'
         ];
 
         public $errors;
@@ -22,7 +25,7 @@
          *
          * @var string
          */
-        protected $table = 'partesPrograma';
+        protected $table = 'recomendacionesPrograma';
 
         /**
          * The attributes that are mass assignable.
@@ -30,25 +33,18 @@
          * @var array
          */
         protected $fillable = ['programa_id',
+                               'idioma',
                                'orden',
-                               'foto',
-                               'tipo_dificultad_id'];
-
-        public static function boot() {
-            parent::boot();
-
-            // cause a delete of a product to cascade to children so they are also deleted
-            static::deleting(function ($parte) {
-                $parte->frases()->delete();
-            });
-        }
+                               'texto',
+                               'link'];
 
         public function programa() {
             return $this->belongsTo('App\Programa');
         }
 
-        public function frases() {
-            return $this->hasMany('App\FrasePartePrograma');
+        public function scopeIdioma($query, $idiomaCod) {
+            $idioma = Idioma::where("codigo", $idiomaCod)->get()->first()->id;
+            return $query->whereIdioma($idioma);
         }
 
         public function scopePorPrograma($query, $id) {
