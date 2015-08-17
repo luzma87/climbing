@@ -17,16 +17,16 @@
 
             <div class="col-lg-7 col-md-6 col-sm-7 col-xs-3 menu-horizontal col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-2">
                 <a href="{{URL::to('home')}}" class="btn-menu-horizontal col-lg-2 col-md-2 col-sm-2  col-xs-12 ui-corner-all {{ session('pag') === 'home' ? 'active' : '' }}">
-                    {{  Frase::codigo("menu_home")->idioma(session("lang"))->get()->first()->contenido }}
+                    {{ getFrase("menu_home",session("lang"), "Inicio") }}
                 </a>
                 <a href="{{URL::to('nosotros')}}" class="btn-menu-horizontal col-lg-2 col-md-2 col-sm-2 col-xs-12 ui-corner-all {{ session('pag') === 'nosotros' ? 'active' : '' }}">
-                    {{  Frase::codigo("menu_nosotros")->idioma(session("lang"))->get()->first()->contenido }}
+                    {{ getFrase("menu_nosotros",session("lang"), "Nosotros") }}
                 </a>
                 <a href="{{URL::to('guias')}}" class="btn-menu-horizontal col-lg-2 col-md-2 col-sm-2 col-xs-12 ui-corner-all {{ session('pag') === 'guias' ? 'active' : '' }}">
-                    {{  Frase::codigo("menu_guias")->idioma(session("lang"))->get()->first()->contenido }}
+                    {{ getFrase("menu_guias",session("lang"), "Guías") }}
                 </a>
                 <a href="{{URL::to('contacto')}}" class="btn-menu-horizontal col-lg-2 col-md-2 col-sm-2 col-xs-12 ui-corner-all {{ session('pag') === 'contacto' ? 'active' : '' }}">
-                    {{  Frase::codigo("menu_contacto")->idioma(session("lang"))->get()->first()->contenido }}
+                    {{ getFrase("menu_contacto",session("lang"), "Contacto") }}
                 </a>
             </div>
         </div>
@@ -48,19 +48,19 @@
                     </div>
                     <div class="collapse navbar-collapse navSvt " id="bs-example-navbar-collapse-1">
                         <a href="{{URL::to('ecuador')}}" class="btn-vertical col-lg-12 col-md-12 col-sm-12 col-xs-12  ">
-                            {{  Frase::codigo("menu_ecuador")->idioma(session("lang"))->get()->first()->contenido }}
+                            {{ getFrase("menu_ecuador",session("lang"), "Ecuador, país megadiverso") }}
                         </a>
                         <a href="{{URL::to('programas')}}" class="btn-vertical col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                            {{  Frase::codigo("menu_programas")->idioma(session("lang"))->get()->first()->contenido }}
+                            {{ getFrase("menu_programas",session("lang"), "Nuestros programas") }}
                         </a>
                         <a href="{{URL::to('recomendaciones')}}" class="btn-vertical col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                            {{  Frase::codigo("menu_recomendaciones")->idioma(session("lang"))->get()->first()->contenido }}
+                            {{ getFrase("menu_recomendaciones",session("lang"), "Recomendaciones") }}
                         </a>
                         <a href="{{URL::to('condiciones')}}" class="btn-vertical col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                            {{  Frase::codigo("menu_condiciones")->idioma(session("lang"))->get()->first()->contenido }}
+                            {{ getFrase("menu_condiciones",session("lang"), "Términos y Condiciones") }}
                         </a>
                         <a href="{{URL::to('galeria')}}" class="btn-vertical col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                            {{  Frase::codigo("menu_galeria")->idioma(session("lang"))->get()->first()->contenido }}
+                            {{ getFrase("menu_galeria",session("lang"), "Galería") }}
                         </a>
                     </div>
                 </nav>

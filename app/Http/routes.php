@@ -15,20 +15,20 @@
     Route::get('login', 'SessionsController@create');
     Route::get('logout', 'SessionsController@destroy');
 
-    Route::resource('fotos', 'FotosController');
-    Route::resource('frases', 'FrasesController');
-    Route::resource('frasesFoto', 'FrasesFotoController');
-    Route::resource('frasesGrupoPrograma', 'FrasesGrupoProgramaController');
-    Route::resource('frasesPartePrograma', 'FrasesParteProgramaController');
-    Route::resource('frasesPrograma', 'FrasesProgramaController');
-    Route::resource('frasesTipoDificultad', 'FrasesTipoDificultadController');
-    Route::resource('gruposPrograma', 'GruposProgramaController');
-    Route::resource('idiomas', 'IdiomasController');
-    Route::resource('partePrograma', 'PartesProgramasController');
-    Route::resource('programas', 'ProgramasController');
-    Route::resource('tiposDificultad', 'TiposDificultadController');
+    Route::resource('adminFotos', 'FotosController');
+    Route::resource('adminFrases', 'FrasesController');
+    Route::resource('adminFrasesFoto', 'FrasesFotoController');
+    Route::resource('adminFrasesGrupoPrograma', 'FrasesGrupoProgramaController');
+    Route::resource('adminFrasesPartePrograma', 'FrasesParteProgramaController');
+    Route::resource('adminFrasesPrograma', 'FrasesProgramaController');
+    Route::resource('adminFrasesTipoDificultad', 'FrasesTipoDificultadController');
+    Route::resource('adminGruposPrograma', 'GruposProgramaController');
+    Route::resource('adminIdiomas', 'IdiomasController');
+    Route::resource('adminPartePrograma', 'PartesProgramasController');
+    Route::resource('adminProgramas', 'ProgramasController');
+    Route::resource('adminTiposDificultad', 'TiposDificultadController');
     Route::resource('auth', 'SessionsController');
-    Route::resource('users', 'UsersController');
+    Route::resource('adminUsers', 'UsersController');
 
     Route::get('admin', 'AdminController@index');
     Route::get('admin/slider', 'AdminController@slider');
@@ -41,26 +41,26 @@
     Route::get('admin/galeria', 'AdminController@galeria');
     Route::get('admin/config', 'AdminController@config');
     Route::get('admin/previewGaleria/{codigo}', 'AdminController@previewGaleria');
-    Route::get('programas/create/{programa}/{tipo}', 'ProgramasController@create');
+    Route::get('adminProgramas/create/{programa}/{tipo}', 'ProgramasController@create');
 
     Route::get('admin/cotizacion', 'AdminController@cotizacion');
 
 
-    Route::post('frases/createAjax', 'FrasesController@createAjax');
-    Route::post('frases/editAjax', 'FrasesController@editAjax');
+    Route::post('adminFrases/createAjax', 'FrasesController@createAjax');
+    Route::post('adminFrases/editAjax', 'FrasesController@editAjax');
 
-    Route::post('fotos/createAjax', 'FotosController@createAjax');
+    Route::post('adminFotos/createAjax', 'FotosController@createAjax');
 
-    Route::post('frasesFoto/createAjax', 'FrasesFotoController@createAjax');
-    Route::post('frasesFoto/editAjax', 'FrasesFotoController@editAjax');
+    Route::post('adminFrasesFoto/createAjax', 'FrasesFotoController@createAjax');
+    Route::post('adminFrasesFoto/editAjax', 'FrasesFotoController@editAjax');
 
-    Route::post('gruposPrograma/createAjax', 'GruposProgramaController@createAjax');
-    Route::post('gruposPrograma/editAjax', 'GruposProgramaController@editAjax');
+    Route::post('adminGruposPrograma/createAjax', 'GruposProgramaController@createAjax');
+    Route::post('adminGruposPrograma/editAjax', 'GruposProgramaController@editAjax');
 
-    Route::post('tiposDificultad/createAjax', 'TiposDificultadController@createAjax');
-    Route::post('tiposDificultad/editAjax', 'TiposDificultadController@editAjax');
+    Route::post('adminTiposDificultad/createAjax', 'TiposDificultadController@createAjax');
+    Route::post('adminTiposDificultad/editAjax', 'TiposDificultadController@editAjax');
 
-    Route::post('frases/validarUniqueCodigoAjax', 'FrasesController@validarUniqueCodigoAjax');
+    Route::post('adminFrases/validarUniqueCodigoAjax', 'FrasesController@validarUniqueCodigoAjax');
 
 
     Route::get('/', 'PageHomeController@index');
@@ -72,7 +72,7 @@
     Route::get('ignacio', 'PageEquipoController@ignacio');
     Route::get('romel', 'PageEquipoController@romel');
     Route::get('fabricio', 'PageEquipoController@fabricio');
-    Route::get('robinsson', 'PageEquipoController@robisson');
+    Route::get('robinsson', 'PageEquipoController@robinsson');
     Route::get('nicolas', 'PageEquipoController@nicolas');
     Route::get('programas', 'PageProgramasController@index');
     Route::get('programa', 'PageProgramasController@programa');

@@ -57,15 +57,16 @@
                 $table->integer('idioma')->unsigned()->default(0);
                 $table->foreign('idioma')->references('id')->on('idiomas')->onDelete('cascade');
                 $table->string('nombre');
-                $table->string('descripcion');
-                $table->string('logistica');
-                $table->string('itinerario');
-                $table->string('recomendaciones');
-                $table->string('requisitos');
-                $table->string('llevar');
-                $table->string('incluye');
-                $table->string('noIncluye');
-                $table->string('costo');
+                $table->text('descripcion');
+                $table->text('logistica');
+                $table->text('itinerario');
+                $table->text('recomendaciones');
+                $table->text('requisitos');
+                $table->text('llevar');
+                $table->string('llevarFile');
+                $table->text('incluye');
+                $table->text('noIncluye');
+                $table->text('costo');
                 $table->timestamps();
             });
 
@@ -86,8 +87,8 @@
                 $table->integer('idioma')->unsigned()->default(0);
                 $table->foreign('idioma')->references('id')->on('idiomas')->onDelete('cascade');
                 $table->string('nombre');
-                $table->string('resumen');
-                $table->string('descripcion');
+                $table->text('resumen');
+                $table->text('descripcion');
                 $table->timestamps();
             });
         }

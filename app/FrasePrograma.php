@@ -41,6 +41,7 @@
                                'recomendaciones',
                                'requisitos',
                                'llevar',
+                               'llevarFile',
                                'incluye',
                                'noIncluye',
                                'costo'];

@@ -44,7 +44,7 @@
             return view('pages.nicolas');
         }
 
-        public function robisson() {
+        public function robinsson() {
             session(['pag' => 'equipo']);
             if (!session('lang')) {
                 session(['lang' => 'es']);

@@ -6,11 +6,12 @@
      * Time: 09:13 AM
      */
 
-    use app\Frase;
+    use App\Frase;
     use App\FraseFoto;
 
     function getFrase($codigo, $idioma, $default = '') {
         $frase = Frase::codigo($codigo)->idioma($idioma)->get()->first();
+        $default = "-DEF-" . $default;
         return $frase ? $frase->contenido : $default;
     }
 

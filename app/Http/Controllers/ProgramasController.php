@@ -36,7 +36,17 @@
             $grupo = GrupoPrograma::whereId($grupoId)->get()->first();
             $nombre = $grupo->frases()->idioma("es")->first()->nombre;
             $tipos = TipoDificultad::all()->sortBy('orden');
-            return view('programas.create', ["grupo" => $grupo, "nombre" => $nombre, "tipo" => $tipo, "tipos" => $tipos]);
+
+            $arrTipos = array();
+
+            foreach ($tipos as $tp) {
+                $fr = $tp->frases()->idioma("es")->get()->first();
+                $arrTipos["" . $tp->id] = $fr->codigo . " - " . $fr->descripcion;
+            }
+
+//            dd($arrTipos);
+
+            return view('programas.create', ["grupo" => $grupo, "nombre" => $nombre, "tipo" => $tipo, "tipos" => $arrTipos]);
         }
 
         /**

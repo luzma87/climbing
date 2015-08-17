@@ -7,6 +7,14 @@ th, td {
     text-align     : center !important;
 }
 
+.menuGuias {
+    color : #000000;
+}
+
+.menuGuiasSelected {
+    color : #D11317;
+}
+
 .modal-body-max-height {
     max-height : 800px;
     overflow-y : auto;
