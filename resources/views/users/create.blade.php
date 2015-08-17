@@ -24,7 +24,7 @@
                 <div class="row fila">
                     <div class="col-md-5">
 
-                        {!! Form::model(new App\User, ['id'=>'frmUser', 'files' => true, 'route' => ['users.store']]) !!}
+                        {!! Form::model(new App\User, ['id'=>'frmUser', 'files' => true, 'route' => ['adminUsers.store']]) !!}
 
                         @include('users/partials/_form', ['submit_text' => 'Crear usuario'])
 

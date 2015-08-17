@@ -24,7 +24,7 @@
                 <div class="row fila">
                     <div class="col-md-5">
 
-                        {!! Form::model($user, ['id'=>'frmUser', 'files' => true, 'method' => 'PATCH', 'route' => array('users.update', $user->email)]) !!}
+                        {!! Form::model($user, ['id'=>'frmUser', 'files' => true, 'method' => 'PATCH', 'route' => array('adminUsers.update', $user->email)]) !!}
 
                         @include('users/partials/_form', ['submit_text' => 'Actualizar usuario'])
 

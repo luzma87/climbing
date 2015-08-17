@@ -26,7 +26,7 @@
                         </h4>
                     </div>
                     <div class="col-md-2">
-                        {!! Form::open(array('class' => 'form-inline pull-right', 'method' => 'DELETE', 'route' => array('gruposPrograma.destroy', $grupo->id))) !!}
+                        {!! Form::open(array('class' => 'form-inline pull-right', 'method' => 'DELETE', 'route' => array('adminGruposPrograma.destroy', $grupo->id))) !!}
                         <div class="btn-group btn-group-xs" role="group">
                             {!! Form::nth_img_button_clase("Editar", null , "fa-pencil", array('class' => 'btn-edit-grupo btn-warning btn-sm', 'label' => false, 'data' => 'data-id="'.$grupo->id.'"')) !!}
                             {!! Form::nth_img_button_clase("Eliminar", null, "fa-trash-o", array('class' => 'btn-delete-grupo btn-sm btn-danger', 'label' => false)) !!}
@@ -54,10 +54,10 @@
             var title = "", url = "";
             if (tipo == "create") {
                 title = "Crear grupo de programas";
-                url = "{{ URL::to('gruposPrograma/createAjax') }}";
+                url = "{{ URL::to('adminGruposPrograma/createAjax') }}";
             } else if (tipo == "edit") {
                 title = "Modificar grupo de programas";
-                url = "{{ URL::to('gruposPrograma/editAjax') }}";
+                url = "{{ URL::to('adminGruposPrograma/editAjax') }}";
             }
             $.ajax({
                 type     : "POST",
@@ -130,7 +130,7 @@
                 var $this = $(this);
                 var id = $this.data("id");
                 var nombre = $this.data("nombre");
-
+                var baseUrl = "{{ URL::to('adminProgramas/create') }}/" + id;
                 bootbox.dialog({
                     title   : "Agregar programa al grupo <span class='text-verde'>" + nombre + "</span>",
                     message : "<p>¿Desea crear un programa de una sola parte o día, uno de varias partes/días o uno de capacitación/cursos?</p>",
@@ -139,21 +139,21 @@
                             label     : "<i class='fa fa-stop'></i> Una parte/día",
                             className : "btn-success",
                             callback  : function () {
-                                location.href = "{{ URL::to('programas/create') }}/" + id + "/una";
+                                location.href = baseUrl + "/una";
                             }
                         },
                         varias : {
                             label     : "<i class='fa fa-th-large'></i> Varias partes/días",
                             className : "btn-info",
                             callback  : function () {
-                                location.href = "{{ URL::to('programas/create') }}/" + id + "/varias";
+                                location.href = baseUrl + "/varias";
                             }
                         },
                         cursos : {
                             label     : "<i class='fa fa-graduation-cap'></i> Capacitación/cursos",
                             className : "btn-warning",
                             callback  : function () {
-                                location.href = "{{ URL::to('programas/create') }}/" + id + "/cursos";
+                                location.href = baseUrl + "/cursos";
                             }
                         },
                         cancel : {

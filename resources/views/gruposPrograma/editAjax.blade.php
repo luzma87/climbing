@@ -1,5 +1,5 @@
 <div class="modal-body-max-height">
-    {!! Form::model($grupo, ['id'=>'frmGrupoPrograma','method' => 'PATCH', 'route' => ['gruposPrograma.update', $grupo->id]]) !!}
+    {!! Form::model($grupo, ['id'=>'frmGrupoPrograma','method' => 'PATCH', 'route' => ['adminGruposPrograma.update', $grupo->id]]) !!}
     <div class="row">
         @include('gruposPrograma/partials/_formAjax', ['idiomas' => $idiomas, 'grupo' => $grupo])
     </div>

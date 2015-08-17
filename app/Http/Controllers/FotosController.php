@@ -74,7 +74,7 @@
             if ($redirectme && $redirectme != "") {
                 return Redirect::to($redirectme)->with('message', 'Foto creada');
             } else {
-                return Redirect::route('fotos.index')->with('message', 'Foto creada');
+                return Redirect::route('adminFotos.index')->with('message', 'Foto creada');
             }
         }
 
@@ -94,7 +94,7 @@
             if ($redirectme && $redirectme != "") {
                 return Redirect::to($redirectme)->with('message', 'Foto eliminada.');
             } else {
-                return Redirect::route('fotos.index')->with('message', 'Foto eliminada.');
+                return Redirect::route('adminFotos.index')->with('message', 'Foto eliminada.');
             }
         }
     }

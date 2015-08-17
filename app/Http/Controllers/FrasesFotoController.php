@@ -67,7 +67,7 @@
             if ($redirectme && $redirectme != "") {
                 return Redirect::to($redirectme)->with('message', 'Frase de foto creada');
             } else {
-                return Redirect::route('frasesFoto.index')->with('message', 'Frase de foto creada');
+                return Redirect::route('adminFrasesFoto.index')->with('message', 'Frase de foto creada');
             }
         }
 
@@ -92,7 +92,7 @@
             if ($redirectme && $redirectme != "") {
                 return Redirect::to($redirectme)->with('message', 'Frase de foto actualizada');
             } else {
-                return Redirect::route('frasesFoto.index')->with('message', 'Frase de foto actualizada');
+                return Redirect::route('adminFrasesFoto.index')->with('message', 'Frase de foto actualizada');
             }
         }
     }

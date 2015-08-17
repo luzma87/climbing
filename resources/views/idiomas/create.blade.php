@@ -24,7 +24,7 @@
                 <div class="row fila">
                     <div class="col-md-5">
 
-                        {!! Form::model(new App\Idioma, ['id'=>'frmIdioma', 'files' => true, 'route' => ['idiomas.store']]) !!}
+                        {!! Form::model(new App\Idioma, ['id'=>'frmIdioma', 'files' => true, 'route' => ['adminIdiomas.store']]) !!}
 
                         @include('idiomas/partials/_form', ['submit_text' => 'Crear idioma'])
 

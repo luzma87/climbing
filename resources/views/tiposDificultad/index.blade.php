@@ -71,7 +71,7 @@ use App\Idioma;
                                             <td>{{ $fr->descripcion }}</td>
                                         @endforeach
                                         <td>
-                                            {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('tiposDificultad.destroy', $tipo->id))) !!}
+                                            {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('adminTiposDificultad.destroy', $tipo->id))) !!}
                                             <div class="btn-group" role="group" aria-label="...">
                                                 {!! Form::nth_img_button_clase("Editar", null , "fa-pencil", array('class' => 'btn-edit btn-warning btn-sm', 'label' => false, 'data'=>'data-id="'.$tipo->id.'"')) !!}
                                                 {!! Form::nth_img_button_clase("Eliminar", null, "fa-trash-o", array('class' => 'btn-delete btn-sm btn-danger', 'label' => false)) !!}
@@ -102,10 +102,10 @@ use App\Idioma;
             var title = "", url = "";
             if (tipo == "create") {
                 title = "Crear tipo de dificultad";
-                url = "{{ URL::to('tiposDificultad/createAjax') }}";
+                url = "{{ URL::to('adminTiposDificultad/createAjax') }}";
             } else if (tipo == "edit") {
                 title = "Modificar tipo de dificultad";
-                url = "{{ URL::to('tiposDificultad/editAjax') }}";
+                url = "{{ URL::to('adminTiposDificultad/editAjax') }}";
             }
             $.ajax({
                 type     : "POST",

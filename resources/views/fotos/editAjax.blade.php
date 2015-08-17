@@ -1,4 +1,4 @@
-{!! Form::model($foto, ['id'=>'frmFoto', 'files' => true, 'method' => 'PATCH', 'route' => array('fotos.update', $foto->id)]) !!}
+{!! Form::model($foto, ['id'=>'frmFoto', 'files' => true, 'method' => 'PATCH', 'route' => array('adminFotos.update', $foto->id)]) !!}
 
 @include('fotos/partials/_formAjax', ["galeria"=>$foto->galeria, "redirectme"=>$redirectme])
 

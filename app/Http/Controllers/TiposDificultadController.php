@@ -97,7 +97,7 @@
                 $inputs["idioma"] = $idioma->id;
                 FraseTipoDificultad::create($inputs);
             }
-            return Redirect::to('tiposDificultad')->with('message', 'Tipo de dificultad creado');
+            return Redirect::to('adminTiposDificultad')->with('message', 'Tipo de dificultad creado');
         }
 
         /**
@@ -120,7 +120,7 @@
                 $inputs["idioma"] = $idioma->id;
                 FraseTipoDificultad::create($inputs);
             }
-            return Redirect::to('tiposDificultad')->with('message', 'Tipo de dificultad actualizado');
+            return Redirect::to('adminTiposDificultad')->with('message', 'Tipo de dificultad actualizado');
         }
 
         /**
@@ -133,6 +133,6 @@
             $tipo = $this->tipo->whereId($id)->first();
             $tipo->delete();
 
-            return Redirect::route('tiposDificultad.index')->with('message', 'Tipo de dificultad eliminado.');
+            return Redirect::to('adminTiposDificultad')->with('message', 'Tipo de dificultad eliminado.');
         }
     }

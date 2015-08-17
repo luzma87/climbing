@@ -93,7 +93,7 @@
             if ($redirectme && $redirectme != "") {
                 return Redirect::to($redirectme)->with('message', 'Frase creada');
             } else {
-                return Redirect::route('frases.index')->with('message', 'Frase creada');
+                return Redirect::route('adminFrases.index')->with('message', 'Frase creada');
             }
         }
 
@@ -143,7 +143,7 @@
             if ($redirectme && $redirectme != "") {
                 return Redirect::to($redirectme)->with('message', 'Frase actualizada');
             } else {
-                return Redirect::route('frases.index')->with('message', 'Frase actualizada');
+                return Redirect::route('adminFrases.index')->with('message', 'Frase actualizada');
             }
         }
 
@@ -158,7 +158,7 @@
             $frase = $this->frase->whereId($id)->first();
             $frase->delete();
 
-            return Redirect::route('frases.index')->with('message', 'Frase eliminada.');
+            return Redirect::route('adminFrases.index')->with('message', 'Frase eliminada.');
         }
 
         /**

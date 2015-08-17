@@ -11,7 +11,7 @@
 
     function getFrase($codigo, $idioma, $default = '') {
         $frase = Frase::codigo($codigo)->idioma($idioma)->get()->first();
-        $default = "-DEF-" . $default;
+        $default = "-DEF " . $codigo . "-" . $default;
         return $frase ? $frase->contenido : $default;
     }
 

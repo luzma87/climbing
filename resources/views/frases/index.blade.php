@@ -22,12 +22,12 @@
                 <div class="row fila" style="margin-left: 0">
                     <div class="btn-toolbar toolbar">
                         <div class="btn-group">
-                            <a href="{{ URL::to('frases/create') }}" class="btn btn-verde btnCrear">
+                            <a href="{{ URL::to('adminFrases/create') }}" class="btn btn-verde btnCrear">
                                 <i class="fa fa-file-o"></i> Crear
                             </a>
                         </div>
                         <div class="btn-group">
-                            {!! Form::nth_select_default('idioma', $idiomas, $idioma, '-- Todos --', array('id'=>'idioma', 'class'=>'form-control')) !!}
+                            {!! Form::nth_select_default('idioma', $idiomas, '-- Todos --', array('value'=>$idioma,'id'=>'idioma', 'class'=>'form-control')) !!}
                         </div>
 
                         <div class="btn-group pull-right col-md-3">
@@ -64,9 +64,9 @@
                                         <td>{{ $frase->codigo }}</td>
                                         <td>{{ $frase->contenido }}</td>
                                         <td>
-                                            {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('frases.destroy', $frase->id))) !!}
+                                            {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('adminFrases.destroy', $frase->id))) !!}
                                             <div class="btn-group" role="group" aria-label="...">
-                                                {!! Form::nth_img_button_clase("Editar", route("frases.edit", $frase->id) , "fa-pencil", array('class' => 'btn-warning btn-sm', 'label' => false)) !!}
+                                                {!! Form::nth_img_button_clase("Editar", route("adminFrases.edit", $frase->id) , "fa-pencil", array('class' => 'btn-warning btn-sm', 'label' => false)) !!}
                                                 {!! Form::nth_img_button_clase("Eliminar", null, "fa-trash-o", array('class' => 'btn-delete btn-sm btn-danger', 'label' => false)) !!}
                                             </div>
                                             {!! Form::close() !!}

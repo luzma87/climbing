@@ -79,7 +79,7 @@
                 </li>
                 {!! Form::nth_menu_li("Administración", URL::to('admin'), "fa-th-large", "admin") !!}
                 {!! Form::nth_menu_li("Banner slider", URL::to('admin/slider'), "fa-clone", "slider") !!}
-                {!! Form::nth_menu_li("Inicio", URL::to('admin/home'), "fa-home", "inicio") !!}
+                {!! Form::nth_menu_li("Inicio", URL::to('admin/home'), "fa-home", "home") !!}
                 {!! Form::nth_menu_li("Ecuador país mega diverso", URL::to('admin/ecuador'), "fa-pagelines", "ecuador") !!}
                 {!! Form::nth_menu_li("Nuestros programas", URL::to('admin/programas'), "fa-map", "programas") !!}
                 {!! Form::nth_menu_li("Recomendaciones", URL::to('admin/recomendaciones'), "fa-weixin", "recomendaciones") !!}

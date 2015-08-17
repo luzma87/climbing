@@ -88,7 +88,7 @@
             }
             User::create($input);
 
-            return Redirect::route('users.index')->with('message', 'Usuario creado');
+            return Redirect::route('adminUsers.index')->with('message', 'Usuario creado');
         }
 
 
@@ -137,7 +137,7 @@
             }
             $user->update($input);
 
-            return Redirect::route('users.index')->with('message', 'Usuario actualizado.');
+            return Redirect::route('adminUsers.index')->with('message', 'Usuario actualizado.');
         }
 
 
@@ -152,6 +152,6 @@
             $user = $this->user->whereEmail($mail)->first();
             $user->delete();
 
-            return Redirect::route('users.index')->with('message', 'Usuario eliminado.');
+            return Redirect::route('adminUsers.index')->with('message', 'Usuario eliminado.');
         }
     }

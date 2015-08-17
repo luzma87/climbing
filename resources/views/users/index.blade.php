@@ -15,7 +15,7 @@
                 <div class="row fila" style="margin-left: 0">
                     <div class="btn-toolbar toolbar">
                         <div class="btn-group">
-                            <a href="{{ URL::to('users/create') }}" class="btn btn-verde btnCrear">
+                            <a href="{{ URL::to('adminUsers/create') }}" class="btn btn-verde btnCrear">
                                 <i class="fa fa-file-o"></i> Crear
                             </a>
                         </div>
@@ -52,9 +52,9 @@
                                         <td>{{ $user->email }}</td>
 {{--                                        <td>{{ $user->password ? 'Sí' : 'No (no puede ingresar)' }}</td>--}}
                                         <td>
-                                            {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('users.destroy', $user->email))) !!}
+                                            {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('adminUsers.destroy', $user->email))) !!}
                                             <div class="btn-group" role="group" aria-label="...">
-                                                {!! Form::nth_img_button_clase("Editar", route("users.edit", $user->email) , "fa-pencil", array('class' => 'btn-warning btn-sm qtip-top', 'label' => false)) !!}
+                                                {!! Form::nth_img_button_clase("Editar", route("adminUsers.edit", $user->email) , "fa-pencil", array('class' => 'btn-warning btn-sm qtip-top', 'label' => false)) !!}
                                                 {!! Form::nth_img_button_clase("Eliminar", null, "fa-trash-o", array('class' => 'btn-delete btn-sm btn-danger qtip-top', 'label' => false)) !!}
                                             </div>
                                             {!! Form::close() !!}

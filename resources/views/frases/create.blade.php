@@ -24,10 +24,10 @@
                 <div class="row fila">
                     <div class="col-md-5">
 
-                        {!! Form::model(new App\Frase, ['id'=>'frmFrase', 'route' => ['frases.store']]) !!}
+                        {!! Form::model(new App\Frase, ['id'=>'frmFrase', 'route' => ['adminFrases.store']]) !!}
                         {{--{!! Form::open(["id"=>'frmFrase', 'route' => 'frases.store'])  !!}--}}
 
-                        @include('frases/partials/_form', ['submit_text' => 'Crear frase'])
+                        @include('frases/partials/_form', ['submit_text' => 'Crear frase', "frase"=>null])
 
                         {!! Form::close()  !!}
                     </div>
@@ -49,7 +49,7 @@
             rules         : {
                 codigo : {
                     remote : {
-                        url  : "{{ URL::to('frases/validarUniqueCodigoAjax') }}",
+                        url  : "{{ URL::to('adminFrases/validarUniqueCodigoAjax') }}",
                         type : "post"
                     }
                 }

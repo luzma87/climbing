@@ -67,7 +67,7 @@ class NthFormBuilder extends \Illuminate\Html\FormBuilder {
         $labelOptions['class'] = 'form-label' . (isset($labelOptions['class']) ? ' ' . $labelOptions['class'] : '');
         $inputOptions['class'] = 'form-control' . (isset($inputOptions['class']) ? ' ' . $inputOptions['class'] : '');
         $inputOptions['placeholder'] = $label;
-        $value = '' . (isset($inputOptions['value']) ? '' . $inputOptions['value'] : '');
+        $value = (isset($inputOptions['value']) ? '' . $inputOptions['value'] : null);
 //        dd($value);
         return sprintf(
             '<div class="form-group">%s<div%s>%s%s</div></div><!-- end form-group -->',
@@ -117,11 +117,12 @@ class NthFormBuilder extends \Illuminate\Html\FormBuilder {
         $labelOptions['class'] = 'form-label' . (isset($labelOptions['class']) ? ' ' . $labelOptions['class'] : '');
         $inputOptions['class'] = 'form-control' . (isset($inputOptions['class']) ? ' ' . $inputOptions['class'] : '');
         $inputOptions['placeholder'] = $label;
+        $value = (isset($inputOptions['value']) ? '' . $inputOptions['value'] : null);
         return sprintf(
             '<div class="form-group">%s<div%s>%s%s</div></div><!-- end form-group -->',
             parent::label($name, $label, $labelOptions),
             $errors->has($name) ? ' class="error-control"' : '',
-            parent::textarea($name, null, $inputOptions),
+            parent::textarea($name, $value, $inputOptions),
             $errors->has($name) ? '<div class="alert alert-danger"><label class="error" for="' . $name . '">' . $errors->first($name) . '</label></div>' : ''
         );
     }
@@ -129,18 +130,20 @@ class NthFormBuilder extends \Illuminate\Html\FormBuilder {
     public function nth_select($name, $label, $contents, $errors, $labelOptions = array(), $inputOptions = array()) {
         $labelOptions['class'] = 'form-label';
         $inputOptions['class'] = 'form-control';
+        $value = (isset($inputOptions['value']) ? '' . $inputOptions['value'] : null);
         return sprintf(
             '<div class="form-group">%s<div%s>%s%s</div></div><!-- end form-group -->',
             parent::label($name, $label, $labelOptions),
             $errors->has($name) ? ' class="error-control"' : '',
-            parent::select($name, $contents, null, $inputOptions),
+            parent::select($name, $contents, $value, $inputOptions),
             $errors->has($name) ? '<div class="alert alert-danger"><label class="error" for="' . $name . '">' . $errors->first($name) . '</label></div>' : ''
         );
     }
 
-    public function nth_select_default($name, $contents, $selected, $default, $inputOptions = null) {
+    public function nth_select_default($name, $contents, $default, $inputOptions = null) {
         $inputOptions['class'] = 'form-control' . (isset($inputOptions['class']) ? ' ' . $inputOptions['class'] : '');
         $id = isset($inputOptions['id']) ? $inputOptions['id'] : $name;
+        $selected = (isset($inputOptions['value']) ? '' . $inputOptions['value'] : null);
         $sel = sprintf('<select name="%s" id="%s" class="%s">',
                        $name,
                        $id,

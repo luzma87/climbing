@@ -1,5 +1,5 @@
 
-{!! Form::model(new App\FraseFoto, ['id'=>'frmFraseFoto', 'route' => ['frasesFoto.store']]) !!}
+{!! Form::model(new App\FraseFoto, ['id'=>'frmFraseFoto', 'route' => ['adminFrasesFoto.store']]) !!}
 
 @include('frasesFoto/partials/_formAjax', ['idioma' => $idioma->id, "foto"=>$foto, "redirectme"=>$redirectme])
 

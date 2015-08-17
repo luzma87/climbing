@@ -3,7 +3,7 @@
     <strong>{{ $fraseEs->contenido }}</strong>
 </p>
 
-{!! Form::model(new App\Frase, ['id'=>'frmFrase', 'route' => ['frases.store']]) !!}
+{!! Form::model(new App\Frase, ['id'=>'frmFrase', 'route' => ['adminFrases.store']]) !!}
 
 @include('frases/partials/_formAjax', ['idioma' => $idioma->id, 'codigo'=>$fraseEs->codigo, "pagina"=>$fraseEs->pagina, "redirectme"=>$redirectme])
 

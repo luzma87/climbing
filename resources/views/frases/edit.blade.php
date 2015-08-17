@@ -24,10 +24,9 @@
                 <div class="row fila">
                     <div class="col-md-5">
 
-                        {!! Form::model($frase, ['id'=>'frmFrase', 'method' => 'PATCH', 'route' => array('frases.update', $frase->id)]) !!}
-                        {{--{!! Form::open(["id"=>'frmFrase', 'route' => 'frases.store'])  !!}--}}
+                        {!! Form::model($frase, ['id'=>'frmFrase', 'method' => 'PATCH', 'route' => array('adminFrases.update', $frase->id)]) !!}
 
-                        @include('frases/partials/_form', ['submit_text' => 'Actualizar frase'])
+                        @include('frases/partials/_form', ['submit_text' => 'Actualizar frase', "frase"=>$frase])
 
                         {!! Form::close()  !!}
                     </div>
@@ -49,7 +48,7 @@
             rules         : {
                 codigo : {
                     remote : {
-                        url  : "{{ URL::to('frases/validarUniqueCodigoAjax') }}",
+                        url  : "{{ URL::to('adminFrases/validarUniqueCodigoAjax') }}",
                         type : "post",
                         data : {
                             id : "{{ $frase->id }}"

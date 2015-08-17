@@ -38,15 +38,15 @@
         var redirectme = "admin/slider";
         $(function () {
             $("#btnAddFoto").click(function () {
-                openFormFoto("create", $(this), "{{ URL::to('fotos/createAjax') }}", redirectme);
+                openFormFoto("create", $(this), "{{ URL::to('adminFotos/createAjax') }}", redirectme);
                 return false;
             });
             $(".btn-edit-frase-foto").click(function () {
-                openFormFraseFoto("edit", $(this), "{{ URL::to('frasesFoto/editAjax') }}", redirectme);
+                openFormFraseFoto("edit", $(this), "{{ URL::to('adminFrasesFoto/editAjax') }}", redirectme);
                 return false;
             });
             $(".btn-create-frase-foto").click(function () {
-                openFormFraseFoto("create", $(this), "{{ URL::to('frasesFoto/createAjax') }}", redirectme);
+                openFormFraseFoto("create", $(this), "{{ URL::to('adminFrasesFoto/createAjax') }}", redirectme);
                 return false;
             });
             $(".btn-delete-foto").click(function () {

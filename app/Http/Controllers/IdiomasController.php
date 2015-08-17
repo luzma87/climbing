@@ -81,7 +81,7 @@
             $idioma = $this->idioma->whereCodigo(Input::get("codigo"))->first();
             $this->doUpload($idioma, $file);
 
-            return Redirect::route('idiomas.index')->with('message', 'Idioma creado');
+            return Redirect::route('adminIdiomas.index')->with('message', 'Idioma creado');
         }
 
         /**
@@ -124,7 +124,7 @@
             $file = $request->file('bandera');
             $this->doUpload($idioma, $file);
 
-            return Redirect::route('idiomas.index')->with('message', 'Idioma actualizado.');
+            return Redirect::route('adminIdiomas.index')->with('message', 'Idioma actualizado.');
         }
 
         /**
@@ -138,6 +138,6 @@
             File::delete($idioma->bandera);
             $idioma->delete();
 
-            return Redirect::route('idiomas.index')->with('message', 'Idioma eliminado.');
+            return Redirect::route('adminIdiomas.index')->with('message', 'Idioma eliminado.');
         }
     }

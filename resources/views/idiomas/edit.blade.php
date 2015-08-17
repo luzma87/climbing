@@ -23,8 +23,7 @@
 
                 <div class="row fila">
                     <div class="col-md-5">
-
-                        {!! Form::model($idioma, ['id'=>'frmIdioma', 'files' => true, 'method' => 'PATCH', 'route' => array('idiomas.update', $idioma->codigo)]) !!}
+                        {!! Form::model($idioma, ['id'=>'frmIdioma', 'files' => true, 'method' => 'PATCH', 'route' => array('adminIdiomas.update', $idioma->codigo)]) !!}
 
                         @include('idiomas/partials/_form', ['submit_text' => 'Actualizar idioma'])
 

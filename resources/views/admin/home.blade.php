@@ -50,7 +50,7 @@
     </div>
     <div class="row" style="margin-top: 10px;">
         @forelse($fotos as $foto)
-            @include('admin/partials/_galeria', ['fotos' => $foto, 'idiomas'=>$idiomas, 'redirectme'=>'admin/slider'])
+            @include('admin/partials/_galeria', ['fotos' => $foto, 'idiomas'=>$idiomas, 'redirectme'=>'admin/home'])
         @empty
             <div>
                 <h3>No hay fotos en esta galería!</h3>
@@ -65,24 +65,24 @@
         var redirectme = "admin/home";
         $(function () {
             $(".btn-edit-frase").click(function () {
-                openFormFrase("edit", $(this), "{{ URL::to('frases/editAjax') }}", redirectme);
+                openFormFrase("edit", $(this), "{{ URL::to('adminFrases/editAjax') }}", redirectme);
                 return false;
             });
             $(".btn-create-frase").click(function () {
-                openFormFrase("create", $(this), "{{ URL::to('frases/createAjax') }}", redirectme);
+                openFormFrase("create", $(this), "{{ URL::to('adminFrases/createAjax') }}", redirectme);
                 return false;
             });
 
             $(".btn-edit-frase-foto").click(function () {
-                openFormFraseFoto("edit", $(this), "{{ URL::to('frasesFoto/editAjax') }}", redirectme);
+                openFormFraseFoto("edit", $(this), "{{ URL::to('adminFrasesFoto/editAjax') }}", redirectme);
                 return false;
             });
             $(".btn-create-frase-foto").click(function () {
-                openFormFraseFoto("create", $(this), "{{ URL::to('frasesFoto/createAjax') }}", redirectme);
+                openFormFraseFoto("create", $(this), "{{ URL::to('adminFrasesFoto/createAjax') }}", redirectme);
                 return false;
             });
             $("#btnAddFoto").click(function () {
-                openFormFoto("create", $(this), "{{ URL::to('foto/createAjax') }}", redirectme);
+                openFormFoto("create", $(this), "{{ URL::to('adminFotos/createAjax') }}", redirectme);
                 return false;
             });
             $(".btn-delete-foto").click(function () {

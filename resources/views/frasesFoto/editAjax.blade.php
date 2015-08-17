@@ -3,7 +3,7 @@
     <strong>{{ $frase->contenido }}</strong>
 </p>
 
-{!! Form::model($frase, ['id'=>'frmFraseFoto', 'method' => 'PATCH', 'route' => array('frasesFoto.update', $frase->id)]) !!}
+{!! Form::model($frase, ['id'=>'frmFraseFoto', 'method' => 'PATCH', 'route' => array('adminFrasesFoto.update', $frase->id)]) !!}
 
 @include('frasesFoto/partials/_formAjax', ['idioma' => $frase->idioma, 'foto'=>$frase->foto_id, "redirectme"=>$redirectme])
 

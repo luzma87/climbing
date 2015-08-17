@@ -1,4 +1,4 @@
-{!! Form::model(new App\Foto, ['id'=>'frmFoto', 'files' => true, 'route' => ['fotos.store']]) !!}
+{!! Form::model(new App\Foto, ['id'=>'frmFoto', 'files' => true, 'route' => ['adminFotos.store']]) !!}
 
 @include('fotos/partials/_formAjax', ["galeria"=>$galeria, "redirectme"=>$redirectme])
 
