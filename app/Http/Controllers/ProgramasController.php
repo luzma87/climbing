@@ -105,14 +105,7 @@
                 $fr = $tp->frases()->idioma("es")->get()->first();
                 $arrTipos["" . $tp->id] = $fr->codigo . " - " . $fr->descripcion;
             }
-
-            $programas = Programa::all();
-            $recomendaciones = array();
-            foreach ($programas as $programa) {
-                $fr = $programa->frases()->idioma("es")->get()->first();
-                $recomendaciones["" . $programa->id] = $fr->nombre;
-            }
-            return view('programas.create', ["grupo" => $grupo, "nombre" => $nombre, "tipo" => $tipo, "tipos" => $arrTipos, "recomendaciones" => $recomendaciones]);
+            return view('programas.create', ["grupo" => $grupo, "nombre" => $nombre, "tipo" => $tipo, "tipos" => $arrTipos]);
         }
 
         /**
@@ -126,23 +119,15 @@
             $grupo = $programa->grupoPrograma;
             $nombre = $grupo->frases()->idioma("es")->first()->nombre;
             $tipos = TipoDificultad::all()->sortBy('orden');
-
+            $frase = $programa->frases()->idioma("es")->first();
             $arrTipos = array();
 
             foreach ($tipos as $tp) {
-                $fr = $tp->frases()->idioma($lang)->get()->first();
+                $fr = $tp->frases()->idioma($lang)->first();
                 $arrTipos["" . $tp->id] = $fr->codigo . " - " . $fr->descripcion;
             }
-
-            $programas = Programa::all();
-            $recomendaciones = array();
-            foreach ($programas as $prg) {
-                if ($prg->id != $programa->id) {
-                    $fr = $prg->frases()->idioma($lang)->get()->first();
-                    $recomendaciones["" . $prg->id] = $fr->nombre;
-                }
-            }
-            return view('programas.edit', ["programa" => $programa, "grupo" => $grupo, "nombre" => $nombre, "tipos" => $arrTipos, "recomendaciones" => $recomendaciones, "lang" => $lang]);
+            return view('programas.edit', ["programa" => $programa, "grupo" => $grupo, "nombre" => $nombre,
+                                           "tipos" => $arrTipos, "lang" => $lang, "frase" => $frase]);
         }
 
         /**

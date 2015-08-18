@@ -9,6 +9,9 @@
         {!! HTML::script('assets/js/jquery-ui-1.11.4/jquery-ui.min.js') !!}
         {!! HTML::script('assets/bootstrap-3.3.5/js/bootstrap.min.js') !!}
 
+        {!! HTML::script('assets/js/plugins/ckeditor-4.5.2/ckeditor.js') !!}
+        {!! HTML::script('assets/js/plugins/ckeditor-4.5.2/adapters/jquery.js') !!}
+
         {!! HTML::script('assets/js/plugins/jquery-validation-1.14.0/dist/jquery.validate.min.js') !!}
         {!! HTML::script('assets/js/plugins/jquery-validation-1.14.0/dist/localization/messages_es.min.js') !!}
 
@@ -189,6 +192,20 @@
                         my : 'bottom center',
                         at : 'top center'
                     }
+                });
+
+                $('textarea.editor').ckeditor({
+                    language : 'es',
+                    toolbar  : [
+                        ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'],
+                        ['SelectAll', 'Scayt'],
+                        ['Link', 'Unlink'],
+                        ['Table', 'HorizontalRule', 'SpecialChar', 'FontAwesome'],
+                        ['Bold', 'Italic', 'Strike', '-', 'RemoveFormat'],
+                        ['NumberedList', 'BulletedList', '-', 'Indent', 'Outdent'],
+                        ['TextColor', 'BackgroundColor'],
+                        ['About']
+                    ]
                 });
             </script>
 

@@ -128,8 +128,8 @@ class NthFormBuilder extends \Illuminate\Html\FormBuilder {
     }
 
     public function nth_select($name, $label, $contents, $errors, $labelOptions = array(), $inputOptions = array()) {
-        $labelOptions['class'] = 'form-label';
-        $inputOptions['class'] = 'form-control';
+        $labelOptions['class'] = 'form-label' . (isset($labelOptions['class']) ? ' ' . $labelOptions['class'] : '');
+        $inputOptions['class'] = 'form-control' . (isset($inputOptions['class']) ? ' ' . $inputOptions['class'] : '');
         $value = (isset($inputOptions['value']) ? '' . $inputOptions['value'] : null);
         return sprintf(
             '<div class="form-group">%s<div%s>%s%s</div></div><!-- end form-group -->',
@@ -141,8 +141,8 @@ class NthFormBuilder extends \Illuminate\Html\FormBuilder {
     }
 
     public function nth_select_default($name, $label, $contents, $default, $errors, $labelOptions = array(), $inputOptions = array()) {
-        $labelOptions['class'] = 'form-label';
-        $inputOptions['class'] = 'form-control';
+        $labelOptions['class'] = 'form-label' . (isset($labelOptions['class']) ? ' ' . $labelOptions['class'] : '');
+        $inputOptions['class'] = 'form-control' . (isset($inputOptions['class']) ? ' ' . $inputOptions['class'] : '');
         return sprintf(
             '<div class="form-group">%s<div%s>%s%s</div></div><!-- end form-group -->',
             parent::label($name, $label, $labelOptions),

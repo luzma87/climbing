@@ -91,17 +91,6 @@
                 $table->text('descripcion');
                 $table->timestamps();
             });
-            Schema::create('recomendacionesPrograma', function (Blueprint $table) {
-                $table->increments('id');
-                $table->integer('programa_id')->unsigned()->default(0);
-                $table->foreign('programa_id')->references('id')->on('programas')->onDelete('cascade');
-                $table->integer('idioma')->unsigned()->default(0);
-                $table->foreign('idioma')->references('id')->on('idiomas')->onDelete('cascade');
-                $table->string('texto');
-                $table->string('link');
-                $table->string('orden');
-                $table->timestamps();
-            });
         }
 
         /**
@@ -112,7 +101,6 @@
         public function down() {
             Schema::drop('frasesPartePrograma');
             Schema::drop('partesPrograma');
-            Schema::drop('recomendacionesPrograma');
             Schema::drop('frasesPrograma');
             Schema::drop('programas');
             Schema::drop('frasesGrupoPrograma');

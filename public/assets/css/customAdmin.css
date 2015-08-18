@@ -5,3 +5,8 @@
 .colAcciones {
     width : 75px;
 }
+
+input.required, select.required, textarea.required {
+    border-right  : 2px solid #18A689;
+    border-bottom : 1px solid #18A689;
+}
