@@ -43,6 +43,7 @@
                 $file->move($destinationPath, $fileName);
             }
             if ($fileName != "") {
+                File::delete($programa->foto);
                 $programa->foto = $destinationPath . "/" . $fileName;
                 $programa->save();
             }
@@ -63,6 +64,7 @@
                 $file->move($destinationPath, $fileName);
             }
             if ($fileName != "") {
+                File::delete($frase->llevarFile);
                 $frase->llevarFile = $destinationPath . "/" . $fileName;
                 $frase->save();
             }
@@ -111,11 +113,12 @@
         /**
          * Show the form for editing the specified resource.
          *
-         * @param  int $id
+         * @param $codigo
+         * @param $lang
          * @return Response
          */
-        public function edit($id, $lang) {
-            $programa = Programa::whereId($id)->get()->first();
+        public function edit($codigo, $lang) {
+            $programa = Programa::whereCodigo($codigo)->get()->first();
             $grupo = $programa->grupoPrograma;
             $nombre = $grupo->frases()->idioma("es")->first()->nombre;
             $tipos = TipoDificultad::all()->sortBy('orden');
@@ -164,32 +167,34 @@
          * Update the specified resource in storage.
          *
          * @param  Request $request
-         * @param  int $id
+         * @param $codigo
          * @return Response
          */
-        public function update(Request $request, $id) {
-//            $programa = $this->programa->whereId($id)->first();
-//            $this->rules = Programa::$rules;
-//            $this->validate($request, $this->rules);
-//
-//            $input = array_except(Input::all(), array('foto'));
-//            $data = $this->makeData($input);
-//
-//            $programa->update($input);
-//            File::delete($programa->foto);
-//            $file = $request->file('foto');
-//            $this->doUploadFoto($programa, $file);
-//
-//            foreach ($data as $lang => $inputs) {
-//                $idioma = Idioma::whereCodigo($lang)->get()->first();
+        public function update(Request $request, $codigo) {
+            $programa = $this->programa->whereCodigo($codigo)->first();
+            $this->rules = Programa::$rules;
+            $this->validate($request, $this->rules);
+
+            $input = array_except(Input::all(), array('foto'));
+//            dd($input);
+            $data = $this->makeData($input);
+
+            $programa->update($input);
+            $file = $request->file('foto');
+            $this->doUploadFoto($programa, $file);
+
+            foreach ($data as $lang => $inputs) {
+                $idioma = Idioma::whereCodigo($lang)->get()->first();
 //                $inputs["programa_id"] = $programa->id;
 //                $inputs["idioma"] = $idioma->id;
 //                $frase = FrasePrograma::create($inputs);
-//                $pdf = $request->file('llevarFile__' . $lang);
-//                $this->doUploadPdf($programa, $frase, $pdf);
-//            }
-//
-//            return Redirect::to('admin/programas')->with('message', 'Programa creado');
+                $frase = FrasePrograma::where("programa_id", $programa->id)->where("idioma", $idioma->id)->first();
+                $frase->update($inputs);
+                $pdf = $request->file('llevarFile__' . $lang);
+                $this->doUploadPdf($programa, $frase, $pdf);
+            }
+
+            return Redirect::to('admin/programas')->with('message', 'Programa actualizado');
         }
 
         /**

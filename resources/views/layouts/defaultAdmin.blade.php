@@ -201,9 +201,9 @@
                         ['SelectAll', 'Scayt'],
                         ['Link', 'Unlink'],
                         ['Table', 'HorizontalRule', 'SpecialChar', 'FontAwesome'],
-                        ['Bold', 'Italic', 'Strike', '-', 'RemoveFormat'],
-                        ['NumberedList', 'BulletedList', '-', 'Indent', 'Outdent'],
-                        ['TextColor', 'BackgroundColor'],
+                        ['Bold', 'Italic', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'],
+                        ['NumberedList', 'BulletedList', '-', 'Indent', 'Outdent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+                        ['FontSize', 'TextColor', 'BGColor'],
                         ['About']
                     ]
                 });

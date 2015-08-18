@@ -4,7 +4,7 @@
 
 @section('content')
 
-    {!! Form::model($programa, ['id'=>'frmPrograma', 'files' => true, 'route' => ['adminProgramas.update']]) !!}
+    {!! Form::model($programa, ['id'=>'frmPrograma', 'files' => true, 'method' => 'PATCH', 'route' => array('adminProgramas.update', $programa->codigo)]) !!}
     @include('programas/partials/_form_'.$programa->tipo, ['submit_text' => 'Actualizar programa',
     'grupo' => $grupo, 'nombre' => $nombre, "tipos" => $tipos,
     "lang" => $lang, "frase" => $frase])
@@ -18,6 +18,9 @@
         $frm.validate({
             submitHandler : function (form) {
                 openLoader();
+                for (var instance in CKEDITOR.instances) {
+                    CKEDITOR.instances[instance].updateElement();
+                }
                 form.submit();
             }
         });

@@ -18,6 +18,9 @@
         $frm.validate({
             submitHandler : function (form) {
                 openLoader();
+                for (var instance in CKEDITOR.instances) {
+                    CKEDITOR.instances[instance].updateElement();
+                }
                 form.submit();
             }
         });
