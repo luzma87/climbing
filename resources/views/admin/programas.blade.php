@@ -67,7 +67,7 @@
                                     <td>
                                         {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('adminProgramas.destroy', $programa->id))) !!}
                                         <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                                            {!! Form::nth_img_button_clase("Ver", route("adminProgramas.show", $programa->id) , "fa-search", array('class' => 'btn-info btn-sm qtip-top', 'label' => false)) !!}
+                                            {!! Form::nth_img_button_clase("Ver", URL::to("adminProgramas/show/". $programa->codigo."/"."es") , "fa-search", array('class' => 'btn-info btn-sm qtip-top', 'target'=>'_blank', 'label' => false)) !!}
                                             {!! Form::nth_img_button_clase("Editar", URL::to("adminProgramas/edit/".$programa->codigo."/". "es") , "fa-pencil", array('class' => 'btn-warning btn-sm qtip-top', 'label' => false)) !!}
                                             {!! Form::nth_img_button_clase("Eliminar", null, "fa-trash-o", array('class' => 'btn-delete-programa btn-sm btn-danger qtip-top', 'label' => false)) !!}
                                         </div>

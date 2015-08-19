@@ -118,7 +118,7 @@
          * @return Response
          */
         public function edit($codigo, $lang) {
-            $programa = Programa::whereCodigo($codigo)->get()->first();
+            $programa = Programa::whereCodigo($codigo)->first();
             $grupo = $programa->grupoPrograma;
             $nombre = $grupo->frases()->idioma($lang)->first()->nombre;
             $tipos = TipoDificultad::all()->sortBy('orden');
@@ -138,6 +138,25 @@
             }
             return view('programas.edit', ["programa" => $programa, "grupo" => $grupo, "nombre" => $nombre, "fraseEs" => $fraseEs,
                                            "tipos" => $arrTipos, "lang" => $lang, "frase" => $frase, "idiomas" => $idiomas]);
+        }
+
+        /**
+         * Display the specified resource.
+         *
+         * @param $codigo
+         * @param $lang
+         * @return Response
+         */
+        public function show($codigo, $lang) {
+            $programa = $this->programa->whereCodigo($codigo)->first();
+            $grupo = $programa->grupoPrograma;
+            $dif = $programa->tipoDificultad->frases()->idioma($lang)->first();
+            $dificultad = $dif->codigo . ": " . $dif->descripcion;
+            $nombre = $grupo->frases()->idioma($lang)->first()->nombre;
+            $frase = $programa->frases()->idioma($lang)->first();
+            $idiomas = Idioma::lists('nombre', 'codigo'); //saca solo el nombre y el id
+            return view('programas.show', ['programa' => $programa, "grupo" => $grupo, "nombre" => $nombre, "dificultad" => $dificultad,
+                                           'frase' => $frase, "idiomas" => $idiomas, "lang" => $lang]);
         }
 
         /**

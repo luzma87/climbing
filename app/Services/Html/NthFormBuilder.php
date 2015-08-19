@@ -202,25 +202,35 @@ class NthFormBuilder extends \Illuminate\Html\FormBuilder {
         $options['class'] = 'btn ' . (isset($options['class']) ? ' ' . $options['class'] : 'btn-verde');
         $options['id'] = '' . (isset($options['id']) ? '' . $options['id'] : '');
         $label = isset($options['label']) ? $options['label'] : true;
-        $data = isset($options['data']) ? $options['data'] : true;
+        $data = isset($options['data']) ? $options['data'] : '';
+        $target = isset($options['target']) ? $options['target'] : '';
+        if ($target != "") {
+            $target = " target='" . $target . "'";
+        }
+        $id = "";
+        if ($options['id'] != "") {
+            $id = " id='" . $options['id'] . "'";
+        }
         if ($label) {
             return sprintf(
-                '<a href="%s" class="%s" id="%s" %s><i class="fa %s"></i> %s</a>',
+                '<a href="%s" class="%s" %s %s %s><i class="fa %s"></i> %s</a>',
                 $url,
                 $options['class'],
-                $options['id'],
+                $id,
                 $data,
+                $target,
                 $image,
                 $value
             );
         } else {
             return sprintf(
-                '<a href="%s" class="%s" id="%s" title="%s" %s><i class="fa %s"></i></a>',
+                '<a href="%s" class="%s" %s title="%s" %s %s><i class="fa %s"></i></a>',
                 $url,
                 $options['class'],
-                $options['id'],
+                $id,
                 $value,
                 $data,
+                $target,
                 $image
             );
         }

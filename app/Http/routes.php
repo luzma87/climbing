@@ -43,6 +43,7 @@
     Route::get('admin/previewGaleria/{codigo}', 'AdminController@previewGaleria');
     Route::get('adminProgramas/create/{grupo}/{tipo}', 'ProgramasController@create');
     Route::get('adminProgramas/edit/{programa}/{idioma}', 'ProgramasController@edit');
+    Route::get('adminProgramas/show/{programa}/{idioma}', 'ProgramasController@show');
 
     Route::get('admin/cotizacion', 'AdminController@cotizacion');
 

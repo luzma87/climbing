@@ -64,6 +64,10 @@
             return $idiomas;
         }
 
+        public function tipoDificultad() {
+            return $this->belongsTo('App\TipoDificultad');
+        }
+
         public function grupoPrograma() {
             return $this->belongsTo('App\GrupoPrograma');
         }

@@ -1,9 +1,3 @@
-<?php
-    use App\Frase;
-    use App\Foto;
-    use App\Idioma;
-
-?>
 @extends('layouts.defaultWeb')
 
 @section('title', 'Nuestros Programas')

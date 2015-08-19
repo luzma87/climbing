@@ -7,15 +7,15 @@
         <li class="">
             <a href="#" class="btn-menu-nosotros">{{ getFrase("mediaMontana",session("lang"), "Media Montaña (1 día)") }}</a>
             <ul class="submenu-nosotros">
-                <li><a href="">Pasochoa</a> </li>
-                <li><a href="">Rucu Pichincha</a> </li>
-                <li><a href="">Guagua Pichincha</a> </li>
-                <li><a href="">Integral de los Pichinchas</a> </li>
-                <li><a href="">Fuya Fuya</a> </li>
+                <li><a href="">Pasochoa</a></li>
+                <li><a href="">Rucu Pichincha</a></li>
+                <li><a href="">Guagua Pichincha</a></li>
+                <li><a href="">Integral de los Pichinchas</a></li>
+                <li><a href="">Fuya Fuya</a></li>
                 <li class="active">Caminata Cuicocha</a> </li>
-                <li><a href="">Imbabura</a> </li>
-                <li><a href="">El Corazón</a> </li>
-                <li><a href="">Rumiñahui</a> </li>
+                <li><a href="">Imbabura</a></li>
+                <li><a href="">El Corazón</a></li>
+                <li><a href="">Rumiñahui</a></li>
             </ul>
         </li>
         <li class="">
@@ -40,15 +40,15 @@
             <a href="" class="btn-menu-nosotros">{{ getFrase("peru",session("lang"), "Perú") }}</a>
         </li>
         <li class="">
-            <a href="" class="btn-menu-nosotros">{{ getFrase("mediaMontana",session("lang"), "Bolivia") }}</a>
+            <a href="" class="btn-menu-nosotros">{{ getFrase("bolivia",session("lang"), "Bolivia") }}</a>
         </li>
         <li class="">
-            <a href="" class="btn-menu-nosotros">{{ getFrase("mediaMontana",session("lang"), "Argentina") }}</a>
+            <a href="" class="btn-menu-nosotros">{{ getFrase("argentina",session("lang"), "Argentina") }}</a>
         </li>
     </ul>
 </div>
 <script type="text/javascript">
-    $(".btn-menu-nosotros").click(function(){
+    $(".btn-menu-nosotros").click(function () {
         $(this).parent().find("ul").toggle()
         return false
     })
