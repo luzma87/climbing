@@ -1,30 +1,37 @@
-<input type="hidden" name="tipo" value="U"/>
-
 <h1 class="text-center">{{ $nombre }}</h1>
 
 <input type="hidden" name="grupo_programa_id" value="{{ $grupo->id }}"/>
 <input type="hidden" name="tipo" value="una"/>
 
-@if($frase)
-    {!! Form::nth_textfield('codigo', 'Código único (para identificarlo con su galería)', $errors, null, array('class' => 'required', 'disabled'=>true)) !!}
-    <input type="hidden" name="codigo" value="{{ $programa->codigo }}"/>
-@else
-    {!! Form::nth_textfield('codigo', 'Código único (para identificarlo con su galería)', $errors, null, array('class' => 'required')) !!}
-@endif
-{!! Form::nth_textfield('orden', 'Orden (dentro del grupo de programas)', $errors, null, array('class' => 'required')) !!}
+<fieldset>
+    <legend class="text-verde">Campos independientes del idioma</legend>
+    @if($codEditable)
+        {!! Form::nth_textfield('codigo', 'Código único (para identificarlo con su galería de fotos)', $errors, null, array('class' => 'required')) !!}
+    @else
+        {!! Form::nth_textfield('codigo', 'Código único (para identificarlo con su galería de fotos)', $errors, null, array('class' => 'required', 'disabled'=>true)) !!}
+        <input type="hidden" name="codigo" value="{{ $programa->codigo }}"/>
+    @endif
+    {!! Form::nth_textfield('orden', 'Orden (dentro del grupo de programas)', $errors, null, array('class' => 'required')) !!}
+    {!! Form::nth_select('tipo_dificultad_id', 'Graduación de técnica',  $tipos, $errors, null, array('class' => 'required')) !!}
+    {!! Form::nth_file('foto', 'Foto', $errors, null) !!}
+    @if($programa && $programa->foto)
+        <img src="{!! URL::asset($programa->foto) !!}" alt="{{ getFrasePrograma($frase, 'nombre') }}" class="img-thumbnail">
+    @endif
+</fieldset>
 
-{!! Form::nth_textarea('resumen__'.$lang, 'Resumen', $errors, null, array('class' => 'required editor', 'value' => $frase ? $frase->resumen : null)) !!}
-{!! Form::nth_textfield('nombre__'.$lang, 'Nombre', $errors, null, array('class' => 'required', 'value' => $frase ? $frase->nombre : null)) !!}
-{!! Form::nth_select('tipo_dificultad_id', 'Graduación de técnica', $tipos, $errors, null, array('class' => 'required')) !!}
-{!! Form::nth_file('foto', 'Foto', $errors, null) !!}
-{!! Form::nth_textarea('descripcion__'.$lang, 'Descripción', $errors, null, array('class' => 'required editor', 'value' => $frase ? $frase->descripcion : null)) !!}
-{!! Form::nth_textarea('itinerario__'.$lang, 'Itinerario', $errors, null, array('class' => 'required editor', 'value' => $frase ? $frase->itinerario : null)) !!}
-{!! Form::nth_textarea('recomendaciones__'.$lang, 'Recomendaciones', $errors, null, array('class' => 'required editor', 'value' => $frase ? $frase->recomendaciones : null)) !!}
-{!! Form::nth_textarea('requisitos__'.$lang, 'Requisitos', $errors, null, array('class' => 'required editor', 'value' => $frase ? $frase->requisitos : null)) !!}
-{!! Form::nth_textarea('llevar__'.$lang, 'Qué llevar', $errors, null, array('class' => 'required editor', 'value' => $frase ? $frase->llevar : null)) !!}
-{!! Form::nth_file('llevarFile__'.$lang, 'Pdf con lista de equipo anexo', $errors, null) !!}
-{!! Form::nth_textarea('incluye__'.$lang, 'Qué incluye', $errors, null, array('class' => 'required editor', 'value' => $frase ? $frase->incluye : null)) !!}
-{!! Form::nth_textarea('noIncluye__'.$lang, 'No incluye', $errors, null, array('class' => 'required editor', 'value' => $frase ? $frase->noIncluye : null)) !!}
+<fieldset>
+    <legend class="text-verde">Campos dependientes del idioma ({{ $lang }})</legend>
+    {!! Form::nth_traducir_frase('textarea', $frase, $fraseEs, $lang, 'resumen', 'Resumen', $errors) !!}
+    {!! Form::nth_traducir_frase('textfield', $frase, $fraseEs, $lang, 'nombre', 'Nombre', $errors) !!}
+    {!! Form::nth_traducir_frase('textarea', $frase, $fraseEs, $lang, 'descripcion', 'Descripción', $errors) !!}
+    {!! Form::nth_traducir_frase('textarea', $frase, $fraseEs, $lang, 'itinerario', 'Itinerario', $errors) !!}
+    {!! Form::nth_traducir_frase('textarea', $frase, $fraseEs, $lang, 'recomendaciones', 'Recomendaciones', $errors) !!}
+    {!! Form::nth_traducir_frase('textarea', $frase, $fraseEs, $lang, 'requisitos', 'Requisitos', $errors) !!}
+    {!! Form::nth_traducir_frase('textarea', $frase, $fraseEs, $lang, 'llevar', 'Qué llevar', $errors) !!}
+    {!! Form::nth_traducir_frase('file', $frase, $fraseEs, $lang, 'llevarFile', 'Pdf con lista de equipo anexo', $errors) !!}
+    {!! Form::nth_traducir_frase('textarea', $frase, $fraseEs, $lang, 'incluye', 'Qué incluye', $errors) !!}
+    {!! Form::nth_traducir_frase('textarea', $frase, $fraseEs, $lang, 'noIncluye', 'No incluye', $errors) !!}
+</fieldset>
 
 <div style="margin-bottom: 15px;">
     {!! Form::nth_img_button($submit_text, null, "fa-floppy-o", array('id'=>'btnSave', 'class' => 'btn-nth')) !!}

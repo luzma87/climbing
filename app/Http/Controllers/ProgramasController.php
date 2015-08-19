@@ -120,17 +120,24 @@
         public function edit($codigo, $lang) {
             $programa = Programa::whereCodigo($codigo)->get()->first();
             $grupo = $programa->grupoPrograma;
-            $nombre = $grupo->frases()->idioma("es")->first()->nombre;
+            $nombre = $grupo->frases()->idioma($lang)->first()->nombre;
             $tipos = TipoDificultad::all()->sortBy('orden');
-            $frase = $programa->frases()->idioma("es")->first();
+            $frase = $programa->frases()->idioma($lang)->first();
+            $fraseEs = null;
+            if ($lang != "es") {
+                $fraseEs = $programa->frases()->idioma("es")->first();
+            }
+
             $arrTipos = array();
+
+            $idiomas = Idioma::lists('nombre', 'codigo'); //saca solo el nombre y el id
 
             foreach ($tipos as $tp) {
                 $fr = $tp->frases()->idioma($lang)->first();
                 $arrTipos["" . $tp->id] = $fr->codigo . " - " . $fr->descripcion;
             }
-            return view('programas.edit', ["programa" => $programa, "grupo" => $grupo, "nombre" => $nombre,
-                                           "tipos" => $arrTipos, "lang" => $lang, "frase" => $frase]);
+            return view('programas.edit', ["programa" => $programa, "grupo" => $grupo, "nombre" => $nombre, "fraseEs" => $fraseEs,
+                                           "tipos" => $arrTipos, "lang" => $lang, "frase" => $frase, "idiomas" => $idiomas]);
         }
 
         /**
@@ -176,7 +183,6 @@
             $this->validate($request, $this->rules);
 
             $input = array_except(Input::all(), array('foto'));
-//            dd($input);
             $data = $this->makeData($input);
 
             $programa->update($input);
@@ -185,11 +191,14 @@
 
             foreach ($data as $lang => $inputs) {
                 $idioma = Idioma::whereCodigo($lang)->get()->first();
-//                $inputs["programa_id"] = $programa->id;
-//                $inputs["idioma"] = $idioma->id;
-//                $frase = FrasePrograma::create($inputs);
                 $frase = FrasePrograma::where("programa_id", $programa->id)->where("idioma", $idioma->id)->first();
-                $frase->update($inputs);
+                if ($frase) {
+                    $frase->update($inputs);
+                } else {
+                    $inputs["programa_id"] = $programa->id;
+                    $inputs["idioma"] = $idioma->id;
+                    $frase = FrasePrograma::create($inputs);
+                }
                 $pdf = $request->file('llevarFile__' . $lang);
                 $this->doUploadPdf($programa, $frase, $pdf);
             }

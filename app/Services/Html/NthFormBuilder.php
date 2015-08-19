@@ -2,6 +2,7 @@
 
 use App\Frase;
 use App\FraseFoto;
+use Illuminate\Support\Facades\URL;
 
 class NthFormBuilder extends \Illuminate\Html\FormBuilder {
 
@@ -103,7 +104,6 @@ class NthFormBuilder extends \Illuminate\Html\FormBuilder {
     public function nth_file($name, $label, $errors, $labelOptions = array(), $inputOptions = array()) {
         $labelOptions['class'] = 'form-label' . (isset($labelOptions['class']) ? ' ' . $labelOptions['class'] : '');
         $inputOptions['class'] = 'form-control' . (isset($inputOptions['class']) ? ' ' . $inputOptions['class'] : '');
-        $inputOptions['placeholder'] = $label;
         return sprintf(
             '<div class="form-group">%s<div%s>%s%s</div></div><!-- end form-group -->',
             parent::label($name, $label, $labelOptions),
@@ -243,6 +243,54 @@ class NthFormBuilder extends \Illuminate\Html\FormBuilder {
             $image,
             $value
         );
+    }
+
+    public function nth_traducir_frase($tipo, $frase, $fraseEs, $lang, $campo, $label, $errors) {
+        $name = $campo . "__" . $lang;
+        $labelOptions = null;
+        $inputOptions = array('class' => 'required', 'value' => getFrasePrograma($frase, $campo));
+        $out = "";
+        if ($tipo == "textfield") {
+            $out = $this->nth_textfield($name, $label, $errors, $labelOptions, $inputOptions);
+        } elseif ($tipo == "textarea") {
+            $inputOptions['class'] .= " editor";
+            $out = $this->nth_textarea($name, $label, $errors, $labelOptions, $inputOptions);
+        } elseif ($tipo == "file") {
+            $out = $this->nth_file($name, $label, $errors, $labelOptions, $inputOptions);
+
+            if ($frase && $frase->$campo) {
+                $cont = getFrasePrograma($frase, $campo);
+                $cont = sprintf('<a href="%s" class="btn btn-xs btn-verde" target="_blank"><i class="fa fa-download"></i> Descargue el archivo de <em>%s</em> (%s) aquí</a>',
+                                URL::asset($cont),
+                                $label,
+                                $lang);
+                $out .= sprintf('<div class="row margin-bottom"><div class="col-md-12">%s</div></div>',
+                                $cont);
+            }
+        }
+
+        if ($fraseEs) {
+            $cont = getFrasePrograma($fraseEs, $campo);
+
+            if ($tipo == "file") {
+                $cont = sprintf('<a href="%s" class="btn btn-xs btn-verde" target="_blank"><i class="fa fa-download"></i> Descargue el archivo de <em>%s</em> (es) aquí</a>',
+                                URL::asset($cont),
+                                $label);
+                $out .= sprintf('<div class="row margin-bottom"><div class="col-md-12">%s</div></div>',
+                                $cont);
+            } else {
+                $id = "collapse_" . $campo;
+                $out .= sprintf('<div class="row margin-bottom"><div class="col-md-12"><a class="collapsible" data-toggle="collapse" href="#%s" aria-expanded="false" aria-controls="%s"><i class="fa fa-caret-down"></i> <em>%s</em> en español</a><div class="collapse ui-corner-all" id="%s">%s</div></div></div>',
+                                $id,
+                                $id,
+                                $label,
+                                $id,
+                                $cont
+                );
+            }
+        }
+
+        return $out;
     }
 
 }

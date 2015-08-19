@@ -58,6 +58,8 @@
         <meta name="application-name" content="Yes Climbing Guides">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <script>CKEDITOR.dtd.$removeEmpty['span'] = false;</script>
+
         <title>@yield('title')</title>
         @yield('header')
     </head>
@@ -195,12 +197,11 @@
                 });
 
                 $('textarea.editor').ckeditor({
-                    language : 'es',
-                    toolbar  : [
+                    toolbar : [
                         ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'],
                         ['SelectAll', 'Scayt'],
                         ['Link', 'Unlink'],
-                        ['Table', 'HorizontalRule', 'SpecialChar', 'FontAwesome'],
+                        ['Table', 'HorizontalRule', 'lineheight', '-', 'SpecialChar', 'Smiley', 'FontAwesome', 'Glyphicons'],
                         ['Bold', 'Italic', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'],
                         ['NumberedList', 'BulletedList', '-', 'Indent', 'Outdent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
                         ['FontSize', 'TextColor', 'BGColor'],

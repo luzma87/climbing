@@ -23,6 +23,10 @@
         );
     }
 
+    function getFrasePrograma($frase, $campo, $default = null) {
+        return $frase ? $frase->$campo : $default;
+    }
+
     function getTituloFoto($fotoId, $idiomaCodigo, $default = '') {
         $frase = FraseFoto::porFoto($fotoId)->idioma($idiomaCodigo)->get()->first();
         return $frase ? $frase->titulo : $default;
