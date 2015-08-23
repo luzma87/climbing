@@ -14,7 +14,12 @@ th, td {
 .menuGuiasSelected {
     color : #D11317;
 }
-
+.leer-mas{
+    float: right;
+    font-size: 11px;
+    color: #000000;
+    text-decoration: underline;
+}
 .modal-body-max-height {
     max-height : 800px;
     overflow-y : auto;

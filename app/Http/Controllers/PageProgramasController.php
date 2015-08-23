@@ -24,5 +24,21 @@
             }
             return view('pages.programa');
         }
+
+
+        public function cursos() {
+            session(['pag' => 'programas']);
+            if (!session('lang')) {
+                session(['lang' => 'es']);
+            }
+            return view('pages.cursos');
+        }
+        public function programaVariosDias() {
+            session(['pag' => 'programas']);
+            if (!session('lang')) {
+                session(['lang' => 'es']);
+            }
+            return view('pages.programaVarios');
+        }
     }
 

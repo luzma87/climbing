@@ -78,8 +78,12 @@
     Route::get('nicolas', 'PageEquipoController@nicolas');
     Route::get('programas', 'PageProgramasController@index');
     Route::get('programa', 'PageProgramasController@programa');
+    Route::get('cursos', 'PageProgramasController@cursos');
+    Route::get('programaVarios', 'PageProgramasController@programaVariosDias');
     Route::get('recomendaciones', 'PageRecomendacionesController@index');
     Route::get('reserva', 'PageRecomendacionesController@reserva');
+    Route::get('cancelaciones', 'PageRecomendacionesController@cancelaciones');
+    Route::get('equipoRecomendaciones', 'PageRecomendacionesController@equipoRecomendaciones');
     Route::get('entrega', 'PageRecomendacionesController@entrega');
     Route::get('responsabilidad', 'PageRecomendacionesController@responsabilidad');
     Route::get('equipoRecomendaciones', 'PageRecomendacionesController@equipoRecomendaciones');
