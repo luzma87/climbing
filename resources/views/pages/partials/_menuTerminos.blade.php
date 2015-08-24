@@ -2,37 +2,37 @@
     <ul class="menu-nosotros">
         <li>
             <a href="{{URL::to('reserva')}}">
-                {{ getFrase("terminos_reserva",session("lang"), "Reserva y Pago") }}
+                {!! getFrase("menuTerminos_reserva",session("lang"), "Reserva y Pago") !!}
             </a>
         </li>
         <li>
             <a href="{{URL::to('cancelaciones')}}">
-                {{ getFrase("terminos_cancelaciones",session("lang"), "Cancelaciones") }}
+                {!! getFrase("menuTerminos_cancelaciones",session("lang"), "Cancelaciones") !!}
             </a>
         </li>
         <li>
             <a href="{{URL::to('entrega')}}">
-                {{ getFrase("terminos_liderazgo",session("lang"), "Liderazgo y Programa de entrega") }}
+                {!! getFrase("menuTerminos_liderazgo",session("lang"), "Liderazgo y Programa de entrega") !!}
             </a>
         </li>
         <li>
             <a href="{{URL::to('responsabilidad')}}">
-                {{ getFrase("terminos_responsabilidad",session("lang"), "Responsabilidad") }}
+                {!! getFrase("menuTerminos_responsabilidad",session("lang"), "Responsabilidad") !!}
             </a>
         </li>
         <li>
             <a href="{{URL::to('equipoRecomendaciones')}}">
-                {{ getFrase("terminos_equipo",session("lang"), "Equipo") }}
+                {!! getFrase("menuTerminos_equipo",session("lang"), "Equipo") !!}
             </a>
         </li>
         <li>
             <a href="{{URL::to('quejas')}}">
-                {{ getFrase("terminos_quejas",session("lang"), "Quejas") }}
+                {!! getFrase("menuTerminos_quejas",session("lang"), "Quejas") !!}
             </a>
         </li>
         <li>
             <a href="{{URL::to('general')}}">
-                {{ getFrase("terminos_general",session("lang"), "General") }}
+                {!! getFrase("menuTerminos_general",session("lang"), "General") !!}
             </a>
         </li>
 

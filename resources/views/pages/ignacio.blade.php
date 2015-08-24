@@ -26,37 +26,13 @@
             <img style="width: 100%;margin-bottom: 10px" src="{!!  URL::asset('assets/images/equipo/ignacioBig.PNG')  !!}">
 
             <h1>
-                {{ getFrase("ignacio",session("lang"), "Ignacio Espinosa") }}
+                {!! getFrase("ignacio",session("lang"), "Ignacio Espinosa") !!}
             </h1>
 
             <p>
-                {{ getFrase("ignacio1",session("lang"), "Quiteño, nació el  26 de Noviembre de 1976 en Quito.
+                {!! getFrase("ignacioTexto",session("lang"), "Quiteño, nació el  26 de Noviembre de 1976 en Quito.
                 Conocido en el mundo de la montaña como Nacho cuenta con más de 17 años de experiencia en Alta Montaña,
-                13 años de experiencia profesional como Guía de Alta Montaña.") }}
-            </p>
-
-            <p>
-                {{ getFrase("ignacio2",session("lang"), "Cuenta con formación certificada a
-                nivel nacional e internacional: ASEGUIM
-                (Asociación Ecuatoriana de Guías de Montaña),
-                Certificación de Guía UIAGM (Union Internationale des Associations de Guides de Montagnes),
-                Certificación WFR (Wilderness First Responder) acreditada por NOLS (National Outdoor Leadership School).") }}
-            </p>
-
-            <p>
-                {{ getFrase("ignacio3",session("lang"), "Es miembro del cuerpo de instructores y Monitor en los cursos dictados por la
-                Escuela de Guías del Ecuador ASEGUIM. Ha realizado trabajos de
-                investigación para la Cruz Roja Suiza y la Fundación RIOS en levantamiento de
-                información en la rama de etnomedicina.") }}
-            </p>
-
-            <p>
-                {{ getFrase("ignacio4",session("lang"), "Destaca su habilidad para adaptarse e interactuar con grupos humanos diversos,
-                precautelando su seguridad y satisfacción de sus clientes.") }}
-            </p>
-
-            <p>
-                {{ getFrase("ignacio4",session("lang"), "Habla fluidamente español e inglés") }}
+                13 años de experiencia profesional como Guía de Alta Montaña.") !!}
             </p>
         </div>
         @include('pages/partials/_menuNosotros')

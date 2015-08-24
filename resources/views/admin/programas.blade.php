@@ -4,6 +4,34 @@
 
 @section('content')
 
+    <h1>
+        Editar página Nuestros Programas
+        <small><a href="{{ URL::to('programas') }}" target="_blank">Ver la página</a></small>
+    </h1>
+
+    <h2>Frases en esta página</h2>
+
+    <table class="table table-condensed table-bordered table-striped table-hover verde">
+        <thead>
+            <tr>
+                @foreach($idiomas as $idioma)
+                    <th width="{{ $prct }}%" class="text-white">{{ $idioma->nombre }}</th>
+                @endforeach
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($frases as $frase)
+                <tr>
+                    @foreach($idiomas as $idioma)
+                        <td>
+                            {!! Form::nth_frase_editar($frase->codigo, $idioma->codigo, $frase, "<em>No se ha definido la frase en ".$idioma->nombre."</em>") !!}
+                        </td>
+                    @endforeach
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
     <div class="btn-toolbar" role="toolbar" style="margin-bottom: 10px;">
         <div class="btn-group btn-group-sm" role="group">
             {!! Form::nth_img_button_clase("Agregar grupo de programas", null, "fa-plus", array("id"=>"btnAddGrupo",  "class"=>"btn-verde qtip-top")) !!}

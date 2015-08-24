@@ -127,6 +127,7 @@ function openFormFrase(tipo, $btn, url, urlRedirect) {
             bootbox.dialog({
                 title   : title,
                 message : msg,
+                class   : "modal-lg",
                 buttons : {
                     success : {
                         label     : "<i class='fa fa-floppy-o'></i> Guardar",

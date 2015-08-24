@@ -22,7 +22,7 @@
 
 
                 <div class="row fila">
-                    <div class="col-md-5">
+                    <div class="col-md-12">
 
                         {!! Form::model(new App\Frase, ['id'=>'frmFrase', 'route' => ['adminFrases.store']]) !!}
                         {{--{!! Form::open(["id"=>'frmFrase', 'route' => 'frases.store'])  !!}--}}
@@ -44,6 +44,9 @@
         $frm.validate({
             submitHandler : function (form) {
                 openLoader();
+                for (var instance in CKEDITOR.instances) {
+                    CKEDITOR.instances[instance].updateElement();
+                }
                 form.submit();
             },
             rules         : {

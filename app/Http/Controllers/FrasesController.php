@@ -93,7 +93,8 @@
             if ($redirectme && $redirectme != "") {
                 return Redirect::to($redirectme)->with('message', 'Frase creada');
             } else {
-                return Redirect::route('adminFrases.index')->with('message', 'Frase creada');
+//                return Redirect::route('adminFrases.index')->with('message', 'Frase creada');
+                return Redirect::route('adminFrases.create')->with('message', 'Frase creada');
             }
         }
 

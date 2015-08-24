@@ -62,8 +62,8 @@
                                         <td>{{ Idioma::find($frase->idioma)->nombre }}</td>
                                         <td>{{ $frase->pagina }}</td>
                                         <td>{{ $frase->codigo }}</td>
-                                        <td>{{ $frase->contenido }}</td>
-                                        <td>
+                                        <td>{!! $frase->contenido !!}</td>
+                                        <td class="text-left">
                                             {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('adminFrases.destroy', $frase->id))) !!}
                                             <div class="btn-group" role="group" aria-label="...">
                                                 {!! Form::nth_img_button_clase("Editar", route("adminFrases.edit", $frase->id) , "fa-pencil", array('class' => 'btn-warning btn-sm', 'label' => false)) !!}

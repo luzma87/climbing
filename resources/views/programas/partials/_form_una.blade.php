@@ -15,7 +15,7 @@
     {!! Form::nth_select('tipo_dificultad_id', 'Graduación de técnica',  $tipos, $errors, null, array('class' => 'required')) !!}
     {!! Form::nth_file('foto', 'Foto', $errors, null) !!}
     @if($programa && $programa->foto)
-        <img src="{!! URL::asset($programa->foto) !!}" alt="{{ getFrasePrograma($frase, 'nombre') }}" class="img-thumbnail">
+        <img src="{!! URL::asset($programa->foto) !!}" alt="{!! getFrasePrograma($frase, 'nombre') !!}" class="img-thumbnail">
     @endif
 </fieldset>
 

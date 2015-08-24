@@ -195,20 +195,9 @@
                         at : 'top center'
                     }
                 });
-
-                $('textarea.editor').ckeditor({
-                    toolbar : [
-                        ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'],
-                        ['SelectAll', 'Scayt'],
-                        ['Link', 'Unlink'],
-                        ['Table', 'HorizontalRule', 'lineheight', '-', 'SpecialChar', 'Smiley', 'FontAwesome', 'Glyphicons'],
-                        ['Bold', 'Italic', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'],
-                        ['NumberedList', 'BulletedList', '-', 'Indent', 'Outdent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
-                        ['FontSize', 'TextColor', 'BGColor'],
-                        ['About']
-                    ]
-                });
             </script>
+
+            {!! HTML::script('assets/js/loadEditor.js') !!}
 
             @yield('scripts')
         </div>

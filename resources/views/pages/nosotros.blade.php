@@ -13,37 +13,29 @@
 
     <div class="row bottom-row">
         <div class="col-lg-3 col-xs-12  col-lg-offset-1 col-xs-offset-1 col-md-3  col-md-offset-1 col-sm-4  col-sm-offset-1 text-left " style="padding-left: 0px">
-            {{ getFrase("culturaAventura",session("lang"), "Cultura y Aventura!") }}
+            {!! getFrase("culturaAventura",session("lang"), "Cultura y Aventura!") !!}
         </div>
         <div class="col-lg-6  col-lg-offset-1 col-md-6  col-md-offset-1 hidden-sm  hidden-xs text-right">
-            {{ getFrase("operadoraTuristica",session("lang"), "Operadora turística en Ecuador y Sud América") }}
+            {!! getFrase("operadoraTuristica",session("lang"), "Operadora turística en Ecuador y Sud América") !!}
         </div>
     </div>
     <div class="row page-content">
 
         <div class="col-xs-10 col-sm-6 col-md-6 col-lg-6 col-lg-offset-1 col-md-offset-1 col-sm-offset-1" style="text-align: justify">
             <h1>
-                {{ getFrase("ecuadorAndSouth",session("lang"), "Ecuador and South America Tour Operator") }}
+                {!! getFrase("ecuadorAndSouth",session("lang"), "Ecuador and South America Tour Operator") !!}
             </h1>
 
             <p>
-                {{ getFrase("nosotros1",session("lang"), "Somos un grupo de guías especializados en turismo y deportes de montaña. Nuestra
+                {!! getFrase("nosotrosTexto",session("lang"), "Somos un grupo de guías especializados en turismo y deportes de montaña. Nuestra
                 empresa brinda diferentes tipos de programas y servicios adaptados a cada una de las
                 necesidades de nuestros clientes en los cuales prevalece la seguridad y la honestidad.
                 Esta empresa tiene como misión dar a conocer al mundo el paraíso maravilloso que es
-                el Ecuador.") }}
-            </p>
-
-            <p>
-                {{ getFrase("nosotros2",session("lang"), "Nuestro objetivo es ofrecer un servicio de calidad a nuestros clientes, respetando el
-                entorno natural y cultural, gestionando el desarrollo de programas y circuitos turísticos
-                de bajo impacto ambiental (turismo sin huella ecológica).
-                Nuestra visión es ser la empresa líder en manejo de paquetes turísticos y manejo de
-                grupos en el Ecuador y Sud América.") }}
+                el Ecuador.") !!}
             </p>
 
             <h1 class="text-center">
-                {{ getFrase("bienvenidosYesClimb",session("lang"), "Bienvenidos a Yes Climbing Guides!") }}
+                {!! getFrase("bienvenidosYesClimb",session("lang"), "Bienvenidos a Yes Climbing Guides!") !!}
             </h1>
 
         </div>

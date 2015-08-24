@@ -2,10 +2,10 @@
     <ul class="menu-nosotros" style="margin-left: -15px">
         <li class="active">
             <img src="{!!  URL::asset('assets/images/logoMenu.PNG')  !!}" width="30px" style="margin-left: 15px"/>
-            <a href="{{URL::to('Programas')}}" class="">{{ getFrase("nuestrosProgramas",session("lang"), "Nuestros programas") }}</a>
+            <a href="{{URL::to('Programas')}}" class="">{!! getFrase("nuestrosProgramas",session("lang"), "Nuestros programas") !!}</a>
         </li>
         <li class="">
-            <a href="#" class="btn-menu-nosotros">{{ getFrase("mediaMontana",session("lang"), "Media Montaña (1 día)") }}</a>
+            <a href="#" class="btn-menu-nosotros">{!! getFrase("mediaMontana",session("lang"), "Media Montaña (1 día)") !!}</a>
             <ul class="submenu-nosotros">
                 <li><a href="">Pasochoa</a></li>
                 <li><a href="">Rucu Pichincha</a></li>
@@ -19,31 +19,31 @@
             </ul>
         </li>
         <li class="">
-            <a href="#" class="btn-menu-nosotros">{{ getFrase("altaMontania",session("lang"), "Alta Montaña") }}</a>
+            <a href="#" class="btn-menu-nosotros">{!! getFrase("altaMontania",session("lang"), "Alta Montaña") !!}</a>
         </li>
         <li class="">
-            <a href="#" class="btn-menu-nosotros">{{ getFrase("montaniaYCultura",session("lang"), "Montaña y Cultura (15 días)") }}</a>
+            <a href="#" class="btn-menu-nosotros">{!! getFrase("montaniaYCultura",session("lang"), "Montaña y Cultura (15 días)") !!}</a>
         </li>
         <li class="">
-            <a href="#" class="btn-menu-nosotros">{{ getFrase("amantesDeLaMontania",session("lang"), "Amantes de la Montaña (14 días)") }}</a>
+            <a href="#" class="btn-menu-nosotros">{!! getFrase("amantesDeLaMontania",session("lang"), "Amantes de la Montaña (14 días)") !!}</a>
         </li>
         <li class="">
-            <a href="#" class="btn-menu-nosotros">{{ getFrase("escaladaAdrenalina",session("lang"), "Escalada Adrenalina Pura (17 días)") }}</a>
+            <a href="#" class="btn-menu-nosotros">{!! getFrase("escaladaAdrenalina",session("lang"), "Escalada Adrenalina Pura (17 días)") !!}</a>
         </li>
         <li class="">
-            <a href="#" class="btn-menu-nosotros">{{ getFrase("capacitacionYCursos",session("lang"), "Capacitación y Cursos") }}</a>
+            <a href="#" class="btn-menu-nosotros">{!! getFrase("capacitacionYCursos",session("lang"), "Capacitación y Cursos") !!}</a>
         </li>
         <li class="">
-            <a href="#" class="btn-menu-nosotros">{{ getFrase("lugaresRelax",session("lang"), "Lugares de Relax y Descanso") }}</a>
+            <a href="#" class="btn-menu-nosotros">{!! getFrase("lugaresRelax",session("lang"), "Lugares de Relax y Descanso") !!}</a>
         </li>
         <li class="">
-            <a href="" class="btn-menu-nosotros">{{ getFrase("peru",session("lang"), "Perú") }}</a>
+            <a href="" class="btn-menu-nosotros">{!! getFrase("peru",session("lang"), "Perú") !!}</a>
         </li>
         <li class="">
-            <a href="" class="btn-menu-nosotros">{{ getFrase("bolivia",session("lang"), "Bolivia") }}</a>
+            <a href="" class="btn-menu-nosotros">{!! getFrase("bolivia",session("lang"), "Bolivia") !!}</a>
         </li>
         <li class="">
-            <a href="" class="btn-menu-nosotros">{{ getFrase("argentina",session("lang"), "Argentina") }}</a>
+            <a href="" class="btn-menu-nosotros">{!! getFrase("argentina",session("lang"), "Argentina") !!}</a>
         </li>
     </ul>
 </div>

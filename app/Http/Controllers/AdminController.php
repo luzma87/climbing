@@ -52,8 +52,10 @@
         public function programas() {
             session(['pag' => 'programas']);
             $idiomas = Idioma::all();
+            $frases = Frase::pagina("programas")->idioma("es")->orderBy("id", "asc")->get();
+            $prct = (int)(100 / $idiomas->count());
             $grupos = GrupoPrograma::all();
-            return view('admin.programas', ['idiomas' => $idiomas, 'grupos' => $grupos]);
+            return view('admin.programas', ['idiomas' => $idiomas, 'frases' => $frases, 'prct' => $prct, 'grupos' => $grupos]);
         }
 
         public function recomendaciones() {
