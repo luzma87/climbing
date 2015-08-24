@@ -3,6 +3,8 @@
 <input type="hidden" name="grupo_programa_id" value="{{ $grupo->id }}"/>
 <input type="hidden" name="tipo" value="una"/>
 
+{!! Form::nth_img_button("Modificar etiquetas", URL::to('adminProgramas/editEtiquetas/una/es'), "fa-list", array('class' => 'btn-info')) !!}
+
 <fieldset>
     <legend class="text-verde">Campos independientes del idioma</legend>
     @if($codEditable)

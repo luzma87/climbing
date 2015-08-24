@@ -238,4 +238,8 @@
 
             return Redirect::to('admin/programas')->with('message', 'Programa eliminado');
         }
+
+        public function editEtiquetas($tipo, $lang) {
+
+        }
     }

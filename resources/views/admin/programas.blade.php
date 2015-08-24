@@ -115,8 +115,9 @@
             </div>
         </div>
     @endforeach
+@stop
 
-
+@section("scripts")
     <script type="text/javascript">
         function openFormGrupo(tipo, id) {
             openLoader();
@@ -167,6 +168,7 @@
             });
         }
 
+        var redirectme = "admin/programas";
         $(function () {
             $("#btnAddGrupo").click(function () {
                 openFormGrupo("create");
@@ -179,11 +181,19 @@
                 $i.toggleClass("fa-rotate-180");
             });
 
+            $(".btn-edit-frase").click(function () {
+                openFormFrase("edit", $(this), "{{ URL::to('adminFrases/editAjax') }}", redirectme);
+                return false;
+            });
+            $(".btn-create-frase").click(function () {
+                openFormFrase("create", $(this), "{{ URL::to('adminFrases/createAjax') }}", redirectme);
+                return false;
+            });
+
             $(".btn-edit-grupo").click(function () {
                 openFormGrupo("edit", $(this).data("id"));
                 return false;
             });
-
             $(".btn-delete-grupo").click(function () {
                 var $frm = $(this).parents("form");
                 bootbox.confirm("¿Está seguro de querer eliminar este grupo de programas? Se eliminarán también todos sus programas", function (res) {
@@ -236,7 +246,6 @@
                 });
                 return false;
             });
-
             $(".btn-delete-programa").click(function () {
                 var $frm = $(this).parents("form");
                 bootbox.confirm("¿Está seguro de querer eliminar este programa y todos sus componentes (frases, fotos, archivos, recomendaciones, partes/días)?", function (res) {

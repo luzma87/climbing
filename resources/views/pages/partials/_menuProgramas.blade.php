@@ -2,7 +2,7 @@
     <ul class="menu-nosotros" style="margin-left: -15px">
         <li class="active">
             <img src="{!!  URL::asset('assets/images/logoMenu.PNG')  !!}" width="30px" style="margin-left: 15px"/>
-            <a href="{{URL::to('Programas')}}" class="">{!! getFrase("nuestrosProgramas",session("lang"), "Nuestros programas") !!}</a>
+            <a href="{{URL::to('Programas')}}" class="">{!! getFrase("menuProgramas_nuestrosProgramas",session("lang"), "Nuestros programas") !!}</a>
         </li>
         <li class="">
             <a href="#" class="btn-menu-nosotros">{!! getFrase("mediaMontana",session("lang"), "Media Montaña (1 día)") !!}</a>
