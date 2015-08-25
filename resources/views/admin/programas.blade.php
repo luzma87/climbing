@@ -54,8 +54,8 @@
                         <thead>
                             <tr>
                                 <th class="text-white">Programa</th>
-                                <th class="text-white">Tipo</th>
-                                <th class="text-white">Idiomas</th>
+                                <th class="text-white" style="width: 220px;">Tipo</th>
+                                <th class="text-white" style="width: 200px;">Idiomas</th>
                                 <th class="text-white" style="width: 76px;">Acciones</th>
                             </tr>
                         </thead>
@@ -67,6 +67,11 @@
                                     </td>
                                     <td>
                                         {{ $programa->tipo == 'una' ? 'Una parte/día' : ($programa->tipo == 'varias' ? 'Varias partes/días' : 'Curso') }}
+                                        @if($programa->tipo == 'varias')
+                                            <?php $cantPartes = sizeof($programa->partes);
+                                            $s = $cantPartes == 1 ? '' : 's'?>
+                                            ({{ $cantPartes }} parte{{$s}}/día{{$s}})
+                                        @endif
                                     </td>
                                     <td>
                                         {{ implode(", ",$programa->idiomas($programa->id)) }}
