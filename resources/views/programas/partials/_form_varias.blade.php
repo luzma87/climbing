@@ -26,15 +26,6 @@
 <fieldset>
     <legend class="text-verde">Partes/Días ({{ $lang }})</legend>
     @if($programa)
-
-        orden               -> partePrograma
-        foto                -> partePrograma
-        tipo_dificultad_id  -> partePrograma
-        idioma              -> frasePartePrograma
-        nombre              -> frasePartePrograma
-        resumen             -> frasePartePrograma
-        descripcion         -> frasePartePrograma
-
         <div class="panel panel-success">
             <div class="panel-heading">
                 <h3 class="panel-title">
@@ -43,10 +34,8 @@
                 </h3>
             </div>
             <div class="panel-body">
-                {!! Form::model(new App\Programa, ['id'=>'frmPrograma', 'files' => true, 'route' => ['adminProgramas.store']]) !!}
-                @include('programas/partials/_form_'.$tipo, ['submit_text' => 'Crear programa', "fraseEs" => null,
-'grupo' => $grupo, 'nombre'=>$nombre, "tipos" => $tipos, "codEditable" => true, "programa" => null,
- "lang" => "es", "frase" => null])
+                {!! Form::model(new App\PartePrograma(), ['id'=>'frmPartePrograma', 'files' => true, 'route' => ['adminProgramas.store']]) !!}
+                @include('partesProgramas/partials/_form', ["fraseEs" => null, "lang" => "es", "parte" => null, "frase"=>null, "tipos"=>$tipos])
                 {!! Form::close()  !!}
             </div>
         </div>
@@ -97,5 +86,64 @@
 </div>
 
 <script type="text/javascript">
+    var redirectme = "adminPrograma"
+    function openFormPartePrograma(tipo, $btn, url) {
+        openLoader();
+        var title = "", url = "";
+        if (tipo == "create") {
+            title = "Crear frases";
+            url = "{{ URL::to('adminPartesPrograma/createAjax') }}";
+        } else if (tipo == "edit") {
+            title = "Modificar frases";
+            url = "{{ URL::to('adminPartesPrograma/editAjax') }}";
+        }
+        var $tr = $btn.parents("tr");
+        var id = $tr.data("id");
+        var lang = $tr.data("lang");
+        var foto = $tr.data("foto");
+        $.ajax({
+            type    : "POST",
+            url     : url,
+            data    : {
+                id         : id,
+                lang       : lang,
+                foto       : foto,
+                redirectme : urlRedirect
+            },
+            success : function (msg) {
+                closeLoader();
+                bootbox.dialog({
+                    title   : title,
+                    message : msg,
+                    buttons : {
+                        success : {
+                            label     : "<i class='fa fa-floppy-o'></i> Guardar",
+                            className : "btn-success",
+                            callback  : function () {
+                                var $frm = $("#frmFraseFoto");
+                                $frm.submit();
+                                return false;
+                            }
+                        },
+                        danger  : {
+                            label     : "Cancelar",
+                            className : "btn-default",
+                            callback  : function () {
+                            }
+                        }
+                    }
+                });
+            },
+            error   : function () {
 
+            }
+        });
+    }
+
+    $(function () {
+        $(".btn-create-parte-programa").click(function () {
+            openFormPartePrograma("create", $(this));
+            return false;
+        });
+    });
 </script>

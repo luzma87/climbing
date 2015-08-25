@@ -24,7 +24,7 @@
     Route::resource('adminFrasesTipoDificultad', 'FrasesTipoDificultadController');
     Route::resource('adminGruposPrograma', 'GruposProgramaController');
     Route::resource('adminIdiomas', 'IdiomasController');
-    Route::resource('adminPartePrograma', 'PartesProgramasController');
+    Route::resource('adminPartesPrograma', 'PartesProgramasController');
     Route::resource('adminProgramas', 'ProgramasController');
     Route::resource('adminTiposDificultad', 'TiposDificultadController');
     Route::resource('auth', 'SessionsController');
@@ -64,6 +64,9 @@
     Route::post('adminTiposDificultad/editAjax', 'TiposDificultadController@editAjax');
 
     Route::post('adminFrases/validarUniqueCodigoAjax', 'FrasesController@validarUniqueCodigoAjax');
+
+    Route::post('adminPartesPrograma/createAjax', 'PartesProgramaController@createAjax');
+    Route::post('adminPartesPrograma/editAjax', 'PartesProgramaController@editAjax');
 
 
     Route::get('/', 'PageHomeController@index');
