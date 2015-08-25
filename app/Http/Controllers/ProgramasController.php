@@ -239,7 +239,10 @@
             return Redirect::to('admin/programas')->with('message', 'Programa eliminado');
         }
 
-        public function editEtiquetas($tipo, $lang) {
-
+        public function editEtiquetas($tipo) {
+            $idiomas = Idioma::all();
+            $frases = Frase::pagina("programas_" . $tipo)->idioma("es")->orderBy("id", "asc")->get();
+            $prct = (int)(100 / $idiomas->count());
+            return view('programas.editEtiquetas', ["idiomas" => $idiomas, "frases" => $frases, "prct" => $prct, "tipo" => $tipo]);
         }
     }

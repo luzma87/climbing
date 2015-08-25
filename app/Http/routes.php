@@ -44,7 +44,7 @@
     Route::get('adminProgramas/create/{grupo}/{tipo}', 'ProgramasController@create');
     Route::get('adminProgramas/edit/{programa}/{idioma}', 'ProgramasController@edit');
     Route::get('adminProgramas/show/{programa}/{idioma}', 'ProgramasController@show');
-    Route::get('adminProgramas/editEtiquetas/{tipo}/{idioma}', 'ProgramasController@editEtiquetas');
+    Route::get('adminProgramas/editEtiquetas/{tipo}', 'ProgramasController@editEtiquetas');
 
     Route::get('admin/cotizacion', 'AdminController@cotizacion');
 
