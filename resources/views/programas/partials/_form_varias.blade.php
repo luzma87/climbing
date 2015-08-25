@@ -33,7 +33,7 @@
                     Nueva parte/día
                 </h3>
             </div>
-            <div class="panel-body">
+            <div class="panel-body bg-success">
                 {!! Form::model(new App\PartePrograma(), ['id'=>'frmPartePrograma', 'files' => true, 'route' => ['adminProgramas.store']]) !!}
                 @include('partesProgramas/partials/_form', ["fraseEs" => null, "lang" => "es", "parte" => null, "frase"=>null, "tipos"=>$tipos])
                 {!! Form::close()  !!}
