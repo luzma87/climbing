@@ -18,7 +18,7 @@
 <div class="row page-content">
     @include('pages/partials/_menuProgramas')
 
-    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7 " style="text-align: justify">
+    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7 ">
         <h1 style="width: 100%;text-align: center">
             Expediciones en Ecuador Programas elaborados
         </h1>

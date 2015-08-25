@@ -17,9 +17,10 @@
     <div class="row page-content">
         @include('pages/partials/_menuProgramas')
 
-        @include('programas/partials/_show_'.$programa->tipo, ['grupo' => $grupo, 'nombre'=>$nombre, "programa" => $programa,
-      "lang" => $lang, "frase" => $frase, "dificultad" => $dificultad])
-
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+            @include('programas/partials/_show_'.$programa->tipo, ['grupo' => $grupo, 'nombre'=>$nombre, "programa" => $programa,
+          "lang" => $lang, "frase" => $frase, "dificultad" => $dificultad])
+        </div>
     </div>
 
 @stop
