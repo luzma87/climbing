@@ -16,8 +16,7 @@
             'grupo_programa_id' => 'required',
             'codigo' => 'required',
             'tipo' => 'required',
-            'orden' => 'required',
-            'tipo_dificultad_id' => 'required'
+            'orden' => 'required'
         ];
 
         public $errors;

@@ -14,28 +14,7 @@
         <small><a href="{{ URL::to('home') }}" target="_blank">Ver la página</a></small>
     </h1>
 
-    <h2>Frases en esta página</h2>
-
-    <table class="table table-condensed table-bordered table-striped table-hover verde">
-        <thead>
-            <tr>
-                @foreach($idiomas as $idioma)
-                    <th width="{{ $prct }}%" class="text-white">{{ $idioma->nombre }}</th>
-                @endforeach
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($frases as $frase)
-                <tr>
-                    @foreach($idiomas as $idioma)
-                        <td>
-                            {!! Form::nth_frase_editar($frase->codigo, $idioma->codigo, $frase, "<em>No se ha definido la frase en ".$idioma->nombre."</em>") !!}
-                        </td>
-                    @endforeach
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+    @include('admin/partials/_editFrases', ['frases' => $frases, 'idiomas'=>$idiomas, 'redirectme'=>'admin/home'])
 
     <h2>
         Fotos en esta página: Carrusel Slider
@@ -64,15 +43,6 @@
     <script type="text/javascript">
         var redirectme = "admin/home";
         $(function () {
-            $(".btn-edit-frase").click(function () {
-                openFormFrase("edit", $(this), "{{ URL::to('adminFrases/editAjax') }}", redirectme);
-                return false;
-            });
-            $(".btn-create-frase").click(function () {
-                openFormFrase("create", $(this), "{{ URL::to('adminFrases/createAjax') }}", redirectme);
-                return false;
-            });
-
             $(".btn-edit-frase-foto").click(function () {
                 openFormFraseFoto("edit", $(this), "{{ URL::to('adminFrasesFoto/editAjax') }}", redirectme);
                 return false;

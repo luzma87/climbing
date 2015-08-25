@@ -162,8 +162,17 @@ body {
     background : #FFFFFF;
 }
 
+.table-striped.verde > tbody > tr:nth-of-type(odd) {
+    background : #e6f2ef;
+}
+
 .table-striped.verde > tbody > tr:nth-of-type(even):hover {
-    background : #BCC3E5;
+    /*background : #BCC3E5;*/
+    background : #bce2cb;
+}
+
+.table-striped.verde > tbody > tr:nth-of-type(odd):hover {
+    background : #b1cebc;
 }
 
 .btn-darkblue {

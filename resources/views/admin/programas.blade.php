@@ -9,28 +9,7 @@
         <small><a href="{{ URL::to('programas') }}" target="_blank">Ver la página</a></small>
     </h1>
 
-    <h2>Frases en esta página</h2>
-
-    <table class="table table-condensed table-bordered table-striped table-hover verde">
-        <thead>
-            <tr>
-                @foreach($idiomas as $idioma)
-                    <th width="{{ $prct }}%" class="text-white">{{ $idioma->nombre }}</th>
-                @endforeach
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($frases as $frase)
-                <tr>
-                    @foreach($idiomas as $idioma)
-                        <td>
-                            {!! Form::nth_frase_editar($frase->codigo, $idioma->codigo, $frase, "<em>No se ha definido la frase en ".$idioma->nombre."</em>") !!}
-                        </td>
-                    @endforeach
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+    @include('admin/partials/_editFrases', ['frases' => $frases, 'idiomas'=>$idiomas, 'redirectme'=>'admin/programas'])
 
     <div class="btn-toolbar" role="toolbar" style="margin-bottom: 10px;">
         <div class="btn-group btn-group-sm" role="group">
@@ -77,7 +56,7 @@
                                 <th class="text-white">Programa</th>
                                 <th class="text-white">Tipo</th>
                                 <th class="text-white">Idiomas</th>
-                                <th class="text-white">Acciones</th>
+                                <th class="text-white" style="width: 76px;">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -104,8 +83,8 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="4">
-                                        Este grupo no tiene programas
+                                    <td class="info text-info" colspan="4">
+                                        <i class="fa fa-exclamation-triangle"></i> Este grupo no tiene programas
                                     </td>
                                 </tr>
                             @endforelse

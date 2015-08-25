@@ -14,8 +14,7 @@
         public static $rules = [
             'idioma' => 'required',
             'programa_id' => 'required',
-            'nombre' => 'required',
-            'descripcion' => 'required'
+            'nombre' => 'required'
         ];
 
         public $errors;
@@ -45,7 +44,10 @@
                                'llevarFile',
                                'incluye',
                                'noIncluye',
-                               'costo'];
+                               'costo',
+                               'nivelBasico',
+                               'nivelMedio',
+                               'nivelAvanzado'];
 
         public static function boot() {
             parent::boot();

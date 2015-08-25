@@ -257,6 +257,7 @@ class NthFormBuilder extends \Illuminate\Html\FormBuilder {
 
     public function nth_traducir_frase($tipo, $frase, $fraseEs, $lang, $campo, $label, $errors) {
         $name = $campo . "__" . $lang;
+        $label = getFrase($label, $lang, $label);
         $labelOptions = null;
         $inputOptions = array('class' => 'required', 'value' => getFrasePrograma($frase, $campo));
         $out = "";

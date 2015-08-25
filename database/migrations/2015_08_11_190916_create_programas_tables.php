@@ -67,6 +67,9 @@
                 $table->text('incluye');
                 $table->text('noIncluye');
                 $table->text('costo');
+                $table->text('nivelBasico');
+                $table->text('nivelMedio');
+                $table->text('nivelAvanzado');
                 $table->timestamps();
             });
 
