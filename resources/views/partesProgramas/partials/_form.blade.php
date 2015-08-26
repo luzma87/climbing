@@ -18,7 +18,7 @@
     {!! Form::nth_traducir_frase('textarea', $frase, $fraseEs, $lang, 'resumen', 'Resumen', $errors) !!}
     {!! Form::nth_traducir_frase('textarea', $frase, $fraseEs, $lang, 'descripcion', 'programas_una_descripcion', $errors) !!}
 </fieldset>
-
+LUZ
 <div style="margin-bottom: 15px;">
     {!! Form::nth_img_button($submit_text, null, "fa-floppy-o", array('id'=>'btnSave', 'class' => 'btn-sm')) !!}
 </div>
