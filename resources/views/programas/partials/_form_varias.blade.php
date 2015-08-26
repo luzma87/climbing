@@ -35,7 +35,7 @@
             </div>
             <div class="panel-body bg-success">
                 {!! Form::model(new App\PartePrograma(), ['id'=>'frmPartePrograma', 'files' => true, 'route' => ['adminProgramas.store']]) !!}
-                @include('partesProgramas/partials/_form', ['submit_text' => 'Crear parte/día??', "fraseEs" => null, "lang" => "es", "parte" => null, "frase"=>null, "tipos"=>$tipos])
+                @include('partesProgramas/partials/_form', ['submit_text' => 'Crear parte/día', "fraseEs" => null, "lang" => "es", "parte" => null, "frase"=>null, "tipos"=>$tipos])
                 {!! Form::close()  !!}
             </div>
         </div>
