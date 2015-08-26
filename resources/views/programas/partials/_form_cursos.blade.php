@@ -6,6 +6,7 @@
 
 {!! Form::nth_img_button("Modificar etiquetas", URL::to('adminProgramas/editEtiquetas/cursos'), "fa-list", array('class' => 'btn-info')) !!}
 
+
 <fieldset>
     <legend class="text-verde">Campos independientes del idioma</legend>
     @if($codEditable)
