@@ -19,14 +19,14 @@
 
 <fieldset>
     <legend class="text-verde">Campos dependientes del idioma ({{ $lang }})</legend>
-    {!! Form::nth_traducir_frase('textarea', $frase, $fraseEs, $lang, 'resumen', 'Resumen', $errors) !!}
-    {!! Form::nth_traducir_frase('textfield', $frase, $fraseEs, $lang, 'nombre', 'Nombre', $errors) !!}
+    {!! Form::nth_traducir_frase('textfield', $frase, $fraseEs, $lang, 'nombre', 'Nombre del programa', $errors) !!}
+    {!! Form::nth_traducir_frase('textarea', $frase, $fraseEs, $lang, 'resumen', 'Resumen del programa', $errors) !!}
 </fieldset>
 
 <fieldset>
     <legend class="text-verde">Partes/Días ({{ $lang }})</legend>
     @if($programa)
-        <div class="panel panel-success">
+        <div class="panel panel-success" style="font-size:smaller;">
             <div class="panel-heading">
                 <h3 class="panel-title">
                     <i class="fa fa-plus-circle"></i>

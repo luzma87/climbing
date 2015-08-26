@@ -23,8 +23,8 @@
 
 <fieldset>
     <legend class="text-verde">Campos dependientes del idioma ({{ $lang }})</legend>
-    {!! Form::nth_traducir_frase('textarea', $frase, $fraseEs, $lang, 'resumen', 'Resumen', $errors) !!}
     {!! Form::nth_traducir_frase('textfield', $frase, $fraseEs, $lang, 'nombre', 'Nombre', $errors) !!}
+    {!! Form::nth_traducir_frase('textarea', $frase, $fraseEs, $lang, 'resumen', 'Resumen', $errors) !!}
     {!! Form::nth_traducir_frase('textarea', $frase, $fraseEs, $lang, 'nivelBasico', 'programas_cursos_basico', $errors) !!}
     {!! Form::nth_traducir_frase('textarea', $frase, $fraseEs, $lang, 'nivelMedio', 'programas_cursos_medio', $errors) !!}
     {!! Form::nth_traducir_frase('textarea', $frase, $fraseEs, $lang, 'nivelAvanzado', 'programas_cursos_avanzado', $errors) !!}
