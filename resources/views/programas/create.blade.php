@@ -9,6 +9,9 @@
     'grupo' => $grupo, 'nombre'=>$nombre, "tipos" => $tipos, "codEditable" => true, "programa" => null,
      "lang" => "es", "frase" => null])
     {!! Form::close()  !!}
+    @if($tipo == 'varias')
+        @include('programas/partials/_form_partes', ['programa' => null, 'lang'=>"es"])
+    @endif
 @stop
 
 @section('scripts')

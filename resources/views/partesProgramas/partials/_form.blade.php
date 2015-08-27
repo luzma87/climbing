@@ -1,3 +1,5 @@
+<input type="hidden" name="redirectme" vale="{{ $redirectme }}"/>
+<input type="hidden" name="programa_id" vale="{{ $programa }}"/>
 <fieldset>
     <legend class="text-verde">
         <small>Campos independientes del idioma</small>
@@ -16,8 +18,8 @@
     </legend>
     {!! Form::nth_traducir_frase('textfield', $frase, $fraseEs, $lang, 'nombre', 'Nombre', $errors) !!}
     {!! Form::nth_traducir_frase('textarea', $frase, $fraseEs, $lang, 'resumen', 'Resumen', $errors) !!}
-    {!! Form::nth_traducir_frase('textarea', $frase, $fraseEs, $lang, 'descripcion', 'programas_una_descripcion', $errors) !!}
+    {!! Form::nth_traducir_frase('textarea', $frase, $fraseEs, $lang, 'descripcion', 'programas_varias_descripcion', $errors) !!}
 </fieldset>
 <div style="margin-bottom: 15px;">
-    {!! Form::nth_img_button($submit_text, null, "fa-floppy-o", array('id'=>'btnSave', 'class' => 'btn-sm')) !!}
+    {!! Form::nth_img_button($submit_text, null, "fa-floppy-o", array('id'=>'btnSaveParte', 'class' => 'btn-sm btnSaveParte')) !!}
 </div>

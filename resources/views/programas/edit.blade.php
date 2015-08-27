@@ -24,11 +24,15 @@
     'grupo' => $grupo, 'nombre' => $nombre, "tipos" => $tipos, "codEditable" => false,
     "lang" => $lang, "frase" => $frase])
     {!! Form::close()  !!}
+    @if($programa->tipo == 'varias')
+        @include('programas/partials/_form_partes', ['programa' => $programa, 'lang'=>$lang])
+    @endif
 @stop
 
 @section('scripts')
     <script type="text/javascript">
         var $frm = $("#frmPrograma");
+        var $frmCreate = $(".frmPartePrograma");
 
         $frm.validate({
             submitHandler : function (form) {
@@ -53,6 +57,22 @@
 
         $("#btnSave").click(function () {
             $frm.submit();
+            return false;
+        });
+
+        $frmCreate.validate({
+            submitHandler : function (form) {
+                openLoader();
+                for (var instance in CKEDITOR.instances) {
+                    CKEDITOR.instances[instance].updateElement();
+                }
+                form.submit();
+            }
+        });
+
+        $(".btnSaveParte").click(function () {
+            console.log($(this), $(this).parents(), $(this).parents(".frmPartePrograma"));
+            $(this).parents(".frmPartePrograma").submit();
             return false;
         });
     </script>

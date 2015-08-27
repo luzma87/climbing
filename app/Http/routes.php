@@ -24,7 +24,7 @@
     Route::resource('adminFrasesTipoDificultad', 'FrasesTipoDificultadController');
     Route::resource('adminGruposPrograma', 'GruposProgramaController');
     Route::resource('adminIdiomas', 'IdiomasController');
-    Route::resource('adminPartesPrograma', 'PartesProgramasController');
+    Route::resource('adminPartesProgramas', 'PartesProgramasController');
     Route::resource('adminProgramas', 'ProgramasController');
     Route::resource('adminTiposDificultad', 'TiposDificultadController');
     Route::resource('auth', 'SessionsController');

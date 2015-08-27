@@ -104,12 +104,14 @@
         public function store(Request $request) {
             $this->rules = PartePrograma::$rules;
             $this->validate($request, $this->rules);
+            dd("2");
 
             $input = array_except(Input::all(), array('foto'));
             $data = $this->makeData($input);
             $parte = PartePrograma::create($input);
             $file = $request->file('foto');
             $this->doUploadFoto($parte, $file);
+            dd($input);
 
             foreach ($data as $lang => $inputs) {
                 $idioma = Idioma::whereCodigo($lang)->get()->first();
