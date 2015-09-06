@@ -31,11 +31,11 @@
                 {!! getFrase("robinsson",session("lang"), "Robinsson Solari") !!}
             </h1>
 
-            <p>
-                {{ getFrase("robinssonTexto",session("lang"), "Quiteño, nació el 12 de enero de 1973,
+
+                {!! getFrase("robinssonTexto",session("lang"), "Quiteño, nació el 12 de enero de 1973,
                 cuenta con más de 20 años de experiencia,
-                ha realizado ascensiones todas las montañas del Ecuador.") }}
-            </p>
+                ha realizado ascensiones todas las montañas del Ecuador.") !!}
+
 
         </div>
         @include('pages/partials/_menuNosotros')

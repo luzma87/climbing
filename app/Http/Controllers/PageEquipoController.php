@@ -49,7 +49,7 @@
             if (!session('lang')) {
                 session(['lang' => 'es']);
             }
-            return view('pages.robisson');
+            return view('pages.robinsson');
         }
 
         public function fabricio() {

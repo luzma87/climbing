@@ -90,9 +90,9 @@
     Route::get('equipoRecomendaciones', 'PageRecomendacionesController@equipoRecomendaciones');
     Route::get('entrega', 'PageRecomendacionesController@entrega');
     Route::get('responsabilidad', 'PageRecomendacionesController@responsabilidad');
-    Route::get('equipoRecomendaciones', 'PageRecomendacionesController@equipoRecomendaciones');
     Route::get('quejas', 'PageRecomendacionesController@quejas');
     Route::get('general', 'PageRecomendacionesController@general');
+    Route::get('galeria', 'PageGaleriaController@galeria');
 
     //    Route::get('frases/{idioma}', array('uses' => 'FrasesController@index'));
     //    Route::get('frases/create', array('uses' => 'FrasesController@create'));
