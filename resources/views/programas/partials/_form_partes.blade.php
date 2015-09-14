@@ -1,3 +1,9 @@
+<style type="text/css">
+    .collapse {
+        border : none;
+    }
+</style>
+
 <fieldset>
     <legend class="text-verde">Partes/Días ({{ $lang }})</legend>
     @if($programa)
@@ -10,7 +16,7 @@
             </div>
             <div class="panel-body bg-success">
                 {!! Form::model(new App\PartePrograma(), ['class'=>'frmPartePrograma', 'files' => true, 'route' => ['adminPartesProgramas.store']]) !!}
-                @include('partesProgramas/partials/_form', ['submit_text' => 'Crear parte/día', "fraseEs" => null, "lang" => "es", "parte" => null,
+                @include('partesProgramas/partials/_form', ['submit_text' => 'Crear parte/día ('.$lang.')', "fraseEs" => null, "lang" => $lang, "parte" => null,
                 "frase"=>null, "tipos"=>$tipos, "redirectme" => 'adminProgramas/edit/'.$programa->codigo.'/'.$lang, "programa"=>$programa->id])
                 {!! Form::close()  !!}
             </div>
@@ -18,9 +24,17 @@
 
         @foreach($programa->partes as $index => $parte)
             <?php
-            $nombre = $parte->frases()->idioma($lang)->first()->nombre;
+            $frasesEs = null;
+            $nombre = '';
+            if ($lang != 'es') {
+                $frasesEs = $parte->frases()->idioma('es')->first();
+            }
+            $frasesParte = $parte->frases()->idioma($lang)->first();
+            if ($frasesParte) {
+                $nombre = $frasesParte->nombre;
+            }
             ?>
-            <div class="panel panel-default">
+            <div class="panel panel-default" style="font-size:smaller;">
                 <div class="panel-heading" role="tab" id="heading{{ $index }}">
                     <div class="row">
                         <div class="col-md-10">
@@ -43,7 +57,8 @@
                 </div>
                 <div id="collapse{{ $index }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{ $index }}">
                     <div class="panel-body">
-
+                        @include('partesProgramas/partials/_form', ['submit_text' => 'Modificar parte/día ('.$lang.')', "fraseEs" => $frasesEs, "lang" => $lang, "parte" => $parte,
+                                    "frase"=>$frasesParte, "tipos"=>$tipos, "redirectme" => 'adminProgramas/edit/'.$programa->codigo.'/'.$lang, "programa"=>$programa->id])
 
                     </div>
                 </div>
