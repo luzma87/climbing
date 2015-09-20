@@ -103,20 +103,25 @@
          */
         public function store(Request $request) {
             $this->rules = PartePrograma::$rules;
+//            dd(Input::all());
             $this->validate($request, $this->rules);
-            dd("2");
+//            dd("2");
 
             $input = array_except(Input::all(), array('foto'));
             $data = $this->makeData($input);
             $parte = PartePrograma::create($input);
+
+//            dd($parte);
+
             $file = $request->file('foto');
             $this->doUploadFoto($parte, $file);
-            dd($input);
+//            dd($input);
 
             foreach ($data as $lang => $inputs) {
                 $idioma = Idioma::whereCodigo($lang)->get()->first();
                 $inputs["parte_programa_id"] = $parte->id;
                 $inputs["idioma"] = $idioma->id;
+//                dd($inputs);
                 FrasePartePrograma::create($inputs);
             }
 

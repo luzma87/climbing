@@ -24,7 +24,7 @@
          *
          * @var string
          */
-        protected $table = 'frasesPrograma';
+        protected $table = 'frasesPartePrograma';
 
         /**
          * The attributes that are mass assignable.

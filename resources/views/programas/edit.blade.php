@@ -5,8 +5,11 @@
 @section('content')
     <style type="text/css">
         .collapse {
-            border  : solid 1px #2F4050;
             padding : 5px;
+        }
+
+        .collapse.border {
+            border : solid 1px #2F4050;
         }
     </style>
 
@@ -32,9 +35,19 @@
 @section('scripts')
     <script type="text/javascript">
         var $frm = $("#frmPrograma");
-        var $frmCreate = $(".frmPartePrograma");
+        var $frmPartePrograma = $(".frmPartePrograma");
 
         $frm.validate({
+            submitHandler : function (form) {
+                openLoader();
+                for (var instance in CKEDITOR.instances) {
+                    CKEDITOR.instances[instance].updateElement();
+                }
+                form.submit();
+            }
+        });
+
+        $frmPartePrograma.validate({
             submitHandler : function (form) {
                 openLoader();
                 for (var instance in CKEDITOR.instances) {
@@ -60,19 +73,10 @@
             return false;
         });
 
-        $frmCreate.validate({
-            submitHandler : function (form) {
-                openLoader();
-                for (var instance in CKEDITOR.instances) {
-                    CKEDITOR.instances[instance].updateElement();
-                }
-                form.submit();
-            }
-        });
-
         $(".btnSaveParte").click(function () {
-            console.log($(this), $(this).parents(), $(this).parents(".frmPartePrograma"));
-            $(this).parents(".frmPartePrograma").submit();
+            var $thisFrm = $(this).parents(".frmPartePrograma");
+            console.log($thisFrm);
+            $thisFrm.submit();
             return false;
         });
     </script>

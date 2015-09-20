@@ -290,8 +290,8 @@ class NthFormBuilder extends \Illuminate\Html\FormBuilder {
                 $out .= sprintf('<div class="row margin-bottom"><div class="col-md-12">%s</div></div>',
                                 $cont);
             } else {
-                $id = "collapse_" . $campo;
-                $out .= sprintf('<div class="row margin-bottom"><div class="col-md-12"><a class="collapsible" data-toggle="collapse" href="#%s" aria-expanded="false" aria-controls="%s"><i class="fa fa-caret-down"></i> <em>%s</em> en español</a><div class="collapse ui-corner-all" id="%s">%s</div></div></div>',
+                $id = "collapse_" . $campo . "_" . date("Ymdhis");
+                $out .= sprintf('<div class="row margin-bottom"><div class="col-md-12"><a class="collapsible" data-toggle="collapse" href="#%s" aria-expanded="false" aria-controls="%s"><i class="fa fa-caret-down"></i> <em>%s</em> en español</a><div class="collapse border ui-corner-all" id="%s">%s</div></div></div>',
                                 $id,
                                 $id,
                                 $label,
