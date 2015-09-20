@@ -19,7 +19,7 @@
 
 
         public function reserva() {
-            session(['pag' => 'recomendaciones']);
+            session(['pag' => 'condiciones']);
             if (!session('lang')) {
                 session(['lang' => 'es']);
             }
@@ -27,7 +27,7 @@
         }
 
         public function cancelaciones() {
-            session(['pag' => 'recomendaciones']);
+            session(['pag' => 'condiciones']);
             if (!session('lang')) {
                 session(['lang' => 'es']);
             }
@@ -35,7 +35,7 @@
         }
 
         public function entrega() {
-            session(['pag' => 'recomendaciones']);
+            session(['pag' => 'condiciones']);
             if (!session('lang')) {
                 session(['lang' => 'es']);
             }
@@ -43,7 +43,7 @@
         }
 
         public function responsabilidad() {
-            session(['pag' => 'recomendaciones']);
+            session(['pag' => 'condiciones']);
             if (!session('lang')) {
                 session(['lang' => 'es']);
             }

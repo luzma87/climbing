@@ -93,6 +93,7 @@
     Route::get('quejas', 'PageRecomendacionesController@quejas');
     Route::get('general', 'PageRecomendacionesController@general');
     Route::get('galeria', 'PageGaleriaController@galeria');
+    Route::get('contacto', 'PageContactoController@index');
 
     //    Route::get('frases/{idioma}', array('uses' => 'FrasesController@index'));
     //    Route::get('frases/create', array('uses' => 'FrasesController@create'));

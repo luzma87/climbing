@@ -56,7 +56,7 @@
                         <a href="{{URL::to('recomendaciones')}}" class="btn-vertical col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
                             {!! getFrase("menu_recomendaciones",session("lang"), "Recomendaciones") !!}
                         </a>
-                        <a href="{{URL::to('condiciones')}}" class="btn-vertical col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                        <a href="{{URL::to('reserva')}}" class="btn-vertical col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
                             {!! getFrase("menu_condiciones",session("lang"), "Términos y Condiciones") !!}
                         </a>
                         <a href="{{URL::to('galeria')}}" class="btn-vertical col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
