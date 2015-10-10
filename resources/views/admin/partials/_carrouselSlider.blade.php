@@ -3,16 +3,18 @@
         <i class="fa fa-spinner fa-pulse fa-2x text-verde"></i>
     </div>
     <div class="row">
-        <div class="col-md-2 col-md-offset-5">
+        <div class="col-md-1 col-md-offset-5">
             <!-- Arrow Left -->
         <span u="arrowleft" class="jssora15l fa fa-caret-left fa-2x">
         </span>
+        </div>
+        <div class="col-md-1">
             <!-- Arrow Right -->
         <span u="arrowright" class="jssora15r fa fa-caret-right fa-2x">
         </span>
-            <!--#endregion Arrow Navigator Skin End -->
         </div>
     </div>
+    <!--#endregion Arrow Navigator Skin End -->
 
     <div u="slides" class="slider_carroussel_slides col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1 ">
         @forelse($fotos as $foto)
