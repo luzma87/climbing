@@ -1,20 +1,25 @@
 <?php
-    namespace App\Http\Controllers;
+namespace App\Http\Controllers;
 
-    use Illuminate\Http\Request;
+use App\Foto;
+use Illuminate\Http\Request;
 
 
-    use App\Http\Requests;
-    use App\Http\Controllers\Controller;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
 
-    class PageHomeController extends Controller {
+class PageHomeController extends Controller {
 
-        public function index() {
-            session(['pag' => 'home']);
-            if (!session('lang')) {
-                session(['lang' => 'es']);
-            }
-            return view('pages.home');
+    public function index() {
+        session(['pag' => 'home']);
+        if (!session('lang')) {
+            session(['lang' => 'es']);
         }
 
+        $fotosSlider = Foto::galeria("sliderPrincipal")->orderBy("id", "asc")->get();
+        $fotosCarrousel = Foto::galeria("homePrincipal")->orderBy("id", "asc")->get();
+
+        return view('pages.home', ['fotosSlider' => $fotosSlider, 'fotosCarrousel' => $fotosCarrousel]);
     }
+
+}

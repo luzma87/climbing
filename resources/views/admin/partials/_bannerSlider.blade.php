@@ -1,4 +1,4 @@
-<div id="slider_banner" class="slider_banner_container col-md-12 col-sm-12">
+<div id="slider_banner" class="slider_banner_container">
     <!-- Loading Screen -->
     <div u="loading" class="loading">
         <i class="fa fa-spinner fa-pulse fa-2x text-verde"></i>
@@ -34,7 +34,7 @@
 </div>
 
 <script>
-    $(function ($) {
+    $(function () {
         var jssor_slider1 = new $JssorSlider$('slider_banner', {
             $AutoPlay               : true,
             $BulletNavigatorOptions : {                  //[Optional] Options to specify and enable navigator or not

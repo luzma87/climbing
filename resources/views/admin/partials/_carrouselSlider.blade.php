@@ -16,7 +16,7 @@
 
     <div u="slides" class="slider_carroussel_slides col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1 ">
         @forelse($fotos as $foto)
-            <div class="slider_carroussel_slide col-xs-12 col-sm-3 col-md-3 col-lg-3">
+            <div class="slider_carroussel_slide col-xs-12 col-sm-4 col-md-4 col-lg-4">
                 <img u="image" src="{!!  URL::asset($foto->path) !!}">
             </div>
         @empty
@@ -28,7 +28,7 @@
 </div>
 
 <script>
-    $(function ($) {
+    $(function () {
         var jssor_slider1 = new $JssorSlider$('slider_carroussel', {
             $AutoPlay         : true,                     //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
             $AutoPlaySteps    : 4,                        //[Optional] Steps to go for each navigation request (this options applys only when slideshow disabled), the default value is 1

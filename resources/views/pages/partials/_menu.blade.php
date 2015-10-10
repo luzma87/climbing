@@ -1,12 +1,12 @@
 <?php
-    use App\Frase;
-    use App\Foto;
-    use App\Idioma;
+use App\Frase;
+use App\Foto;
+use App\Idioma;
 
 ?>
 <div class="top col-xs-12 col-md-12 col-lg-12"></div>
 <div class="banner col-xs-12 col-md-12 col-lg-12">
-    <img class="imgBanner" src="{!!  URL::asset('assets/images/montana2.jpg')  !!}" style="margin: 0px"/>
+    @include('admin/partials/_bannerSlider', ['fotos' => $fotos])
 
     <div class="menu-container">
         <div class="row upper-row">
@@ -68,13 +68,13 @@
             </div>
         </div>
     </div>
-    <div class="row info-row hidden-xs ">
-        <div id="slider-text" class="col-lg-7 col-md-7 col-sm-7 col-xs-10  col-lg-offset-1  col-md-offset-1 col-sm-offset-1 col-xs-offset-1 info-text">
-            Cumbre Illiniza Sur 5248 msnm, Ciudad Encantada
-        </div>
-        <div class="col-lg-3 col-md-3  col-sm-3  hidden-xs  info-icos">
-            <img src="{!!  URL::asset('assets/images/iconos.PNG')  !!}" style="height: 90%">
-        </div>
-    </div>
+    {{--<div class="row info-row hidden-xs ">--}}
+    {{--<div id="slider-text" class="col-lg-7 col-md-7 col-sm-7 col-xs-10  col-lg-offset-1  col-md-offset-1 col-sm-offset-1 col-xs-offset-1 info-text">--}}
+    {{--Cumbre Illiniza Sur 5248 msnm, Ciudad Encantada--}}
+    {{--</div>--}}
+    {{--<div class="col-lg-3 col-md-3  col-sm-3  hidden-xs  info-icos">--}}
+    {{--<img src="{!!  URL::asset('assets/images/iconos.PNG')  !!}" style="height: 90%">--}}
+    {{--</div>--}}
+    {{--</div>--}}
 
 </div>
