@@ -188,11 +188,16 @@ class NthFormBuilder extends \Illuminate\Html\FormBuilder {
     public function nth_img_button($value = null, $url = null, $image = null, $options = []) {
         $options['class'] = 'btn btn-verde' . (isset($options['class']) ? ' ' . $options['class'] : '');
         $options['id'] = '' . (isset($options['id']) ? '' . $options['id'] : '');
+        $data = "";
+        if (isset($options["data"])) {
+            $data = $options["data"];
+        }
         return sprintf(
-            '<a href="%s" class="%s" id="%s"><i class="fa %s"></i> %s</a>',
+            '<a href="%s" class="%s" id="%s" %s><i class="fa %s"></i> %s</a>',
             $url,
             $options['class'],
             $options['id'],
+            $data,
             $image,
             $value
         );
@@ -257,7 +262,7 @@ class NthFormBuilder extends \Illuminate\Html\FormBuilder {
 
     public function nth_traducir_frase($tipo, $frase, $fraseEs, $lang, $campo, $label, $errors) {
         $name = $campo . "__" . $lang;
-        $label = getFrase($label, $lang, $label);
+        $label = getFrase($label, $lang, $label) . " (" . $lang . ")";
         $labelOptions = null;
         $inputOptions = array('class' => 'required', 'value' => getFrasePrograma($frase, $campo));
         $out = "";

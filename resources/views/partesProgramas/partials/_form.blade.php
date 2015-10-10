@@ -21,5 +21,18 @@
     {!! Form::nth_traducir_frase('textarea', $frase, $fraseEs, $lang, 'descripcion', 'programas_varias_descripcion', $errors) !!}
 </fieldset>
 <div style="margin-bottom: 15px;">
-    {!! Form::nth_img_button($submit_text, null, "fa-floppy-o", array('id'=>'btnSaveParte', 'class' => 'btn-sm btnSaveParte')) !!}
+    {!! Form::nth_img_button($submit_text, null, "fa-floppy-o", array('id'=>'btnSaveParte', 'data'=>'data-id="'.$submit_id.'"', 'class' => 'btn-sm btnSaveParte')) !!}
 </div>
+
+<script type="text/javascript">
+    var $frmPartePrograma = $(".frmPartePrograma<?=$submit_id?>");
+    $frmPartePrograma.validate({
+        submitHandler : function (form) {
+            openLoader();
+            for (var instance in CKEDITOR.instances) {
+                CKEDITOR.instances[instance].updateElement();
+            }
+            form.submit();
+        }
+    });
+</script>

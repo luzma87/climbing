@@ -15,8 +15,8 @@
                 </h3>
             </div>
             <div class="panel-body bg-success">
-                {!! Form::model(new App\PartePrograma(), ['class'=>'frmPartePrograma', 'files' => true, 'route' => ['adminPartesProgramas.store']]) !!}
-                @include('partesProgramas/partials/_form', ['submit_text' => 'Crear parte/día ('.$lang.')', "fraseEs" => null, "lang" => $lang, "parte" => null,
+                {!! Form::model(new App\PartePrograma(), ['class'=>'frmPartePrograma frmPartePrograma_new', 'files' => true, 'route' => ['adminPartesProgramas.store']]) !!}
+                @include('partesProgramas/partials/_form', ['submit_text' => 'Crear parte/día ('.$lang.')', "submit_id" => "_new", "fraseEs" => null, "lang" => $lang, "parte" => null,
                 "frase"=>null, "tipos"=>$tipos, "redirectme" => 'adminProgramas/edit/'.$programa->codigo.'/'.$lang, "programa"=>$programa->id])
                 {!! Form::close()  !!}
             </div>
@@ -57,9 +57,10 @@
                 </div>
                 <div id="collapse{{ $index }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{ $index }}">
                     <div class="panel-body">
-                        @include('partesProgramas/partials/_form', ['submit_text' => 'Modificar parte/día ('.$lang.')', "fraseEs" => $frasesEs, "lang" => $lang, "parte" => $parte,
+                        {!! Form::model($parte, ['class'=>'frmPartePrograma frmPartePrograma_'.$parte->id, 'files' => true,'method' => 'PATCH',  'route' => ['adminPartesProgramas.update']]) !!}
+                        @include('partesProgramas/partials/_form', ['submit_text' => 'Modificar parte/día ('.$lang.')',  "submit_id" => "_".$parte->id, "fraseEs" => $frasesEs, "lang" => $lang, "parte" => $parte,
                                     "frase"=>$frasesParte, "tipos"=>$tipos, "redirectme" => 'adminProgramas/edit/'.$programa->codigo.'/'.$lang, "programa"=>$programa->id])
-
+                        {!! Form::close()  !!}
                     </div>
                 </div>
             </div>

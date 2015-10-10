@@ -35,19 +35,8 @@
 @section('scripts')
     <script type="text/javascript">
         var $frm = $("#frmPrograma");
-        var $frmPartePrograma = $(".frmPartePrograma");
 
         $frm.validate({
-            submitHandler : function (form) {
-                openLoader();
-                for (var instance in CKEDITOR.instances) {
-                    CKEDITOR.instances[instance].updateElement();
-                }
-                form.submit();
-            }
-        });
-
-        $frmPartePrograma.validate({
             submitHandler : function (form) {
                 openLoader();
                 for (var instance in CKEDITOR.instances) {
@@ -74,8 +63,9 @@
         });
 
         $(".btnSaveParte").click(function () {
-            var $thisFrm = $(this).parents(".frmPartePrograma");
-            console.log($thisFrm);
+            var id = $(this).data("id");
+            var $thisFrm = $(".frmPartePrograma" + id);
+            console.log($(this), $thisFrm);
             $thisFrm.submit();
             return false;
         });
