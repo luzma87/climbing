@@ -1,6 +1,7 @@
 <?php
     namespace App\Http\Controllers;
 
+    use App\Foto;
     use Illuminate\Http\Request;
 
 
@@ -14,7 +15,8 @@
             if (!session('lang')) {
                 session(['lang' => 'es']);
             }
-            return view('pages.recomendaciones');
+            $fotosSlider = Foto::galeria("sliderPrincipal")->orderBy("id", "asc")->get();
+            return view('pages.recomendaciones', ['fotosSlider' => $fotosSlider]);
         }
 
 
@@ -23,7 +25,8 @@
             if (!session('lang')) {
                 session(['lang' => 'es']);
             }
-            return view('pages.reserva');
+            $fotosSlider = Foto::galeria("sliderPrincipal")->orderBy("id", "asc")->get();
+            return view('pages.reserva', ['fotosSlider' => $fotosSlider]);
         }
 
         public function cancelaciones() {
@@ -31,7 +34,8 @@
             if (!session('lang')) {
                 session(['lang' => 'es']);
             }
-            return view('pages.cancelaciones');
+            $fotosSlider = Foto::galeria("sliderPrincipal")->orderBy("id", "asc")->get();
+            return view('pages.cancelaciones', ['fotosSlider' => $fotosSlider]);
         }
 
         public function entrega() {
@@ -39,7 +43,8 @@
             if (!session('lang')) {
                 session(['lang' => 'es']);
             }
-            return view('pages.entrega');
+            $fotosSlider = Foto::galeria("sliderPrincipal")->orderBy("id", "asc")->get();
+            return view('pages.entrega', ['fotosSlider' => $fotosSlider]);
         }
 
         public function responsabilidad() {
@@ -47,7 +52,8 @@
             if (!session('lang')) {
                 session(['lang' => 'es']);
             }
-            return view('pages.responsabilidad');
+            $fotosSlider = Foto::galeria("sliderPrincipal")->orderBy("id", "asc")->get();
+            return view('pages.respoonsabilidad', ['fotosSlider' => $fotosSlider]);
         }
 
         public function equipoRecomendaciones() {
@@ -55,7 +61,8 @@
             if (!session('lang')) {
                 session(['lang' => 'es']);
             }
-            return view('pages.equipoRecomendaciones');
+            $fotosSlider = Foto::galeria("sliderPrincipal")->orderBy("id", "asc")->get();
+            return view('pages.equipoRecomendaciones', ['fotosSlider' => $fotosSlider]);
         }
 
 
@@ -64,7 +71,8 @@
             if (!session('lang')) {
                 session(['lang' => 'es']);
             }
-            return view('pages.quejas');
+            $fotosSlider = Foto::galeria("sliderPrincipal")->orderBy("id", "asc")->get();
+            return view('pages.quejas', ['fotosSlider' => $fotosSlider]);
         }
 
 
@@ -73,7 +81,9 @@
             if (!session('lang')) {
                 session(['lang' => 'es']);
             }
-            return view('pages.general');
+            $fotosSlider = Foto::galeria("sliderPrincipal")->orderBy("id", "asc")->get();
+            return view('pages.general', ['fotosSlider' => $fotosSlider]);
         }
+
 
     }

@@ -1,64 +1,31 @@
 <?php
-    namespace App\Http\Controllers;
+namespace App\Http\Controllers;
 
-    use Illuminate\Http\Request;
+use App\Foto;
+use Illuminate\Http\Request;
 
 
-    use App\Http\Requests;
-    use App\Http\Controllers\Controller;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
 
-    class PageEquipoController extends Controller {
+class PageEquipoController extends Controller {
 
-        public function index() {
-            session(['pag' => 'equipo']);
-            if (!session('lang')) {
-                session(['lang' => 'es']);
-            }
-            return view('pages.equipo');
+    public function index() {
+        session(['pag' => 'equipo']);
+        if (!session('lang')) {
+            session(['lang' => 'es']);
         }
 
-
-        public function ignacio() {
-            session(['pag' => 'equipo']);
-            if (!session('lang')) {
-                session(['lang' => 'es']);
-            }
-            return view('pages.ignacio');
-        }
-
-
-        public function romel() {
-            session(['pag' => 'equipo']);
-            if (!session('lang')) {
-                session(['lang' => 'es']);
-            }
-            return view('pages.romel');
-        }
-
-
-        public function nicolas() {
-            session(['pag' => 'equipo']);
-            if (!session('lang')) {
-                session(['lang' => 'es']);
-            }
-            return view('pages.nicolas');
-        }
-
-        public function robinsson() {
-            session(['pag' => 'equipo']);
-            if (!session('lang')) {
-                session(['lang' => 'es']);
-            }
-            return view('pages.robinsson');
-        }
-
-        public function fabricio() {
-            session(['pag' => 'equipo']);
-            if (!session('lang')) {
-                session(['lang' => 'es']);
-            }
-            return view('pages.fabricio');
-        }
-
-
+        $fotosSlider = Foto::galeria("sliderPrincipal")->orderBy("id", "asc")->get();
+        return view('pages.equipo', ['fotosSlider' => $fotosSlider]);
     }
+
+    public function guia($nombre) {
+        session(['pag' => 'equipo']);
+        if (!session('lang')) {
+            session(['lang' => 'es']);
+        }
+        $fotosSlider = Foto::galeria("sliderPrincipal")->orderBy("id", "asc")->get();
+        return view('pages.guia', ['nombre' => $nombre, 'fotosSlider' => $fotosSlider]);
+    }
+}

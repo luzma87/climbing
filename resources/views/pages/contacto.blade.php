@@ -3,7 +3,7 @@
 @section('title', 'Nuestros Programas')
 
 @section('content')
-@include('pages/partials/_menu')
+@include('pages/partials/_menu', ['fotos' => $fotosSlider])
 
 <div class="row bottom-row">
     <div class="col-lg-3 col-xs-12  col-lg-offset-1 col-xs-offset-1 col-md-3  col-md-offset-1 col-sm-4  col-sm-offset-1 text-left " style="padding-left: 0px">

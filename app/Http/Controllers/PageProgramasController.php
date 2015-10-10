@@ -1,6 +1,7 @@
 <?php
     namespace App\Http\Controllers;
 
+    use App\Foto;
     use Illuminate\Http\Request;
 
 
@@ -14,7 +15,8 @@
             if (!session('lang')) {
                 session(['lang' => 'es']);
             }
-            return view('pages.programas');
+            $fotosSlider = Foto::galeria("sliderPrincipal")->orderBy("id", "asc")->get();
+            return view('pages.programas', ['fotosSlider' => $fotosSlider]);
         }
 
         public function programa() {
@@ -22,7 +24,8 @@
             if (!session('lang')) {
                 session(['lang' => 'es']);
             }
-            return view('pages.programa');
+            $fotosSlider = Foto::galeria("sliderPrincipal")->orderBy("id", "asc")->get();
+            return view('pages.programa', ['fotosSlider' => $fotosSlider]);
         }
 
 
@@ -31,14 +34,16 @@
             if (!session('lang')) {
                 session(['lang' => 'es']);
             }
-            return view('pages.cursos');
+            $fotosSlider = Foto::galeria("sliderPrincipal")->orderBy("id", "asc")->get();
+            return view('pages.cursos', ['fotosSlider' => $fotosSlider]);
         }
         public function programaVariosDias() {
             session(['pag' => 'programas']);
             if (!session('lang')) {
                 session(['lang' => 'es']);
             }
-            return view('pages.programaVarios');
+            $fotosSlider = Foto::galeria("sliderPrincipal")->orderBy("id", "asc")->get();
+            return view('pages.programaVarios', ['fotosSlider' => $fotosSlider]);
         }
     }
 

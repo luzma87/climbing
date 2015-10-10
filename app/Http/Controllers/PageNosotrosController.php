@@ -1,6 +1,7 @@
 <?php
     namespace App\Http\Controllers;
 
+    use App\Foto;
     use Illuminate\Http\Request;
 
 
@@ -14,7 +15,8 @@
             if (!session('lang')) {
                 session(['lang' => 'es']);
             }
-            return view('pages.nosotros');
+            $fotosSlider = Foto::galeria("sliderPrincipal")->orderBy("id", "asc")->get();
+            return view('pages.nosotros', ['fotosSlider' => $fotosSlider]);
         }
 
     }

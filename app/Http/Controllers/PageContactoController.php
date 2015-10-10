@@ -1,18 +1,21 @@
 <?php
-    namespace App\Http\Controllers;
+namespace App\Http\Controllers;
 
-    use Illuminate\Http\Request;
+use App\Foto;
+use Illuminate\Http\Request;
 
 
-    use App\Http\Requests;
-    use App\Http\Controllers\Controller;
-    class PageContactoController extends Controller {
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
 
-        public function index() {
-            session(['pag' => 'contacto']);
-            if (!session('lang')) {
-                session(['lang' => 'es']);
-            }
-            return view('pages.contacto');
+class PageContactoController extends Controller {
+
+    public function index() {
+        session(['pag' => 'contacto']);
+        if (!session('lang')) {
+            session(['lang' => 'es']);
         }
+        $fotosSlider = Foto::galeria("sliderPrincipal")->orderBy("id", "asc")->get();
+        return view('pages.contacto', ['fotosSlider' => $fotosSlider]);
     }
+}
