@@ -23,6 +23,7 @@
     </div>
 
     {!! Form::model($programa, ['id'=>'frmPrograma', 'files' => true, 'method' => 'PATCH', 'route' => array('adminProgramas.update', $programa->codigo)]) !!}
+    <input type="hidden" name="redirectme" value="{{'adminProgramas/edit/'.$programa->codigo.'/'.$lang}}"/>
     @include('programas/partials/_form_'.$programa->tipo, ['submit_text' => 'Actualizar programa', "fraseEs" => $fraseEs,
     'grupo' => $grupo, 'nombre' => $nombre, "tipos" => $tipos, "codEditable" => false,
     "lang" => $lang, "frase" => $frase])
@@ -65,7 +66,6 @@
         $(".btnSaveParte").click(function () {
             var id = $(this).data("id");
             var $thisFrm = $(".frmPartePrograma" + id);
-            console.log($(this), $thisFrm);
             $thisFrm.submit();
             return false;
         });

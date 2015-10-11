@@ -61,7 +61,7 @@
             foreach ($input as $key => $value) {
                 $parts = explode("__", $key);
                 $size = sizeof($parts);
-                if ($size == 2) {
+                if ($size >= 2) {
                     $campo = $parts[0];
                     $lang = $parts[1];
                     $data[$lang][$campo] = $value;
@@ -152,7 +152,7 @@
 
             foreach ($data as $lang => $inputs) {
                 $idioma = Idioma::whereCodigo($lang)->get()->first();
-                $frase = FrasePartePrograma::where("parte_programa_id", $parte->id)->where("idioma", $idioma->id)->first();
+                $frase = FrasePartePrograma::where("parte_programa_id", $id)->where("idioma", $idioma->id)->first();
                 if ($frase) {
                     $frase->update($inputs);
                 } else {
@@ -161,7 +161,6 @@
                     FrasePartePrograma::create($inputs);
                 }
             }
-
             $redirectme = Input::get('redirectme');
             return Redirect::to($redirectme)->with('message', 'Parte de programa actualizada');
         }

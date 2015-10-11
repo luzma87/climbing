@@ -21,6 +21,8 @@
     <legend class="text-verde">Campos dependientes del idioma ({{ $lang }})</legend>
     {!! Form::nth_traducir_frase('textfield', $frase, $fraseEs, $lang, 'nombre', 'Nombre del programa', $errors) !!}
     {!! Form::nth_traducir_frase('textarea', $frase, $fraseEs, $lang, 'resumen', 'Resumen del programa', $errors) !!}
+    {!! Form::nth_traducir_frase('textarea', $frase, $fraseEs, $lang, 'logistica', 'Logística del programa', $errors) !!}
+    {!! Form::nth_traducir_frase('file', $frase, $fraseEs, $lang, 'llevarFile', 'Pdf con lista de equipo anexo', $errors) !!}
 </fieldset>
 
 <div style="margin-top: 15px; margin-bottom: 15px;">

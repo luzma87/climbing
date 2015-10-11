@@ -35,7 +35,7 @@
             foreach ($input as $key => $value) {
                 $parts = explode("__", $key);
                 $size = sizeof($parts);
-                if ($size == 2) {
+                if ($size >= 2) {
                     $campo = $parts[0];
                     $lang = $parts[1];
                     $data[$lang][$campo] = $value;

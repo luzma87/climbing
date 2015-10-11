@@ -57,7 +57,7 @@
                 </div>
                 <div id="collapse{{ $index }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{ $index }}">
                     <div class="panel-body">
-                        {!! Form::model($parte, ['class'=>'frmPartePrograma frmPartePrograma_'.$parte->id, 'files' => true,'method' => 'PATCH',  'route' => ['adminPartesProgramas.update']]) !!}
+                        {!! Form::model($parte, ['class'=>'frmPartePrograma frmPartePrograma_'.$parte->id, 'files' => true,'method' => 'PATCH',  'route' => ['adminPartesProgramas.update', $parte->id]]) !!}
                         @include('partesProgramas/partials/_form', ['submit_text' => 'Modificar parte/día ('.$lang.')',  "submit_id" => "_".$parte->id, "fraseEs" => $frasesEs, "lang" => $lang, "parte" => $parte,
                                     "frase"=>$frasesParte, "tipos"=>$tipos, "redirectme" => 'adminProgramas/edit/'.$programa->codigo.'/'.$lang, "programa"=>$programa->id])
                         {!! Form::close()  !!}

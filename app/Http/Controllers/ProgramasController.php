@@ -81,7 +81,7 @@ class ProgramasController extends Controller {
         foreach ($input as $key => $value) {
             $parts = explode("__", $key);
             $size = sizeof($parts);
-            if ($size == 2) {
+            if ($size >= 2) {
                 $campo = $parts[0];
                 $lang = $parts[1];
                 $data[$lang][$campo] = $value;
@@ -158,11 +158,10 @@ class ProgramasController extends Controller {
         $idiomas = Idioma::lists('nombre', 'codigo'); //saca solo el nombre y el id
 
         $fotosSlider = Foto::galeria("sliderPrincipal")->orderBy("id", "asc")->get();
-        $fotosCarrousel = Foto::galeria("homePrincipal")->orderBy("id", "asc")->get();
 
         return view('programas.show', ['programa' => $programa, "grupo" => $grupo, "nombre" => $nombre, "dificultad" => $dificultad,
                                        'frase' => $frase, "idiomas" => $idiomas, "lang" => $lang,
-                                       'fotosSlider' => $fotosSlider, 'fotosCarrousel' => $fotosCarrousel]);
+                                       'fotosSlider' => $fotosSlider]);
     }
 
     /**
@@ -227,8 +226,8 @@ class ProgramasController extends Controller {
             $pdf = $request->file('llevarFile__' . $lang);
             $this->doUploadPdf($programa, $frase, $pdf);
         }
-
-        return Redirect::to('admin/programas')->with('message', 'Programa actualizado');
+        $redirectme = Input::get('redirectme');
+        return Redirect::to($redirectme)->with('message', 'Programa actualizado');
     }
 
     /**
